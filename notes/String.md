@@ -1,3 +1,5 @@
+# String
+
 ## 概览
 
 String 被声明为 final，因此它不可被继承。(Integer 等包装类也不能被继承）
