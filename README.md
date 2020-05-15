@@ -1,9 +1,9 @@
 # interview_knowledge
 ## java tutorial
 ### java基础
-- 基本数据类型
-- String
-- 关键字
+- [基本数据类型](https://github.com/lindage1994/interview_knowledge/blob/master/notes/基本数据类型.md)
+- [String](https://github.com/lindage1994/interview_knowledge/blob/master/notes/String.md)
+- [关键字](https://github.com/lindage1994/interview_knowledge/blob/master/notes/关键字.md)
 - 枚举
 - 泛型
 - 异常
