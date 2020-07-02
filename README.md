@@ -36,7 +36,7 @@
 - stream
 - 时间API
 ### jvm
-- [jvm内存区域](https://github.com/lindage1994/interview_knowledge/blob/master/notes/JVM_memory.md)
+- [jvm内存区域](https://github.com/lindage1994/interview_knowledge/blob/master/notes/JVM-memory.md)
 - [垃圾收集算法和垃圾收集器](https://github.com/lindage1994/interview_knowledge/blob/master/notes/GC.md)
 - [类文件结构](https://github.com/lindage1994/interview_knowledge/blob/master/notes/Class-structure.md)
 - [类加载机制](https://github.com/lindage1994/interview_knowledge/blob/master/notes/Class-load.md)
