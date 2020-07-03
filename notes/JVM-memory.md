@@ -1,24 +1,14 @@
-- 运行时数据区域
 
-- 程序计数器
 
-- 虚拟机栈
+# 运行时数据区域
 
-- 本地方法栈
 
-- 堆
 
-- 方法区
+![image-20200703170643997](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200703170643997.png)
 
-- 运行时常量池
 
-- 直接内存
 
-  # 运行时数据区域
 
-  
-
-![image-20200701205053744](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200701205053744.png)
 
 ## 程序计数器(Program Counter Register)
 
