@@ -29,14 +29,6 @@
 - 线程池
 - 锁
 - JUC
-### I/O
-- 流
-- NIO
-- netty
-### java 8
-- lambda表达式
-- stream
-- 时间API
 ### jvm
 - [jvm内存区域](https://github.com/lindage1994/interview_knowledge/blob/master/notes/JVM-memory.md)
 - [垃圾收集](https://github.com/lindage1994/interview_knowledge/blob/master/notes/GC.md)
@@ -44,9 +36,8 @@
 - [类加载机制](https://github.com/lindage1994/interview_knowledge/blob/master/notes/Class-load.md)
 ## spring
 ### spring原理
-- 反射机制
-- ioc、BeanFactory
-- aop与代理模式
+- ioc和反射机制
+- aop和代理模式
 ### spring mvc
 - dispatchServlet
 - 常用注解
