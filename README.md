@@ -24,11 +24,7 @@
 - [BlockingQueue 接口](notes/BlockingQueue.md)
 - [CopyOnWriteArrayList 与 CopyOnWriteArraySet](notes/CopyOnWriteArrayList.md)
 ### 并发
-- 并发与并行
-- 线程
-- 线程池
-- 锁
-- JUC
+- [并发](/notes/concurrent.md)
 ### jvm
 - [jvm内存区域](notes/JVM-memory.md)
 - [垃圾收集](notes/GC.md)
@@ -36,8 +32,8 @@
 - [类加载机制](notes/Class-load.md)
 ## spring
 ### spring原理
-- ioc和反射机制
-- aop和代理模式
+- [ioc和反射机制](/notes/spring/ioc.md)
+- [aop和代理模式](/notes/spring/aop.md)
 ### spring mvc
 - dispatchServlet
 - 常用注解
