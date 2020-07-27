@@ -65,7 +65,7 @@
 ### uml
 - [统一建模语言](notes/design-patten/UML.md)
 ### 六大原则
-- 设计模式六大原则概述
+- [设计模式六大原则概述](notes/design-patten/Principle.md)
 ### 创建型模式
 - [单例](notes/design-patten/Singleton.md)
 - [简单工厂.md](notes/design-patten/Simple-Factory.md)
