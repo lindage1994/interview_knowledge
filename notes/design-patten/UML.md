@@ -1,12 +1,3 @@
----
-layout: post
-title: "design_pattern_UML"
-date: 2019-01-13
-description: "设计模式之UML"
-excerpt: "设计模式之UML"
-tag: [design_pattern]
-comments: true
----
 ### uml简介
 
 > UML Unified Modeling Language 统一建模语言
