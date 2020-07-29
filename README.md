@@ -9,7 +9,6 @@
 - [异常](notes/Exception.md)
 - [Object类](notes/Object.md)
 - [注解](notes/Annotation.md)
-- [面向对象](notes/Object-oriented.md)
 - [IO](notes/IO.md)
 - [Java8新特性](notes/Java8-features.md)
 ### 容器源码分析
