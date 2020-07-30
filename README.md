@@ -7,7 +7,6 @@
 - [枚举](notes/Enum.md)
 - [泛型](notes/Generic.md)
 - [异常](notes/Exception.md)
-- [Object类](notes/Object.md)
 - [注解](notes/Annotation.md)
 - [IO](notes/IO.md)
 - [Java8新特性](notes/Java8-features.md)
@@ -18,12 +17,10 @@
 - [LinkedList源码分析](notes/LinkedList.md)
 - [HashMap源码分析](notes/HashMap.md)
 - [ConcurrentHashMap源码分析](notes/ConcurrentHashMap.md)
-- [TreeMap源码分析](notes/TreeMap.md)
-- [Set集合](notes/Set.md)
 - [BlockingQueue 接口](notes/BlockingQueue.md)
 - [CopyOnWriteArrayList 与 CopyOnWriteArraySet](notes/CopyOnWriteArrayList.md)
 ### 并发
-- [并发](/notes/concurrent.md)
+- [并发](/notes/Concurrent.md)
 ### jvm
 - [jvm内存区域](notes/JVM-memory.md)
 - [垃圾收集](notes/GC.md)
