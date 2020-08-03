@@ -30,9 +30,9 @@
 ### spring原理
 - [ioc和反射机制](/notes/spring/ioc.md)
 - [aop和代理模式](/notes/spring/aop.md)
+- [常见注解](/notes/spring/spring-annotations.md)
 ### spring mvc
 - dispatchServlet
-- 常用注解
 ### spring boot
 - spring boot 2.0
 - 起步依赖
