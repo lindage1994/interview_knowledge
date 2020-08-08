@@ -92,14 +92,14 @@
 - [空对象.md](notes/design-patten/Null.md)
 ## 算法与数据结构
 ### 常见数据结构
-- 栈
-- 队列
-- 链表
-- 数组
-- 哈希表
-- 树
-- 堆
-- 图
+- [线性表](/notes/structure/list.md)
+- [链表](/notes/structure/linkedlist.md)
+- [栈](/notes/structure/stack.md)
+
+- [队列](/notes/structure/queue.md)
+- [哈希表](/notes/structure/hash.md)
+- [树](/notes/structure/tree.md)
+- [图](/notes/structure/map.md)
 ### 算法分析
 - 时间复杂度和空间复杂度
 ### 排序算法
