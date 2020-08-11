@@ -51,7 +51,7 @@
 - CAP定理与BASE理论
 - 分布式事务
 ## 数据库
-- 数据库三大范式五大约束
+- [数据库三大范式五大约束](/notes/database/normal-form.md)
 - [事务特性与隔离级别](/notes/DataBase.md)
 - MySQL InnoDB 索引
 - MySQL 锁机制
@@ -101,7 +101,7 @@
 - [树](/notes/structure/tree.md)
 - [图](/notes/structure/map.md)
 ### 算法分析
-- 时间复杂度和空间复杂度
+- [算法分析](/notes/structure/algorithm_alanlysis.md)
 ### 排序算法
 #### 稳定的排序
 - 冒泡排序
