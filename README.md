@@ -53,7 +53,7 @@
 ## 数据库
 - [数据库三大范式五大约束](/notes/database/normal-form.md)
 - [事务特性与隔离级别](/notes/DataBase.md)
-- MySQL InnoDB 索引
+- [InnoDB 索引](/notes/DataBase.md)
 - MySQL 锁机制
 - SQL优化
 - 分库分表
