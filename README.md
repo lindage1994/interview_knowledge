@@ -26,6 +26,7 @@
 - [垃圾收集](notes/GC.md)
 - [类文件结构](notes/Class-structure.md)
 - [类加载机制](notes/Class-load.md)
+- jvm调优
 ## spring
 ### spring原理
 - [ioc和反射机制](/notes/spring/ioc.md)
@@ -129,7 +130,7 @@
 - 链接
 ## tools
 - git
-- idea
+- maven
 - docker
 ## 编码实践
 - 重构
