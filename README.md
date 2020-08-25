@@ -33,7 +33,7 @@
 - [aop和代理模式](/notes/spring/aop.md)
 - [常见注解](/notes/spring/spring-annotations.md)
 ### spring mvc
-- DispatchServlet
+- [springMVC](/notes/spring/SpringMVC-Principle.md)
 ### spring boot
 - spring boot 2.0
 - 起步依赖
