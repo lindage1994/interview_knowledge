@@ -22,14 +22,14 @@
 ### 并发
 - [并发](/notes/Concurrent.md)
 ### jvm
-- [jvm内存区域](notes/JVM-memory.md)
-- [垃圾收集](notes/GC.md)
-- [类文件结构](notes/Class-structure.md)
-- [类加载机制](notes/Class-load.md)
-- jvm调优
+- [jvm内存区域](notes/jvm/JVM-memory.md)
+- [垃圾收集](notes/jvm/GC.md)
+- [类文件结构](notes/jvm/Class-structure.md)
+- [类加载机制](notes/jvm/Class-load.md)
+- [jvm调优](/notes/jvm/jvm-performance-tuning.md)
 ## spring
 ### spring原理
-- [ioc和反射机制](/notes/spring/ioc.md)
+- [ioc和工厂模式](/notes/spring/ioc.md)
 - [aop和代理模式](/notes/spring/aop.md)
 - [常见注解](/notes/spring/spring-annotations.md)
 ### spring mvc
