@@ -119,8 +119,8 @@
 - hash算法
 - 动态规划
 ## 计算机网络
-### 概述
-### http协议
+- [http协议](/notes/network/HTTP.md)
+
 ## 操作系统
 - 概述
 - 进程管理
@@ -129,13 +129,13 @@
 - 死锁
 - 链接
 ## tools
-- git
-- maven
-- docker
+- [Git](/notes/tools/Git.md)
+- [构建工具](/notes/tools/build-tools.md)
+- [Docker](/notes/tools/Docker.md)
 ## 编码实践
-- 重构
-- 代码可读性
-- 代码规范
+- [代码可读性](/notes/code-style/代码可读性.md)
+- [代码规范](/notes/code-style/代码风格规范.md)
+- [重构](/notes/code-style/重构.md)
 ## interview
 - 简历
 - [牛客网面经爬虫](https://github.com/lindage1994/nowcoder_spider)
