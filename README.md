@@ -36,9 +36,8 @@
 - [springMVC](/notes/spring/SpringMVC-Principle.md)
 ### spring boot
 - spring boot 2.0
-- 起步依赖
-- 自动配置
-- starter
+- [起步依赖和自动配置](/notes/spring/起步依赖和自动配置.md)
+- [定制starter](/notes/spring/定制starter.md)
 ### spring cloud
 - 服务注册与发现 Eureka、Zookeeper、Consul、Nacos
 - 负载均衡 Feign、Spring Cloud Loadbalance
