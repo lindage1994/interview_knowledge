@@ -46,8 +46,7 @@
 - 服务网关 gateway
 - 消息总线 Bus
 ## 分布式
-- 集群与分布式
-- CAP定理与BASE理论
+- [CAP定理与BASE理论](/notes/distribution/cap.md)
 - [分布式事务](/notes/distribution/distributed-transaction.md)
 ## 数据库
 - [数据库三大范式五大约束](/notes/database/normal-form.md)
