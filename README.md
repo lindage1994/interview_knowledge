@@ -119,12 +119,11 @@
 - [http协议](/notes/network/HTTP.md)
 
 ## 操作系统
-- 概述
-- 进程管理
-- 内存管理
-- 设备管理
-- 死锁
-- 链接
+- [概述](/notes/os/计算机体系结构.md)
+- [进程管理](/notes/os/进程管理.md)
+- [内存管理](/notes/os/内存管理.md)
+- [设备管理](/notes/os/设备管理.md)
+- [IO](/notes/os/IO.md)
 ## tools
 - [Git](/notes/tools/Git.md)
 - [构建工具](/notes/tools/build-tools.md)
