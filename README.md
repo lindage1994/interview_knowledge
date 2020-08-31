@@ -93,7 +93,6 @@
 - [线性表](/notes/structure/list.md)
 - [链表](/notes/structure/linkedlist.md)
 - [栈](/notes/structure/stack.md)
-
 - [队列](/notes/structure/queue.md)
 - [哈希表](/notes/structure/hash.md)
 - [树](/notes/structure/tree.md)
