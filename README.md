@@ -130,6 +130,7 @@
 - [内存管理](/notes/os/内存管理.md)
 - [设备管理](/notes/os/设备管理.md)
 - [IO](/notes/os/IO.md)
+- [Linux](/notes/os/Linux.md)
 ## tools
 - [Git](/notes/tools/Git.md)
 - [构建工具](/notes/tools/build-tools.md)
