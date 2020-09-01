@@ -20,7 +20,7 @@
 - [BlockingQueue 接口](notes/source-code/BlockingQueue.md)
 - [CopyOnWriteArrayList 与 CopyOnWriteArraySet](notes/source-code/CopyOnWriteArrayList.md)
 ### 并发
-- [并发](/notes/Concurrent.md)
+- [并发](/notes/concurrent/Concurrent.md)
 ### jvm
 - [jvm内存区域](notes/jvm/JVM-memory.md)
 - [垃圾收集](notes/jvm/GC.md)
