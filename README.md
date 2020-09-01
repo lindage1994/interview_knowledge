@@ -38,13 +38,7 @@
 - [起步依赖和自动配置](/notes/spring/起步依赖和自动配置.md)
 - [定制starter](/notes/spring/定制starter.md)
 ### spring cloud
-- 服务注册与发现 Eureka、Zookeeper、Consul、Nacos
-- 负载均衡 Feign、Spring Cloud Loadbalance
-- 配置中心 Spring Cloud Config
-- 服务限流与熔断 Hystrix
-- 服务链路追踪 Dapper
-- 服务网关 gateway
-- 消息总线 Bus
+- [springCloud](/notes/spring/springCloud.md)
 ## 分布式
 - [CAP定理与BASE理论](/notes/distribution/cap.md)
 - [分布式事务](/notes/distribution/distributed-transaction.md)
