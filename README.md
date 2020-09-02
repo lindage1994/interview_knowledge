@@ -96,7 +96,6 @@
 ### 常见算法
 
 - [排序算法](/notes/algorithm/sort.md)
-
 - 贪心算法
 - KMP算法
 - hash算法
