@@ -84,26 +84,19 @@
 - [空对象](notes/design-patten/Null.md)
 ## 算法与数据结构
 ### 常见数据结构
-- [线性表](/notes/structure/list.md)
-- [链表](/notes/structure/linkedlist.md)
-- [栈](/notes/structure/stack.md)
-- [队列](/notes/structure/queue.md)
-- [哈希表](/notes/structure/hash.md)
-- [树](/notes/structure/tree.md)
-- [图](/notes/structure/map.md)
+- [线性表](/notes/algorithm/list.md)
+- [链表](/notes/algorithm/linkedlist.md)
+- [栈](/notes/algorithm/stack.md)
+- [队列](/notes/algorithm/queue.md)
+- [哈希表](/notes/algorithm/hash.md)
+- [树](/notes/algorithm/tree.md)
+- [图](/notes/algorithm/map.md)
 ### 算法分析
-- [算法分析](/notes/structure/algorithm_alanlysis.md)
-### 排序算法
-#### 稳定的排序
-- 冒泡排序
-- 拆入排序
-- 归并排序
-#### 不稳定的排序
-- 选择排序
-- 希尔排序
-- 堆排序
-- 快速排序
+- [算法分析](/notes/algorithm/algorithm_alanlysis.md)
 ### 常见算法
+
+- [排序算法](/notes/algorithm/sort.md)
+
 - 贪心算法
 - KMP算法
 - hash算法
