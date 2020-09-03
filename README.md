@@ -96,10 +96,11 @@
 ### 常见算法
 
 - [排序算法](/notes/algorithm/sort.md)
-- 贪心算法
-- KMP算法
-- hash算法
-- 动态规划
+- [穷举算法](/notes/algorithm/base-enum.md)
+- [贪心算法](/notes/algorithm/greedy.md)
+- [分治法](/notes/algorithm/divided.md)
+- [回溯法](/notes/algorithm.backtracking.md)
+- [动态规划](/notes/algorithm/dynamic.md)
 ## 计算机网络
 
 - [底层网络协议](/notes/network/底层网络协议.md)
