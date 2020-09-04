@@ -396,7 +396,8 @@ public V get(Object key) {
 
 ### 1. 存储结构
 
-![Java8 ConcurrentHashMap 存储结构（图片来自 javadoop）](./images/java8_concurrenthashmap.png)
+![java8_concurrenthashmap](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/04/163039-931080.png)
+
 
 可以发现 Java8 的 ConcurrentHashMap  相对于 Java7 来说变化比较大，不再是之前的 **Segment 数组 + HashEntry 数组 + 链表**，而是 **Node 数组 + 链表 / 红黑树**。当冲突链表达到一定长度时，链表会转换成红黑树。
 

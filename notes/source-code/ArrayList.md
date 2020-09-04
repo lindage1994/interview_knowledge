@@ -1,12 +1,10 @@
 
 ### ArrayList简介
 　　ArrayList 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用`ensureCapacity`操作来增加 ArrayList 实例的容量。这可以减少递增式再分配的数量。
-    
    它继承于 **AbstractList**，实现了 **List**, **RandomAccess**, **Cloneable**, **java.io.Serializable** 这些接口。
-    
    在我们学数据结构的时候就知道了线性表的顺序存储，插入删除元素的时间复杂度为**O（n）**,求表长以及增加元素，取第 i   元素的时间复杂度为**O（1）**
 
-　  ArrayList 继承了AbstractList，实现了List。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。
+　  ArrayList 继承了**AbstractList**，实现了**List**。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。
 
 　　ArrayList 实现了**RandomAccess 接口**， RandomAccess 是一个标志接口，表明实现这个这个接口的 List 集合是支持**快速随机访问**的。在 ArrayList 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
 
@@ -14,7 +12,7 @@
 
 　　ArrayList 实现**java.io.Serializable 接口**，这意味着ArrayList**支持序列化**，**能通过序列化去传输**。
 
-　　和 Vector 不同，**ArrayList 中的操作不是线程安全的**！所以，建议在单线程中才使用 ArrayList，而在多线程中可以选择 Vector 或者  CopyOnWriteArrayList。
+　　ArrayList 中的操作**不是线程安全的**！所以，在多线程中可以选择 Vector 或者  CopyOnWriteArrayList。
 ### ArrayList核心源码
 
 ```java
@@ -522,7 +520,7 @@ public class ArrayList<E> extends AbstractList<E>
 
   
 ```
-### <font face="楷体" id="1" id="5">ArrayList源码分析</font>
+### ArrayList源码分析
 ####  System.arraycopy()和Arrays.copyOf()方法
 　　通过上面源码我们发现这两个实现数组复制的方法被广泛使用而且很多地方都特别巧妙。比如下面<font color="red">add(int index, E element)</font>方法就很巧妙的用到了<font color="red">arraycopy()方法</font>让数组自己复制自己实现让index开始之后的所有成员后移一个位置:
 ```java 
@@ -651,7 +649,7 @@ public class ArrayList<E> extends AbstractList<E>
     (4)static final class ArrayListSpliterator<E> implements Spliterator<E>  
 ```
 　　ArrayList有四个内部类，其中的**Itr是实现了Iterator接口**，同时重写了里面的**hasNext()**， **next()**， **remove()** 等方法；其中的**ListItr** 继承 **Itr**，实现了**ListIterator接口**，同时重写了**hasPrevious()**， **nextIndex()**， **previousIndex()**， **previous()**， **set(E e)**， **add(E e)** 等方法，所以这也可以看出了 **Iterator和ListIterator的区别:** ListIterator在Iterator的基础上增加了添加对象，修改对象，逆向遍历等方法，这些是Iterator不能实现的。
-### <font face="楷体" id="6"> ArrayList经典Demo</font>
+### ArrayList经典Demo
 
 ```java
 package list;

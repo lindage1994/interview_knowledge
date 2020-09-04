@@ -1,4 +1,5 @@
 <!-- GFM-TOC -->
+
 * [一、解决的问题](#一解决的问题)
 * [二、与虚拟机的比较](#二与虚拟机的比较)
 * [三、优势](#三优势)
@@ -88,9 +89,3 @@ Docker 轻量级的特点使得它很适合用于部署、维护、组合微服�
 - [持续集成是什么？](http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html)
 
 
-
-
-
-
-
-<div align="center"><img width="320px" src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/githubio/公众号二维码-2.png"></img></div>

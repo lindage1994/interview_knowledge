@@ -1,4 +1,5 @@
 <!-- GFM-TOC -->
+
 * [一、构建工具的作用](#一构建工具的作用)
 * [二、Java 主流构建工具](#二java-主流构建工具)
 * [三、Maven](#三maven)
@@ -125,7 +126,3 @@ A -> C -> X(2.0)
 
 
 
-
-
-
-<div align="center"><img width="320px" src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/githubio/公众号二维码-2.png"></img></div>

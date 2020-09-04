@@ -1,6 +1,6 @@
 
 
-## ## 简介
+## 简介
 **LinkedList** 是一个实现了 **List接口** 和 **Deque接口** 的 **双向链表**。 
 LinkedList 底层的链表结构使它 **支持高效的插入和删除操作**，另外它实现了Deque接口，使得LinkedList类也具有队列的特性;
 LinkedList **不是线程安全的**，如果想使LinkedList变成线程安全的，可以调用静态类 **Collections类** 中的 **synchronizedList** 方法： 
@@ -8,9 +8,9 @@ LinkedList **不是线程安全的**，如果想使LinkedList变成线程安全�
 ```java
 List list=Collections.synchronizedList(new LinkedList(...));
 ```
-## ## 内部结构分析
+## 内部结构分析
 **如下图所示：**
-![LinkedList内部结构](https://user-gold-cdn.xitu.io/2018/3/19/1623e363fe0450b0?w=600&h=481&f=jpeg&s=18502)
+![LinkedList内部结构](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/04/163259-899572.jpeg)
 看完了图之后，我们再看LinkedList类中的一个 **内部私有类Node** 就很好理解了：
 
 ```java
@@ -28,57 +28,58 @@ private static class Node<E> {
 ```
 这个类就代表双端链表的节点Node。这个类有三个属性，分别是前驱节点，本节点的值，后继结点。
 
-## ## LinkedList源码分析
-### ### 构造方法
+## LinkedList源码分析
+### 构造方法
 **空构造方法：**
 
 ```java
-    public LinkedList() {
-    }
+public LinkedList() {
+}
 ```
 **用已有的集合创建链表的构造方法：**
 
 ```java
-    public LinkedList(Collection<? extends E> c) {
-        this();
-        addAll(c);
-    }
+public LinkedList(Collection<? extends E> c) {
+    this();
+    addAll(c);
+}
 ```
-### ### add方法
+### add方法
 **add(E e)** 方法：将元素添加到链表尾部
+
 ```java
 public boolean add(E e) {
-        linkLast(e);//这里就只调用了这一个方法
-        return true;
-    }
+    linkLast(e);//这里就只调用了这一个方法
+    return true;
+}
 ```
 
 ```java
-   /**
-     * 链接使e作为最后一个元素。
-     */
-    void linkLast(E e) {
-        final Node<E> l = last;
-        final Node<E> newNode = new Node<>(l, e, null);
-        last = newNode;//新建节点
-        if (l == null)
-            first = newNode;
-        else
-            l.next = newNode;//指向后继元素也就是指向下一个元素
-        size++;
-        modCount++;
-    }
+/**
+ * 链接使e作为最后一个元素。
+ */
+void linkLast(E e) {
+    final Node<E> l = last;
+    final Node<E> newNode = new Node<>(l, e, null);
+    last = newNode;//新建节点
+    if (l == null)
+        first = newNode;
+    else
+        l.next = newNode;//指向后继元素也就是指向下一个元素
+    size++;
+    modCount++;
+}
 ```
 **add(int index,E e)**：在指定位置添加元素
 ```java
 public void add(int index, E element) {
-        checkPositionIndex(index); //检查索引是否处于[0-size]之间
+    checkPositionIndex(index); //检查索引是否处于[0-size]之间
 
-        if (index == size)//添加在链表尾部
-            linkLast(element);
-        else//添加在链表中间
-            linkBefore(element, node(index));
-    }
+    if (index == size)//添加在链表尾部
+        linkLast(element);
+    else//添加在链表中间
+        linkBefore(element, node(index));
+}
 ```
 **linkBefore方法 ** 需要给定两个参数，一个 **插入节点的值**，一个 **指定的node**，所以我们又调用了 **Node(index)去找到index对应的node**
 
@@ -86,8 +87,8 @@ public void add(int index, E element) {
 
 ```java
 public boolean addAll(Collection<? extends E> c) {
-        return addAll(size, c);
-    }
+    return addAll(size, c);
+}
 ```
 **addAll(int index, Collection c)：** 将集合从指定位置开始插入
 ```java
@@ -150,9 +151,9 @@ public boolean addAll(int index, Collection<? extends E> c) {
 
 **addFirst(E e)：** 将元素添加到链表头部
 ```java
- public void addFirst(E e) {
-        linkFirst(e);
-    }
+public void addFirst(E e) {
+   linkFirst(e);
+}
 ```
 ```java
 private void linkFirst(E e) {
@@ -175,7 +176,7 @@ public void addLast(E e) {
         linkLast(e);
     }
 ```
-### ### 根据位置取数据的方法
+### 根据位置取数据的方法
 **get(int index)：** 根据指定索引返回数据
 ```java
 public E get(int index) {
@@ -226,7 +227,7 @@ element()方法的内部就是使用getFirst()实现的。它们会在链表为�
 ```
 **两者区别：**
 **getLast()** 方法在链表为空时，会抛出**NoSuchElementException**，而**peekLast()** 则不会，只是会返回 **null**。
-### ### 根据对象得到索引的方法
+### 根据对象得到索引的方法
 **int indexOf(Object o)：** 从头遍历找
 
 ```java
@@ -272,41 +273,42 @@ public int lastIndexOf(Object o) {
         return -1;
     }
 ```
-### ### 检查链表是否包含某对象的方法：
+### 检查链表是否包含某对象的方法：
 **contains(Object o)：** 检查对象o是否存在于链表中
 ```java
  public boolean contains(Object o) {
         return indexOf(o) != -1;
     }
 ```
-### ### 删除方法
+### 删除方法
 **remove()** ,**removeFirst(),pop():** 删除头节点
-```
+
+```java
 public E pop() {
-        return removeFirst();
-    }
+    return removeFirst();
+}
 public E remove() {
-        return removeFirst();
-    }
+    return removeFirst();
+}
 public E removeFirst() {
-        final Node<E> f = first;
-        if (f == null)
-            throw new NoSuchElementException();
-        return unlinkFirst(f);
-    }
+    final Node<E> f = first;
+    if (f == null)
+        throw new NoSuchElementException();
+    return unlinkFirst(f);
+}
 ```
 **removeLast(),pollLast():** 删除尾节点
 ```java
 public E removeLast() {
-        final Node<E> l = last;
-        if (l == null)
-            throw new NoSuchElementException();
-        return unlinkLast(l);
-    }
+    final Node<E> l = last;
+    if (l == null)
+        throw new NoSuchElementException();
+    return unlinkLast(l);
+}
 public E pollLast() {
-        final Node<E> l = last;
-        return (l == null) ? null : unlinkLast(l);
-    }
+    final Node<E> l = last;
+    return (l == null) ? null : unlinkLast(l);
+}
 ```
 **区别：** removeLast()在链表为空时将抛出NoSuchElementException，而pollLast()方法返回null。
 
@@ -314,62 +316,63 @@ public E pollLast() {
 
 ```java
 public boolean remove(Object o) {
-        //如果删除对象为null
-        if (o == null) {
-            //从头开始遍历
-            for (Node<E> x = first; x != null; x = x.next) {
-                //找到元素
-                if (x.item == null) {
-                   //从链表中移除找到的元素
-                    unlink(x);
-                    return true;
-                }
-            }
-        } else {
-            //从头开始遍历
-            for (Node<E> x = first; x != null; x = x.next) {
-                //找到元素
-                if (o.equals(x.item)) {
-                    //从链表中移除找到的元素
-                    unlink(x);
-                    return true;
-                }
+    //如果删除对象为null
+    if (o == null) {
+        //从头开始遍历
+        for (Node<E> x = first; x != null; x = x.next) {
+            //找到元素  
+            if (x.item == null) {
+                //从链表中移除找到的元素
+                unlink(x);
             }
         }
-        return false;
+    } else {
+        //从头开始遍历
+        for (Node<E> x = first; x != null; x = x.next) {
+            //找到元素
+            if (o.equals(x.item)) {
+                //从链表中移除找到的元素
+                unlink(x);
+                return true;
+            }
+        }
     }
+    return false;
+}
 ```
 当删除指定对象时，只需调用remove(Object o)即可，不过该方法一次只会删除一个匹配的对象，如果删除了匹配对象，返回true，否则false。
 
 unlink(Node<E> x) 方法：
+
 ```java
 E unlink(Node<E> x) {
-        // assert x != null;
-        final E element = x.item;
-        final Node<E> next = x.next;//得到后继节点
-        final Node<E> prev = x.prev;//得到前驱节点
+    // assert x != null;
+    final E element = x.item;
+    final Node<E> next = x.next;//得到后继节点
+    final Node<E> prev = x.prev;//得到前驱节点
 
-        //删除前驱指针
-        if (prev == null) {
-            first = next;//如果删除的节点是头节点,令头节点指向该节点的后继节点
-        } else {
-            prev.next = next;//将前驱节点的后继节点指向后继节点
-            x.prev = null;
-        }
-
-        //删除后继指针
-        if (next == null) {
-            last = prev;//如果删除的节点是尾节点,令尾节点指向该节点的前驱节点
-        } else {
-            next.prev = prev;
-            x.next = null;
-        }
-
-        x.item = null;
-        size--;
-        modCount++;
-        return element;
+    //删除前驱指针
+    if (prev == null) {
+        first = next;//如果删除的节点是头节点,令头节点指向该节点的后继节点
+    } else {
+        prev.next = next;//将前驱节点的后继节点指向后继节点
+        x.prev = null;
     }
+
+    
+    //删除后继指针
+    if (next == null) {
+        last = prev;//如果删除的节点是尾节点,令尾节点指向该节点的前驱节点
+    } else {
+        next.prev = prev;
+        x.next = null;
+    }
+
+    x.item = null;
+    size--;
+    modCount++;
+    return element;
+}
 ```
 **remove(int index)**：删除指定位置的元素
 ```java
@@ -380,7 +383,7 @@ public E remove(int index) {
         return unlink(node(index));
     }
 ```
-## ### LinkedList类常用方法测试
+## LinkedList类常用方法测试
 
 ```java
 package list;

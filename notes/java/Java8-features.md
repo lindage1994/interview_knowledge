@@ -41,7 +41,7 @@
 
 # Java 8 Tutorial 
 
-欢迎阅读我对Java 8的介绍。本教程将逐步指导您完成所有新语言功能。 在简短的代码示例的基础上，您将学习如何使用默认接口方法，lambda表达式，方法引用和可重复注释。 在本文的最后，您将熟悉最新的 API 更改，如流，函数式接口(Functional Interfaces)，Map 类的扩展和新的 Date API。 没有大段枯燥的文字，只有一堆注释的代码片段。
+默认接口方法，lambda表达式，方法引用和可重复注释
 
 
 ### 接口的默认方法(Default Methods for Interfaces)

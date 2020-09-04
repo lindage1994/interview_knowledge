@@ -6,7 +6,7 @@
 >
 > 转载请注明上面这段文字。
 
-## 1.概览
+## 概览
 
 在本文中，我们将看到什么是 Java 枚举，它们解决了哪些问题以及如何在实践中使用  Java 枚举实现一些设计模式。
 
@@ -37,7 +37,7 @@ System.out.println(PizzaStatus.ORDERED.name().getClass());//class java.lang.Stri
 System.out.println(PizzaStatus.ORDERED.getClass());//class shuang.kou.enumdemo.enumtest.PizzaStatus
 ```
 
-## 2.自定义枚举方法
+## 自定义枚举方法
 
 现在我们对枚举是什么以及如何使用它们有了基本的了解，让我们通过在枚举上定义一些额外的API方法，将上一个示例提升到一个新的水平：
 
@@ -61,7 +61,7 @@ public class Pizza {
 }
 ```
 
-## 3.使用 == 比较枚举类型
+## 使用 == 比较枚举类型
 
 由于枚举类型确保JVM中仅存在一个常量实例，因此我们可以安全地使用“ ==”运算符比较两个变量，如上例所示；此外，“ ==”运算符可提供编译时和运行时的安全性。
 
@@ -92,9 +92,7 @@ public int getDeliveryTimeInDays() {
 }
 ```
 
-## 5.枚举类型的属性,方法和构造函数
-
-> 文末有我(JavaGuide)的补充。
+## 枚举类型的属性,方法和构造函数
 
 你可以通过在枚举类型中定义属性,方法和构造函数让它变得更加强大。
 
@@ -167,7 +165,7 @@ public void givenPizaOrder_whenReady_thenDeliverable() {
 
 ## 6.EnumSet and EnumMap
 
-### 6.1. EnumSet
+### EnumSet
 
 `EnumSet` 是一种专门为枚举类型所设计的 `Set` 类型。
 
@@ -246,7 +244,7 @@ public void givenPizaOrders_whenRetrievingUnDeliveredPzs_thenCorrectlyRetrieved(
 }
 ```
 
-### 6.2. EnumMap
+### EnumMap
 
 `EnumMap`是一个专门化的映射实现，用于将枚举常量用作键。与对应的 `HashMap` 相比，它是一个高效紧凑的实现，并且在内部表示为一个数组:
 
@@ -306,9 +304,9 @@ public void givenPizaOrders_whenGroupByStatusCalled_thenCorrectlyGrouped() {
 }
 ```
 
-## 7. 通过枚举实现一些设计模式
+## 通过枚举实现一些设计模式
 
-### 7.1 单例模式
+### 单例模式
 
 通常，使用类实现 Singleton 模式并非易事，枚举提供了一种实现单例的简便方法。
 
@@ -352,7 +350,7 @@ PizzaDeliveryStrategy deliveryStrategy = PizzaDeliverySystemConfiguration.getIns
 
 通过 `PizzaDeliverySystemConfiguration.getInstance()` 获取的就是单例的 `PizzaDeliverySystemConfiguration`
 
-### 7.2 策略模式
+### 策略模式
 
 通常，策略模式由不同类实现同一个接口来实现的。
 
@@ -403,7 +401,7 @@ public void givenPizaOrder_whenDelivered_thenPizzaGetsDeliveredAndStatusChanges(
 }
 ```
 
-## 8. Java 8 与枚举
+## Java 8 与枚举
 
 Pizza 类可以用Java 8重写，您可以看到方法 lambda 和Stream API如何使 `getAllUndeliveredPizzas（）`和`groupPizzaByStatus（）`方法变得如此简洁：
 
@@ -429,7 +427,7 @@ public static EnumMap<PizzaStatus, List<Pizza>>
 }
 ```
 
-## 9. Enum 类型的 JSON 表现形式
+## Enum 类型的 JSON 表现形式
 
 使用Jackson库，可以将枚举类型的JSON表示为POJO。下面的代码段显示了可以用于同一目的的Jackson批注：
 
@@ -498,11 +496,11 @@ System.out.println(Pizza.getJsonString(pz));
 
 有关枚举类型的JSON序列化/反序列化（包括自定义）的更多信息，请参阅[Jackson-将枚举序列化为JSON对象。](https://www.baeldung.com/jackson-serialize-enums)
 
-## 10.总结
+## 总结
 
 本文我们讨论了Java枚举类型，从基础知识到高级应用以及实际应用场景，让我们感受到枚举的强大功能。
 
-## 11. 补充
+## 补充
 
 我们在上面讲到了，我们可以通过在枚举类型中定义属性,方法和构造函数让它变得更加强大。
 
