@@ -84,125 +84,61 @@
 
 ## 解法
 
- [c]
-
-```
+```c
 int g_number = 0;
  
-  
-void EightQueen()
- 
-{
- 
+void EightQueen() {
     const int queens = 8;
- 
     int ColumnIndex[queens];
- 
     for(int i = 0; i < queens; ++ i)
- 
         ColumnIndex[i] = i;
  
-  
- 
     Permutation(ColumnIndex, queens, 0);
- 
 }
  
   
  
-void Permutation(int ColumnIndex[], int length, int index)
- 
-{
- 
-    if(index == length)
- 
-    {
- 
-        if(Check(ColumnIndex, length))
- 
-        {
- 
+void Permutation(int ColumnIndex[], int length, int index) {
+    if(index == length){
+        if(Check(ColumnIndex, length)){
             ++ g_number;
- 
             PrintQueen(ColumnIndex, length);
- 
         }
- 
-    }
- 
-    else
- 
-    {
- 
-        for(int i = index; i < length; ++ i)
- 
-        {
- 
+    } else {
+        for(int i = index; i < length; ++ i) {
             int temp = ColumnIndex[i];
- 
             ColumnIndex[i] = ColumnIndex[index];
- 
             ColumnIndex[index] = temp;
- 
-  
  
             Permutation(ColumnIndex, length, index + 1);
  
-  
- 
             temp = ColumnIndex[index];
- 
             ColumnIndex[index] = ColumnIndex[i];
- 
             ColumnIndex[i] = temp;
- 
         }
- 
     }
- 
 }
  
   
  
-bool Check(int ColumnIndex[], int length)
-{
- 
-    for(int i = 0; i < length; ++ i)
- 
-    {
- 
-        for(int j = i + 1; j < length; ++ j)
- 
-        {
- 
+bool Check(int ColumnIndex[], int length) {
+    for(int i = 0; i < length; ++ i) {
+        for(int j = i + 1; j < length; ++ j) {
             if((i - j == ColumnIndex[i] - ColumnIndex[j])
- 
                 || (j - i == ColumnIndex[i] - ColumnIndex[j]))
- 
             return false;
- 
         }
- 
     }
- 
     return true;
 }
  
-void PrintQueen(int ColumnIndex[], int length)
-{
- 
+void PrintQueen(int ColumnIndex[], int length) {
     printf("Solution %d\n", g_number);
- 
   
- 
     for(int i = 0; i < length; ++i)
- 
         printf("%d\t", ColumnIndex[i]);
  
-    
- 
     printf("\n");
- 
 }
 ```
 
@@ -239,9 +175,7 @@ void PrintQueen(int ColumnIndex[], int length)
 
 对于 n=3 时的 0/1 背包问题，可用一棵完全二叉树表示解空间，如图所示：
 
-| ![背包问题](https://upload-images.jianshu.io/upload_images/15646173-e78825cb1debbd92.png?imageMogr2/auto-orient/strip | imageView2/2/w/876/format/webp) |
-| ------------------------------------------------------------ | ------------------------------- |
-|                                                              |                                 |
+
 
 ## 求解步骤
 
@@ -262,8 +196,6 @@ void PrintQueen(int ColumnIndex[], int length)
 当右子树中有可能包含最优解时才进入右子树搜索。
 
 否则将右子树剪去。
-
- [cpp]
 
 ```
 void dfs(int i,int cv,int cw)

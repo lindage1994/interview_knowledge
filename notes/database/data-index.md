@@ -24,8 +24,6 @@
 
 ![img](https:////upload-images.jianshu.io/upload_images/5845511-58ea166787d90404.png?imageMogr2/auto-orient/strip|imageView2/2/w/940/format/webp)
 
-图片.png
-
 ### `m` 阶B树：
 
 > ceil--向上取整   , 以h高 m阶 B树为例

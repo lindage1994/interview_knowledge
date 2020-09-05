@@ -94,8 +94,14 @@
 
 这里是计算的一个简单的程序片段：
 
-```
-public static int sum(int n) {    int partialSum;    partialSum = 0;    for(int i = 1; i <= n; i ++)        partialSum += i * i * i;    return partialSum;}
+```c
+public static int sum(int n) {  
+    int partialSum;   
+    partialSum = 0;   
+    for(int i = 1; i <= n; i ++)    
+        partialSum += i * i * i;  
+    return partialSum;
+}
 ```
 
 分析如下：
@@ -118,8 +124,11 @@ public static int sum(int n) {    int partialSum;    partialSum = 0;    for(int 
 
 > 例如，下列程序片段为
 >
-> ```
-> for(i = 0; i < n; i ++){  for( j = 0; j < n; j ++)      k ++;}
+> ```c
+> for(i = 0; i < n; i ++){  
+>     for( j = 0; j < n; j ++)  
+>         k ++;
+> }
 > ```
 
 ##### 法则3——顺序语句
@@ -130,22 +139,35 @@ public static int sum(int n) {    int partialSum;    partialSum = 0;    for(int 
 
 对于程序片段
 
-```
-if( cond )    S1else    S2
+```c
+if( cond )  
+    S1;
+else  
+    S2;
 ```
 
 一个`if/else`语句的运行时间从不超过判断的运`S1`和`S2`中运行时间长者的总的运行时间。
 
 分析的基本策略是从内部（或最深层的部分）向外展开的。如果有方法调用，首先要分析方法调用。如果有**递归过程**，则需要看其是否只是`for`循环的变形，如下程序只是一个简单的循环从而其运行时间是：
 
-```
-public static long factorial(int n) {    if(n <= 1)        return 1;    else        return n * factorial(n-1);}
+```c
+public static long factorial(int n) {  
+    if(n <= 1)     
+        return 1;  
+    else      
+        return n * factorial(n-1);
+}
 ```
 
 当递归正常调用时，将其转换成为一个`for`循环是相当困难的，这样的情况下分析将涉及求解一个递推关系，例如下面的程序：
 
-```
-public static long fib(int n) {    if(n <= 1)        return 1;    else        return fib(n-1) + fib(n-2);}
+```c
+public static long fib(int n) {  
+    if(n <= 1)     
+        return 1; 
+    else    
+        return fib(n-1) + fib(n-2);
+}
 ```
 
 对于，有下列关于`fib(n)`的运行时间公式：
@@ -190,10 +212,22 @@ public static long fib(int n) {    if(n <= 1)        return 1;    else        re
 
 ##### 算法二
 
-我们可以通过撤除一个`for`循环来避免三次的运行时间，也就是说算法一中11行和12行的计算是过分消耗了的，改进后的算法如下：
+我们可以通过撤除一个for循环来避免三次的运行时间，也就是说算法一中11行和12行的计算是过分消耗了的，改进后的算法如下：
 
-```
-/** * Quadratic maximum contiguous subsequence sum algorithm. */public static int maxSubSum2(int[] a) {    int maxSum = 0;    for (int i = 0; i < a.length; i++) {        int thisSum = 0;        for (int j = i; j < a.length; j++) {            thisSum += a[j];            if ( thisSum > maxSum)                maxSum = thisSum;        }    }    return maxSum;}
+```c
+/** * Quadratic maximum contiguous subsequence sum algorithm. */
+public static int maxSubSum2(int[] a) {  
+    int maxSum = 0;  
+    for (int i = 0; i < a.length; i++) {    
+        int thisSum = 0;    
+        for (int j = i; j < a.length; j++) {    
+            thisSum += a[j];        
+            if ( thisSum > maxSum)        
+                maxSum = thisSum;    
+        }   
+    }  
+    return maxSum;
+}
 ```
 
 算法二显然是的，其分析比算法一还简单。
@@ -218,8 +252,36 @@ public static long fib(int n) {    if(n <= 1)        return 1;    else        re
 
 下面是该算法的一种实现手段：
 
-```
-/** * Recursive maximum contiguous subsequence sum algorithm. * Finds maximum sum in subarray spanning a[left..right]. * Does not attempt to maintain actual best sequence.  */private static int maxSumRec(int[] a, int left, int right) {    if (left == right) {    //Base case        if (a[left] > 0)            return a[left];        else            return 0;    }    int center = (left + right) / 2;    int maxLeftSum = maxSumRec(a, left, center);    int maxRightSum = maxSumRec(s, center, right);    int maxLeftBorderSum = 0, leftBorderSum = 0;    for (int i = center; i >= left; i--) {        leftBorderSum += a[i];        if (leftBorderSum > maxLeftBorderSum)            maxLeftBorderSum = leftBorderSum;    }    int maxRightBorderSum = 0, rightBorderSum = 0;    for (int i = center; i <= right; i++) {        rightBorderSum += a[i];        if (rightBorderSum > maxRightBorderSum)            maxRightBorderSum = rightBorderSum;    }    return max3(maxLeftSum, maxRightSum, maxLeftBorderSum + maxRightBorderSum)}/** * Driver for divide-and-conquer maximum contiguous * subsequence sum algorithm. */public static int maxSubSum3(int[] a) {    return maxSumRec(a, 0, a.length);}
+```c
+/** * Recursive maximum contiguous subsequence sum algorithm. * Finds maximum sum in subarray spanning a[left..right]. * Does not attempt to maintain actual best sequence.  */
+private static int maxSumRec(int[] a, int left, int right) { 
+    if (left == right) {   
+        //Base case    
+        if (a[left] > 0)     
+            return a[left];     
+        else         
+            return 0;  
+    }  
+    int center = (left + right) / 2;  
+    int maxLeftSum = maxSumRec(a, left, center);   
+    int maxRightSum = maxSumRec(s, center, right);  
+    int maxLeftBorderSum = 0, leftBorderSum = 0;  
+    for (int i = center; i >= left; i--) {  
+        leftBorderSum += a[i];     
+        if (leftBorderSum > maxLeftBorderSum)       
+            maxLeftBorderSum = leftBorderSum;  
+    }  
+    int maxRightBorderSum = 0, rightBorderSum = 0;  
+    for (int i = center; i <= right; i++) {   
+        rightBorderSum += a[i];     
+        if (rightBorderSum > maxRightBorderSum)     
+            maxRightBorderSum = rightBorderSum; 
+    }  
+    return max3(maxLeftSum, maxRightSum, maxLeftBorderSum + maxRightBorderSum)}
+/** * Driver for divide-and-conquer maximum contiguous * subsequence sum algorithm. */
+public static int maxSubSum3(int[] a) { 
+    return maxSumRec(a, 0, a.length);
+}
 ```
 
 程序解析：
@@ -244,8 +306,19 @@ public static long fib(int n) {    if(n <= 1)        return 1;    else        re
 
 我们不妨这样来理解最大序列和的问题：如果子序列由一个负数`a[i]`开头，那么这个子序列的和必然不能是最大的,因为`a[i+1]`开头的子序列必然更大，所以`i`可以推进到`i+1`。推广一下，如果`a[i]`到`a[j]`的子序列和是负数，那么包含这个子序列的序列和也不可能是最大的，因此直接把`i`推进到`j+1`是没有风险的：我们的最优解也不会错过。
 
-```
-/** * Linear-time maximum contiguous subsequence sum algorithm. */public static int maxSubSum4(int[] a) {    int maxSum = 0, thisSum = 0;    for (int j = 0; j < a.length; j++) {        thisSum += a[j];        if (thisSum > maxSum)            maxSum = thisSum;        else if (thisSum < 0)            thisSum = 0    }    return maxSum;}
+```c
+/** * Linear-time maximum contiguous subsequence sum algorithm. */
+public static int maxSubSum4(int[] a) {   
+    int maxSum = 0, thisSum = 0;  
+    for (int j = 0; j < a.length; j++) {   
+        thisSum += a[j];   
+        if (thisSum > maxSum)      
+            maxSum = thisSum;    
+        else if (thisSum < 0)      
+            thisSum = 0  
+            }   
+    return maxSum;
+}
 ```
 
 这个算法是许多聪明算法的典型：**运行时间是显而易见的，但正确性则不那么容易看出来**。
@@ -268,8 +341,21 @@ public static long fib(int n) {    if(n <= 1)        return 1;    else        re
 
 最明显的解法是从头到尾扫描数据，其运行时间是线性的。然而这个算法并没有利用到序列已经排序的事实。一个好的策略应该是判断是不是居中的元素，如果是则返回，如果大于居中的元素，则在左半部分中继续寻找，如果小于居中的元素，则在右半部分中继续寻找：
 
-```
-/** * Performs the standard binary search. * @return index where item is found, or -1 if not found. */public static <AnyType extends Comparable<? super AnyType>>int binarySearch(AnyType[] a, AnyType x) {    int low = 0, high = a.length - 1;    while (low <= high) {        int mid = (low + high) / 2;        if (a[mid].compareTo(x) < 0)             low = mid + 1;        else if (a[mid].compareTo(x) > 0)             high = mid - 1;        else            return mid;    }    return NOT_FOUND;   //NOT_FOUND is defined as -1}
+```c
+/** * Performs the standard binary search. * @return index where item is found, or -1 if not found. */
+public static <AnyType extends Comparable<? super AnyType>>int binarySearch(AnyType[] a, AnyType x) {  
+    int low = 0, high = a.length - 1;  
+    while (low <= high) {  
+        int mid = (low + high) / 2;   
+        if (a[mid].compareTo(x) < 0)   
+            low = mid + 1;    
+        else if (a[mid].compareTo(x) > 0)     
+            high = mid - 1;    
+        else       
+            return mid;   
+    }   
+    return NOT_FOUND;   //NOT_FOUND is defined as -1
+}
 ```
 
 上述程序中每次迭代所有工作花费的时间，因此需要分析循环次数。循环是从`high`-`low`开始并在`high`-`low`时结束，每次循环后，`high`-`low`的值至少会折半，因此不难看出，程序的运行时间是。
@@ -278,8 +364,15 @@ public static long fib(int n) {    if(n <= 1)        return 1;    else        re
 
 第二个例子是计算最大公因数的欧几里得算法。两个整数的最大公因数（）是同时整除二者的最大整数。于是，:
 
-```
-public static long gcd(long m, long n) {    while (n != 0) {        long rem = m % n;        m = n;        n = rem;    }    return m;}
+```c
+public static long gcd(long m, long n) { 
+    while (n != 0) {   
+        long rem = m % n;  
+        m = n;     
+        n = rem;  
+    }   
+    return m;
+}
 ```
 
 算法连续计算余数直到余数是0为止，最后的非零余数就是最大公因数。因此如果`m`=1989和`n`=1590，则余数序列是399，393，6，3，0，从而。
@@ -294,8 +387,17 @@ public static long gcd(long m, long n) {    while (n != 0) {        long rem = m
 
 显然，所需要的乘法次数最多是：
 
-```
-public static long pow(long x, int n) {    if (n == 0)        return 1;    if (n == 1)        return x;    if (isEven(n))        return pow(x * x, n / 2);    else        return pow(x * x, n / 2) * x;}
+```c
+public static long pow(long x, int n) { 
+    if (n == 0)   
+        return 1;  
+    if (n == 1)   
+        return x;  
+    if (isEven(n))    
+        return pow(x * x, n / 2); 
+    else   
+        return pow(x * x, n / 2) * x;
+}
 ```
 
 其实上述程序有很多可以调整之处，例如第4行和第5行可以不必要，第9行也可以改写成：
