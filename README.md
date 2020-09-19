@@ -50,7 +50,7 @@
 - [SQL优化](/notes/database/optimize-SQL.md)
 - [分库分表](/notes/database/sharding.md)
 ## 设计模式
-### uml
+### UML
 - [统一建模语言](notes/design-patten/UML.md)
 ### 六大原则
 - [设计模式六大原则概述](notes/design-patten/Principle.md)

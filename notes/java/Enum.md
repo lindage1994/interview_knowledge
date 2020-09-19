@@ -79,7 +79,7 @@ if(testPz.getStatus().equals(TestColor.GREEN));
 if(testPz.getStatus() == TestColor.GREEN);
 ```
 
-## 4.在 switch 语句中使用枚举类型
+## 在 switch 语句中使用枚举类型
 
 ```java
 public int getDeliveryTimeInDays() {
@@ -163,7 +163,7 @@ public void givenPizaOrder_whenReady_thenDeliverable() {
 }
 ```
 
-## 6.EnumSet and EnumMap
+## EnumSet and EnumMap
 
 ### EnumSet
 

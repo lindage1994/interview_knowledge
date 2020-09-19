@@ -2162,4 +2162,5 @@ SomeOtherException: SomeOtherException
 
 就像你将要在后续章节中看到的，通过将这个问题甩给其他代码-即使你是通过抛出 RuntimeException 来实现这一点的--你在设计和实现时，便可以专注于更加有趣和富有挑战性的问题了。
 
-<div style="page-break-after: always;"></div>
+
+
