@@ -1,6 +1,6 @@
 之前介绍的所有的数据结构都是线性存储结构。本章所介绍的树结构是一种非线性存储结构，存储的是具有“一对多”关系的数据元素的集合。
 
-![img](http://data.biancheng.net/uploads/allimg/170830/2-1FS0094003158.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/204947-990761.png)
 
 ​                                 
 
@@ -71,7 +71,7 @@ Tree =（root,F）
 
 除了图 1（A）表示树的方法外，还有其他表示方法：
 
-![img](http://data.biancheng.net/uploads/allimg/170830/2-1FS00952413Y.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205114-699422.png)
 
  
 
@@ -79,7 +79,7 @@ Tree =（root,F）
      （A）                     （B）
 
 图2 树的表示形式
- 
+
 
 图 2（A）是以嵌套的集合的形式表示的（集合之间绝不能相交，即图中任意两个圈不能相交）。
 
@@ -115,8 +115,7 @@ Tree =（root,F）
 
  1a) 就是一棵二叉树，而图 1b) 则不是。
 
-
-![二叉树示意图](http://data.biancheng.net/uploads/allimg/181226/2-1Q226195I0M1.gif)
+![二叉树示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205205-158306.gif)
 图 1 二叉树示意图
 
 ## 二叉树的性质
@@ -138,8 +137,7 @@ Tree =（root,F）
 
 如果二叉树中除了叶子结点，每个结点的度都为 2，则此二叉树称为满二叉树。
 
-
-![满二叉树示意图](http://data.biancheng.net/uploads/allimg/181226/2-1Q226195949495.gif)
+![满二叉树示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205211-550396.gif)
 图 2 满二叉树示意图
 
 
@@ -203,8 +201,7 @@ Tree =（root,F）
 
  1 所示：
 
-
-![img](http://data.biancheng.net/uploads/allimg/170830/2-1FS01056261L.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205255-880150.png)
 图 1 普通二叉树的转化
 
 
@@ -214,8 +211,7 @@ Tree =（root,F）
 
 完全二叉树的顺序存储，仅需从根节点开始，按照层次依次将树中节点存储到数组即可。
 
-
-![img](http://data.biancheng.net/uploads/allimg/181227/2-1Q22H02935422.gif)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205301-746992.gif)
 图 2 完全二叉树示意图
 
 
@@ -261,7 +257,7 @@ Tree =（root,F）
 
 本节我们学习二叉树的链式存储结构。
 
-![普通二叉树示意图](http://data.biancheng.net/uploads/allimg/181228/2-1Q22R02H9133.gif)
+![普通二叉树示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205342-25697.gif)
 [图](http://data.biancheng.net/view/200.html) 1 普通二叉树示意图
 
 
@@ -271,8 +267,7 @@ Tree =（root,F）
 
 存储即可。因此，图 1 对应的链式存储结构如图 2 所示：
 
-
-![二叉树链式存储结构示意图](http://data.biancheng.net/uploads/allimg/181228/2-1Q22R035341H.gif)
+![二叉树链式存储结构示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205338-40317.gif)
 图 2 二叉树链式存储结构示意图
 
 
@@ -305,8 +300,7 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 其实，二叉树的链式存储结构远不止图 2 所示的这一种。例如，在某些实际场景中，可能会做 "查找某节点的父节点" 的操作，这时可以在节点结构中再添加一个指针域，用于各个节点指向其父亲节点，如图 4 所示：
 
-
-![自定义二叉树的链式存储结构](http://data.biancheng.net/uploads/allimg/181228/2-1Q22R0360I09.gif)
+![自定义二叉树的链式存储结构](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205357-369669.gif)
 图 4 自定义二叉树的链式存储结构
 
 这样的链表结构，通常称为三叉链表。
@@ -321,9 +315,9 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 2. 访问当前节点的左子[树](http://data.biancheng.net/view/23.html)；
 3. 若当前节点无左子树，则访问当前节点的右子树；
 
-![img](http://data.biancheng.net/uploads/allimg/170830/2-1FS01325394F.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205408-383418.png)
 [图](http://data.biancheng.net/view/200.html) 1 二叉树
- 
+
 
 以图 1 为例，采用先序遍历的思想遍历该二叉树的过程为：
 
@@ -380,9 +374,9 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 2. 访问根节点；
 3. 访问当前节点的右子树；
 
-![img](http://data.biancheng.net/uploads/allimg/170830/2-1FS01325394F.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205447-354874.png)
 [图](http://data.biancheng.net/view/200.html) 1 二叉树
- 
+
 
 以图 1 为例，采用中序遍历的思想遍历该二叉树的过程为：
 
@@ -451,10 +445,9 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 ，直到当前节点左右子树遍历完成后，才访问该节点元素。
 
-
-![img](http://data.biancheng.net/uploads/allimg/170830/2-1FS01325394F.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205506-924107.png)
 [图](http://data.biancheng.net/view/200.html) 1 二叉树
- 
+
 
 如图 1 中，对此二叉树进行后序遍历的操作过程为：
 
@@ -529,7 +522,7 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 的数据结构，从树的根结点开始，依次将其左孩子和右孩子入队。而后每次队列中一个结点出队，都将其左孩子和右孩子入队，直到树中所有结点都出队，出队结点的先后顺序就是层次遍历的最终结果。
 
-![img](http://data.biancheng.net/uploads/allimg/170830/2-1FS0143134W9.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205519-968023.png)
 [图](http://data.biancheng.net/view/200.html)1 二叉树
 
 ## 层次遍历的实现过程
@@ -563,8 +556,7 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 结构的数据。
 
-
-![普通树存储结构](http://data.biancheng.net/uploads/allimg/181231/2-1Q2312025512N.gif)
+![普通树存储结构](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205603-532051.gif)
 [图](http://data.biancheng.net/view/200.html) 1 普通树存储结构
 
 
@@ -583,8 +575,7 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 例如，采用双亲表示法存储图 1 中普通树，其存储状态如图 2 所示：
 
-
-![双亲表示法存储普通树示意图](http://data.biancheng.net/uploads/allimg/181231/2-1Q231202645110.gif)
+![双亲表示法存储普通树示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205615-579335.gif)
 图 2 双亲表示法存储普通树示意图
 
 
@@ -649,8 +640,7 @@ C的父节点为 R,存储位置下标为 0
 
  1a) 中的普通树，则最终存储状态如图 1b) 所示：
 
-
-![img](http://data.biancheng.net/uploads/allimg/190101/2-1Z101115601O6.gif)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205644-768408.gif)
 图 1 孩子表示法存储普通树示意图
 
 
@@ -719,8 +709,7 @@ K
 
 其实，我们还可以将双亲表示法和孩子表示法合二为一，那么图 1a) 中普通树的存储效果如图 2所示：
 
-
-![img](http://data.biancheng.net/uploads/allimg/190101/2-1Z101115643151.gif)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205701-936807.gif)
 图 2 双亲孩子表示法
 
 
@@ -740,8 +729,7 @@ K
 
 ，本节来讲解最后一种常用方法——孩子兄弟表示法。
 
-
-![普通树示意图](http://data.biancheng.net/uploads/allimg/190101/2-1Z10112303S92.gif)
+![普通树示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205954-945731.gif)
 [图](http://data.biancheng.net/view/200.html) 1 普通树示意图
 
 
@@ -755,7 +743,7 @@ K
 2. 指向孩子节点的指针；
 3. 指向兄弟节点的指针；
 
-![节点结构示意图](http://data.biancheng.net/uploads/allimg/190101/2-1Z10112305G62.gif)
+![节点结构示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210007-296263.gif)
 图 2 节点结构示意图
 
 
@@ -768,8 +756,7 @@ K
 
 以图 1 为例，使用孩子兄弟表示法进行存储的结果如图 3 所示:
 
-
-![孩子兄弟表示法示意图](http://data.biancheng.net/uploads/allimg/190101/2-1Z101123113227.gif)
+![孩子兄弟表示法示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210019-391738.gif)
 图 3 孩子兄弟表示法示意图
 
 
@@ -815,7 +802,7 @@ K
 
 > WPL = 7 * 1 + 5 * 2 + 2 * 3 + 4 * 3
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ509310DJ.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210036-583075.png)
 图1 哈夫曼树
 
 ## 什么是哈夫曼树
@@ -832,10 +819,10 @@ K
 2. 在原有的 n 个权值中删除那两个最小的权值，同时将新的权值加入到 n–2 个权值的行列中，以此类推；
 3. 重复 1 和 2 ，直到所以的结点构建成了一棵二叉树为止，这棵树就是哈夫曼树。
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ509425D12.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210050-814637.png)
 
 图 2 哈夫曼树的构建过程
- 
+
 
 图 2 中，（A）给定了四个结点a，b，c，d，权值分别为7，5，2，4；第一步如（B）所示，找出现有权值中最小的两个，2 和 4 ，相应的结点 c 和 d 构建一个新的二叉树，树根的权值为 2 + 4 = 6，同时将原有权值中的 2 和 4 删掉，将新的权值 6 加入；进入（C），重复之前的步骤。直到（D）中，所有的结点构建成了一个全新的二叉树，这就是哈夫曼树。
 
@@ -881,9 +868,9 @@ K
 
 > 文本中字符出现的次数越多，在哈夫曼树中的体现就是越接近树根。编码的长度越短。
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5095536108.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210108-289000.png)
 图 3 哈夫曼编码
- 
+
 
 如图 3 所示，字符 a 用到的次数最多，其次是字符 b 。字符 a 在哈夫曼编码是 `0` ，字符 b 编码为 `10` ，字符 c 的编码为 `110` ，字符 d 的编码为 `111` 。
 
@@ -924,7 +911,7 @@ Huffman code :
 
 ## 总结
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5095P9356.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210123-191164.png)
 图 4 程序运行效果图
 
 
@@ -966,7 +953,7 @@ Huffman code :
 
 使用回溯法解决问题的过程，实际上是建立一棵“状态树”的过程。例如，在解决列举集合{1,2,3}所有子集的问题中，对于每个元素，都有两种状态，取还是舍，所以构建的状态树为：
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5102U5E4.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210141-843530.png)
 [图](http://data.biancheng.net/view/200.html)1 状态树
 
 
@@ -982,7 +969,7 @@ Huffman code :
 
 八皇后问题是以国际象棋为背景的问题：有八个皇后（可以当成八个棋子），如何在 8*8 的棋盘中放置八个皇后，使得任意两个皇后都不在同一条横线、纵线或者斜线上。
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ51030001N.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210202-683302.png)
 图 2 八皇后问题示例（#代表皇后）
 
 
@@ -1032,7 +1019,7 @@ Huffman code :
 
  1（A）；当 n=3 时，可以构建 5 棵形态互不相同的二叉树，如图 1（B）。
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5104043937.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210212-227701.png)
 图 1 不同形态的二叉树
 
 
@@ -1056,7 +1043,7 @@ Huffman code :
 
 可以唯一得到的二叉树如图 2（4）：
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ510424EF.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210222-652579.png)
 图 2 构造二叉树的过程示意图
 
 
@@ -1070,7 +1057,7 @@ Huffman code :
 
 如果要唯一确定一棵二叉树，必须知道至少两种遍历序列。如果只确定一种序列，无法准确判定二叉树的具体构造。
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ51044001J.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210232-368191.png)
 图 3 前序序列（1，2，3）的二叉树
 
 
@@ -1083,11 +1070,11 @@ Huffman code :
 出栈的过程。所以，中序序列的个数就是数列（1，2，3）按1-2-3的顺序进栈，
 各元素选择在不同的时间点出栈，所获的的不同的出栈顺序即为中序序列，而中序序列的数目，也就是不同形态的二叉树的个数。
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ510442J59.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210240-701875.png)
 图 4 中序遍历时进栈和出栈的过程
 
 
 
 根据数列中数据的个数 n，所得到的排列顺序的数目为：
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5104510936.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210324-409862.png)
 通过以上两种方式，都可以知道n个结点能构建的不同形态的二叉树的数量，再结合 tn=bn-1，就可以计算出 n 个结点能构建的不同形态的树的个数。
