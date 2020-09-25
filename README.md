@@ -17,8 +17,6 @@
 - [LinkedList源码分析](notes/source-code/LinkedList.md)
 - [HashMap源码分析](notes/source-code/HashMap.md)
 - [ConcurrentHashMap源码分析](notes/source-code/ConcurrentHashMap.md)
-- [BlockingQueue 接口](notes/source-code/BlockingQueue.md)
-- [CopyOnWriteArrayList 与 CopyOnWriteArraySet](notes/source-code/CopyOnWriteArrayList.md)
 ### 并发
 - [并发](/notes/concurrent/Concurrent.md)
 ### jvm
