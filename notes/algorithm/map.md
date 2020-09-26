@@ -2,36 +2,22 @@
 
 
 
-我们知道，数据之间的关系有 3 种，分别是 "一对一"、"一对多" 和 "多对多"，前两种关系的数据可分别用
+我们知道，数据之间的关系有 3 种，分别是 "一对一"、"一对多" 和 "多对多"，前两种关系的数据可分别用**线性表**和**树**结构存储，本节学习存储具有"多对多"逻辑关系数据的结构——图存储结构。
 
-[线性表](http://data.biancheng.net/view/157.html)
-
-和
-
-[树](http://data.biancheng.net/view/23.html)
-
-结构存储，本节学习存储具有"多对多"逻辑关系数据的结构——图存储结构。
-
-
-![img](http://data.biancheng.net/uploads/allimg/190103/2-1Z1032054241T.gif)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194422-599202.gif)
 图 1 图存储结构示意图
 
 
 图 1 所示为存储 V1、V2、V3、V4 的图结构，从图中可以清楚的看出数据之间具有的"多对多"关系。例如，V1 与 V4 和 V2 建立着联系，V4 与 V1 和 V3 建立着联系，以此类推。
 
-与
-
-[链表](http://data.biancheng.net/view/160.html)
-
-不同，图中存储的各个数据元素被称为顶点（而不是节点）。拿图 1 来说，该图中含有 4 个顶点，分别为顶点 V1、V2、V3 和 V4。
+与**链表**不同，图中存储的各个数据元素被称为顶点（而不是节点）。拿图 1 来说，该图中含有 4 个顶点，分别为顶点 V1、V2、V3 和 V4。
 
 图存储结构中，习惯上用 Vi 表示图中的顶点，且所有顶点构成的集合通常用 V 表示，如图 1 中顶点的集合为 V={V1,V2,V3,V4}。
 
 
 注意，图 1 中的图仅是图存储结构的其中一种，数据之间 "多对多" 的关系还可能用如图 2 所示的图结构表示：
 
-
-![img](http://data.biancheng.net/uploads/allimg/190103/2-1Z1032055151L.gif)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194449-605007.gif)
 图 2 有向图示意图
 
 
@@ -73,8 +59,7 @@
 
 在某些实际场景中，图中的每条边（或弧）会赋予一个实数来表示一定的含义，这种与边（或弧）相匹配的实数被称为"权"，而带权的图通常称为网。如图 3 所示，就是一个网结构：
 
-
-![img](http://data.biancheng.net/uploads/allimg/190103/2-1Z10321001LT.gif)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194502-349315.gif)
 图 3 带权的图存储结构
 
 
@@ -82,24 +67,15 @@
 
 ## 图存储结构的分类
 
-根据不同的特征，图又可分为完全图，[连通图](http://data.biancheng.net/view/201.html)、稀疏图和稠密图：
+根据不同的特征，图又可分为完全图，连通图、稀疏图和稠密图：
 
-- 完全图：若图中各个顶点都与除自身外的其他顶点有关系，这样的无向图称为
+- 完全图：若图中各个顶点都与除自身外的其他顶点有关系，这样的无向图称为完全图。同时，满足此条件的有向图则称为有向完全图。
 
-  完全图
-
-  （如图 4a)）。同时，满足此条件的有向图则称为
-
-  有向完全图
-
-  （图 4b)）。
-
+  ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194612-632761.gif)
+图 4 完全图示意图
   
-  ![img](http://data.biancheng.net/uploads/allimg/190103/2-1Z103210110O8.gif)
-  图 4 完全图示意图
-
-  具有 n 个顶点的完全图，图中边的数量为 n(n-1)/2；而对于具有 n 个顶点的有向完全图，图中弧的数量为 n(n-1)。
-
+具有 n 个顶点的完全图，图中边的数量为 n(n-1)/2；而对于具有 n 个顶点的有向完全图，图中弧的数量为 n(n-1)。
+  
 - 稀疏图和稠密图：这两种图是相对存在的，即如果图中具有很少的边（或弧），此图就称为"稀疏图"；反之，则称此图为"稠密图"。
 
   稀疏和稠密的判断条件是：e<nlogn，其中 e 表示图中边（或弧）的数量，n 表示图中顶点的数量。如果式子成立，则为稀疏图；反之为稠密图。
@@ -107,19 +83,17 @@
 
 有关连通图的相关知识，后续专门有一篇文章做详细介绍。
 
-前面介绍了《[图存储结构](http://data.biancheng.net/view/200.html)》，本节继续讲解什么是连通[图](http://data.biancheng.net/view/200.html)。
+前面介绍了图存储结构，本节继续讲解什么是连通图。
 
 前面讲过，图中从一个顶点到达另一顶点，若存在至少一条路径，则称这两个顶点是连通着的。例如图 1 中，虽然 V1 和 V3 没有直接关联，但从 V1 到 V3 存在两条路径，分别是 `V1-V2-V3` 和 `V1-V4-V3`，因此称 V1 和 V3 之间是连通的。
 
-
-![顶点之间的连通状态示意图](http://data.biancheng.net/uploads/allimg/190105/2-1Z105093324193.gif)
+![顶点之间的连通状态示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194649-752559.gif)
 图 1 顶点之间的连通状态示意图
 
 
 无向图中，如果任意两个顶点之间都能够连通，则称此无向图为连通图。例如，图 2 中的无向图就是一个连通图，因为此图中任意两顶点之间都是连通的。
 
-
-![连通图示意图](http://data.biancheng.net/uploads/allimg/190103/2-1Z1032054241T.gif)
+![连通图示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194710-970696.gif)
 图 2 连通图示意图
 
 
@@ -129,8 +103,7 @@
 
 如图 3 所示，虽然图 3a) 中的无向图不是连通图，但可以将其分解为 3 个"最大子图"（图 3b)），它们都满足连通图的性质，因此都是连通分量。
 
-
-![连通分量示意图](http://data.biancheng.net/uploads/allimg/190105/2-1Z1050933411G.gif)
+![连通分量示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194722-11251.gif)
 图 3 连通分量示意图
 
 提示，图 3a) 中的无向图只能分解为 3 部分各自连通的"最大子图"。
@@ -141,15 +114,13 @@
 
 有向图中，若任意两个顶点 Vi 和 Vj，满足从 Vi 到 Vj 以及从 Vj 到 Vi 都连通，也就是都含有至少一条通路，则称此有向图为强连通图。如图 4 所示就是一个强连通图。
 
-
-![强连通图](http://data.biancheng.net/uploads/allimg/190105/2-1Z105093445450.gif)
+![强连通图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194735-615225.gif)
 图 4 强连通图
 
 
 与此同时，若有向图本身不是强连通图，但其包含的最大连通子图具有强连通图的性质，则称该子图为强连通分量。
 
-
-![强连通分量](http://data.biancheng.net/uploads/allimg/190105/2-1Z1050935002U.gif)
+![强连通分量](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194745-826872.gif)
 图 5 强连通分量
 
 
@@ -159,16 +130,11 @@
 
 可以这样说，连通图是在无向图的基础上对图中顶点之间的连通做了更高的要求，而强连通图是在有向图的基础上对图中顶点的连通做了更高的要求。
 
-在学习
+在学习连通图的基础上，本节学习什么是生成树，以及什么是生成森林。
 
-[连通图](http://data.biancheng.net/view/201.html)
+对连通图进行遍历，过程中所经过的边和顶点的组合可看做是一棵普通树，通常称为生成树。
 
-的基础上，本节学习什么是生成[树](http://data.biancheng.net/view/23.html)，以及什么是生成森林。
-
-对连通[图](http://data.biancheng.net/view/200.html)进行遍历，过程中所经过的边和顶点的组合可看做是一棵普通树，通常称为生成树。
-
-
-![连通图及其对应的生成树](http://data.biancheng.net/uploads/allimg/190106/2-1Z106101951H4.gif)
+![连通图及其对应的生成树](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194825-402854.gif)
 图 1 连通图及其对应的生成树
 
 
@@ -190,30 +156,20 @@
 
 我们知道，非连通图可分解为多个连通分量，而每个连通分量又各自对应多个生成树（至少是 1 棵），因此与整个非连通图相对应的，是由多棵生成树组成的生成森林。
 
-
-![非连通图和连通分量](http://data.biancheng.net/uploads/allimg/190105/2-1Z1050933411G.gif)
+![非连通图和连通分量](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194841-963170.gif)
 图 2 非连通图和连通分量
 
 
 如图 2 所示，这是一张非连通图，可分解为 3 个连通分量，其中各个连通分量对应的生成树如图 3 所示：
 
-
-![生成森林](http://data.biancheng.net/uploads/allimg/190106/2-1Z106102110P7.gif)
+![生成森林](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194849-870653.gif)
 图 3 生成森林
 
 注意，图 3 中列出的仅是各个连通分量的其中一种生成树。
 
 因此，多个连通分量对应的多棵生成树就构成了整个非连通图的生成森林。
 
-使用
-
-[图](http://data.biancheng.net/view/200.html)
-
-结构表示的数据元素之间虽然具有“多对多”的关系，但是同样可以采用顺序存储，也就是使用
-
-[数组](http://data.biancheng.net/view/181.html)
-
-有效地存储图。
+使用图结构表示的数据元素之间虽然具有“多对多”的关系，但是同样可以采用顺序存储，也就是使用数组有效地存储图。
 
 使用数组存储图时，需要使用两个数组，一个数组存放图中顶点本身的数据（一维数组），另外一个数组用于存储各顶点之间的关系（二维数组）。
 
@@ -229,7 +185,7 @@
 #define MAX_VERtEX_NUM 20                   //顶点的最大个数#define VRType int                          //表示顶点之间的关系的变量类型#define InfoType char                       //存储弧或者边额外信息的指针变量类型#define VertexType int                      //图中顶点的数据类型typedef enum{DG,DN,UDG,UDN}GraphKind;       //枚举图的 4 种类型typedef struct {    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。    InfoType * info;                        //弧或边额外含有的信息指针}ArcCell,AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];typedef struct {    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数    GraphKind kind;                         //记录图的种类}MGraph;
 ```
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5154Q5263.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194918-20537.png)
 图1 有向图和无向图
 
 
@@ -237,7 +193,7 @@
 
 由于 （B） 为无向图，各顶点没有权值，所以如果两顶点之间有关联，相应位置记为 1 ；反之记为 0 。构建的二维数组如图 2 所示。
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5154911329.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194928-115795.png)
 图2 无向图对应的二维数组arcs
 
 
@@ -249,7 +205,7 @@
 
 存储图 1 中的有向图（A）时，对应的二维数组如图 3 所示：
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ515503K28.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194937-410954.png)
 图 3 有向图对应的二维数组arcs
 
 
@@ -266,7 +222,7 @@
 
 例如，使用上述程序存储图 4（a）的有向网时，存储的两个数组如图 4（b）所示：
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5155246103.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194946-867574.png)
 图 4 有向网
 
 
@@ -299,25 +255,9 @@
 
 ## 总结
 
-本节主要详细介绍了使用数组存储图的方法，在实际操作中使用更多的是链式存储结构，例如
+本节主要详细介绍了使用数组存储图的方法，在实际操作中使用更多的是链式存储结构，例如邻接表、十字链表和邻接多重表，这三种存储图的方式放在下一节重点去讲。通常，图更多的是采用链表
 
-[邻接表](http://data.biancheng.net/view/203.html)
-
-、
-
-[十字链表](http://data.biancheng.net/view/186.html)
-
-和邻接多重表，这三种存储图的方式放在下一节重点去讲。
-
-通常，
-
-[图](http://data.biancheng.net/view/200.html)
-
-更多的是采用
-
-[链表](http://data.biancheng.net/view/160.html)
-
-存储，具体的存储方法有 3 种，分别是邻接表、邻接多重表和[十字链表](http://data.biancheng.net/view/186.html)。
+存储，具体的存储方法有 3 种，分别是邻接表、邻接多重表和十字链表。
 
 本节先讲解图的邻接表存储法。邻接表既适用于存储无向图，也适用于存储有向图。
 
@@ -327,16 +267,13 @@
 
 邻接表存储图的实现方式是，给图中的各个顶点独自建立一个链表，用节点存储该顶点，用链表中其他节点存储各自的临界点。
 
-与此同时，为了便于管理这些链表，通常会将所有链表的头节点存储到
-
-[数组](http://data.biancheng.net/view/181.html)
+与此同时，为了便于管理这些链表，通常会将所有链表的头节点存储到数组
 
 中（也可以用链表存储）。也正因为各个链表的头节点存储的是各个顶点，因此各链表在存储临界点数据时，仅需存储该邻接顶点位于数组中的位置下标即可。
 
 例如，存储图 1a) 所示的有向图，其对应的邻接表如图 1b) 所示：
 
-
-![邻接表存储有向图](http://data.biancheng.net/uploads/allimg/190106/2-1Z106140Q33H.gif)
+![邻接表存储有向图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195055-302007.gif)
 图 1 邻接表存储有向图
 
 
@@ -344,15 +281,13 @@
 
 从图 1 中可以看出，存储各顶点的节点结构分为两部分，数据域和指针域。数据域用于存储顶点数据信息，指针域用于链接下一个节点，如图 2 所示：
 
-
-![邻接表节点结构](http://data.biancheng.net/uploads/allimg/190106/2-1Z106140S61c.gif)
+![邻接表节点结构](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195104-506934.gif)
 图 2 邻接表节点结构
 
 
 在实际应用中，除了图 2 这种节点结构外，对于用链接表存储网（边或弧存在权）结构，还需要节点存储权的值，因此需使用图 3 中的节点结构：
 
-
-![邻接表存储网结构使用的节点](http://data.biancheng.net/uploads/allimg/190106/2-1Z106140U0J3.gif)
+![邻接表存储网结构使用的节点](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195112-7033.gif)
 图 3 邻接表存储网结构使用的节点
 
 
@@ -373,34 +308,21 @@
 1. 遍历整个邻接表中的节点，统计数据域与该顶点所在数组位置下标相同的节点数量，即为该顶点的入度；
 2. 建立一个逆邻接表，该表中的各顶点链表专门用于存储以此顶点为弧头的所有顶点在数组中的位置下标。比如说，建立一张图 1a) 对应的逆邻接表，如图 4 所示：
 
-![逆邻接表示意图](http://data.biancheng.net/uploads/allimg/190106/2-1Z10614093LF.gif)
+![逆邻接表示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195121-832033.gif)
 图 4 逆邻接表示意图
 
 
 对于具有 n 个顶点和 e 条边的无向图，邻接表中需要存储 n 个头结点和 2e 个表结点。在图中边或者弧稀疏的时候，使用邻接表要比前一节介绍的邻接矩阵更加节省空间。
 
-前面介绍了
+前面介绍了图的邻接表存储法，本节继续讲解图的另一种链式存储结构——十字链表法。
 
-[图](http://data.biancheng.net/view/200.html)
+与邻接表不同，十字链表法仅适用于存储有向图和有向网。不仅如此，十字链表法还改善了邻接表计算图中顶点入度的问题。
 
-的
-
-[邻接表](http://data.biancheng.net/view/203.html)
-
-存储法，本节继续讲解图的另一种链式存储结构——[十字链表](http://data.biancheng.net/view/186.html)法。
-
-与邻接表不同，十字[链表](http://data.biancheng.net/view/160.html)法仅适用于存储有向图和有向网。不仅如此，十字链表法还改善了邻接表计算图中顶点入度的问题。
-
-十字链表存储有向图（网）的方式与邻接表有一些相同，都以图（网）中各顶点为首元节点建立多条链表，同时为了便于管理，还将所有链表的首元节点存储到同一
-
-[数组](http://data.biancheng.net/view/181.html)
-
-（或链表）中。
+十字链表存储有向图（网）的方式与邻接表有一些相同，都以图（网）中各顶点为首元节点建立多条链表，同时为了便于管理，还将所有链表的首元节点存储到同一数组（或链表）中。
 
 其中，建立个各个链表中用于存储顶点的首元节点结构如图 1 所示：
 
-
-![十字链表中首元节点结构示意图](http://data.biancheng.net/uploads/allimg/190107/2-1Z10H10U6236.gif)
+![十字链表中首元节点结构示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195233-754985.gif)
 图 1 十字链表中首元节点结构示意图
 
 
@@ -415,8 +337,7 @@
 
 注意，存储图的十字链表中，各链表中首元节点与其他节点的结构并不相同，图 1 所示仅是十字链表中首元节点的结构，链表中其他普通节点的结构如图 2 所示：
 
-
-![十字链表中普通节点的结构示意图](http://data.biancheng.net/uploads/allimg/190107/2-1Z10H1092b49.gif)
+![十字链表中普通节点的结构示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195246-839826.gif)
 图 2 十字链表中普通节点的结构示意图
 
 
@@ -431,8 +352,7 @@
 
 比如说，用十字链表存储图 3a) 中的有向图，存储状态如图 3b) 所示：
 
-
-![十字链表存储有向图示意图](http://data.biancheng.net/uploads/allimg/190107/2-1Z10H11122456.gif)
+![十字链表存储有向图示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195546-353421.gif)
 图 3 十字链表存储有向图示意图
 
 
@@ -447,38 +367,9 @@
 #define  MAX_VERTEX_NUM 20#define  InfoType int//图中弧包含信息的数据类型#define  VertexType inttypedef struct ArcBox{    int tailvex,headvex;//弧尾、弧头对应顶点在数组中的位置下标    struct ArcBox *hlik,*tlink;//分别指向弧头相同和弧尾相同的下一个弧    InfoType *info;//存储弧相关信息的指针}ArcBox;typedef struct VexNode{    VertexType data;//顶点的数据域    ArcBox *firstin,*firstout;//指向以该顶点为弧头和弧尾的链表首个结点}VexNode;typedef struct {    VexNode xlist[MAX_VERTEX_NUM];//存储顶点的一维数组    int vexnum,arcnum;//记录图的顶点数和弧数}OLGraph;int LocateVex(OLGraph * G,VertexType v){    int i=0;    //遍历一维数组，找到变量v    for (; i<G->vexnum; i++) {        if (G->xlist[i].data==v) {            break;        }    }    //如果找不到，输出提示语句，返回 -1    if (i>G->vexnum) {        printf("no such vertex.\n");        return -1;    }    return i;}//构建十字链表函数void CreateDG(OLGraph *G){    //输入有向图的顶点数和弧数    scanf("%d,%d",&(G->vexnum),&(G->arcnum));    //使用一维数组存储顶点数据，初始化指针域为NULL    for (int i=0; i<G->vexnum; i++) {        scanf("%d",&(G->xlist[i].data));        G->xlist[i].firstin=NULL;        G->xlist[i].firstout=NULL;    }    //构建十字链表    for (int k=0;k<G->arcnum; k++) {        int v1,v2;        scanf("%d,%d",&v1,&v2);        //确定v1、v2在数组中的位置下标        int i=LocateVex(G, v1);        int j=LocateVex(G, v2);        //建立弧的结点        ArcBox * p=(ArcBox*)malloc(sizeof(ArcBox));        p->tailvex=i;        p->headvex=j;        //采用头插法插入新的p结点        p->hlik=G->xlist[j].firstin;        p->tlink=G->xlist[i].firstout;        G->xlist[j].firstin=G->xlist[i].firstout=p;    }}
 ```
 
-提示，代码中新节点的插入采用的是头插法。
+提示，代码中新节点的插入采用的是头插法。前面讲过，无向图的存储可以使用邻接表，但在实际使用时，如果想对图中某顶点进行实操（修改或删除），由于邻接表中存储该顶点的节点有两个，因此需要操作两个节点。为了提高在无向图中操作顶点的效率，本节学习一种新的适用于存储无向图的方法——邻接多重表。注意，邻接多重表仅适用于存储无向图或无向网。邻接多重表存储无向图的方式，可看作是邻接表和十字链表的结合。同邻接表和十字链表存储图的方法相同，都是独自为图中各顶点建立一张链表，存储各顶点的节点作为各链表的首元节点，同时为了便于管理将各个首元节点存储到一个数组中。各首元节点结构如图 1 所示：
 
-前面讲过，无向
-
-[图](http://data.biancheng.net/view/200.html)
-
-的存储可以使用
-
-[邻接表](http://data.biancheng.net/view/203.html)
-
-，但在实际使用时，如果想对图中某顶点进行实操（修改或删除），由于邻接表中存储该顶点的节点有两个，因此需要操作两个节点。
-
-为了提高在无向图中操作顶点的效率，本节学习一种新的适用于存储无向图的方法——邻接多重表。
-
-注意，邻接多重表仅适用于存储无向图或无向网。
-
-邻接多重表存储无向图的方式，可看作是邻接表和
-
-[十字链表](http://data.biancheng.net/view/186.html)
-
-的结合。同邻接表和十字
-
-[链表](http://data.biancheng.net/view/160.html)
-
-存储图的方法相同，都是独自为图中各顶点建立一张链表，存储各顶点的节点作为各链表的首元节点，同时为了便于管理将各个首元节点存储到一个
-
-[数组](http://data.biancheng.net/view/181.html)
-
-中。各首元节点结构如图 1 所示：
-
-
-![邻接多重表各首元节点的结构示意图](http://data.biancheng.net/uploads/allimg/190108/2-1Z10R04635G8.gif)
+![邻接多重表各首元节点的结构示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195701-499979.gif)
 图 1 邻接多重表各首元节点的结构示意图
 
 
@@ -490,8 +381,7 @@
 
 从图 1 可以看到，邻接多重表采用与邻接表相同的首元节点结构。但各链表中其他节点的结构与十字链表中相同，如图 2 所示：
 
-
-![邻接多重表中其他节点结构](http://data.biancheng.net/uploads/allimg/190108/2-1Z10R04A6457.gif)
+![邻接多重表中其他节点结构](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195739-960081.gif)
 图 2 邻接多重表中其他节点结构
 
 
@@ -506,8 +396,7 @@
 
 综合以上信息，如果我们想使用邻接多重表存储图 3a) 中的无向图，则与之对应的邻接多重表如图 3b) 所示：
 
-
-![无向图及其对应的邻接多重表](http://data.biancheng.net/uploads/allimg/190108/2-1Z10R04Hb26.gif)
+![无向图及其对应的邻接多重表](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195747-646978.gif)
 图 3 无向图及其对应的邻接多重表
 
 
@@ -520,23 +409,15 @@
 #define MAX_VERTEX_NUM 20                   //图中顶点的最大个数#define InfoType int                        //边含有的信息域的数据类型#define VertexType int                      //图顶点的数据类型typedef enum {unvisited,visited}VisitIf;    //边标志域typedef struct EBox{    VisitIf mark;                           //标志域    int ivex,jvex;                          //边两边顶点在数组中的位置下标    struct EBox * ilink,*jlink;             //分别指向与ivex、jvex相关的下一个边    InfoType *info;                         //边包含的其它的信息域的指针}EBox;typedef struct VexBox{    VertexType data;                        //顶点数据域    EBox * firstedge;                       //顶点相关的第一条边的指针域}VexBox;typedef struct {    VexBox adjmulist[MAX_VERTEX_NUM];//存储图中顶点的数组    int vexnum,degenum;//记录途中顶点个数和边个数的变量}AMLGraph;
 ```
 
-前边介绍了有关
-
-[图](http://data.biancheng.net/view/200.html)
-
-的 4 种存储方式，本节介绍如何对存储的图中的顶点进行遍历。常用的遍历方式有两种：深度优先搜索和广度优先搜索。
+前边介绍了有关图的 4 种存储方式，本节介绍如何对存储的图中的顶点进行遍历。常用的遍历方式有两种：深度优先搜索和广度优先搜索。
 
 ## 深度优先搜索（简称“深搜”或DFS）
 
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ51I14M57.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/195809-357694.png)
 图 1 无向图
 
 
-深度优先搜索的过程类似于
-
-[树](http://data.biancheng.net/view/23.html)
-
-的先序遍历，首先从例子中体会深度优先搜索。例如图 1 是一个无向图，采用深度优先算法遍历这个图的过程为：
+深度优先搜索的过程类似于树的先序遍历，首先从例子中体会深度优先搜索。例如图 1 是一个无向图，采用深度优先算法遍历这个图的过程为：
 
 1. 首先任意找一个未被遍历过的顶点，例如从 V1 开始，由于 V1 率先访问过了，所以，需要标记 V1 的状态为访问过；
 2. 然后遍历 V1 的邻接点，例如访问 V2 ，并做标记，然后访问 V2 的邻接点，例如 V4 （做标记），然后 V8 ，然后 V5 ；
@@ -596,14 +477,162 @@ V1 -> V2 -> V4 -> V8 -> V5 -> V3 -> V6 -> V7
 V1 -> V2 -> v3 -> V4 -> V5 -> V6 -> V7 -> V8
 
 
-广度优先搜索的实现需要借助
+广度优先搜索的实现需要借助**队列**这一特殊数据结构，实现代码为：
 
-[队列](http://data.biancheng.net/view/172.html)
+```c
+#include <stdio.h>#include <stdlib.h>
+#define MAX_VERtEX_NUM 20                   //顶点的最大个数
+#define VRType int                          //表示顶点之间的关系的变量类型
+#define InfoType char                       //存储弧或者边额外信息的指针变量类型
+#define VertexType int                      //图中顶点的数据类型
+typedef enum{false,true}bool;               //定义bool型常量
+bool visited[MAX_VERtEX_NUM];               //设置全局数组，记录标记顶点是否被访问过
+typedef struct Queue{   
+    VertexType data;   
+    struct Queue * next;
+}Queue;
+typedef struct {  
+    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。 
+    InfoType * info;                        //弧或边额外含有的信息指针
+}ArcCell,AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];
+typedef struct {   
+    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据   
+    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系   
+    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数
+}MGraph;
+//根据顶点本身数据，判断出顶点在二维数组中的位置
+int LocateVex(MGraph * G,VertexType v){   
+    int i=0;    
+    //遍历一维数组，找到变量v  
+    for (; i<G->vexnum; i++) {      
+        if (G->vexs[i]==v) {  
+            break;      
+        }   
+    }   
+    //如果找不到，输出提示语句，返回-1  
+    if (i>G->vexnum) {   
+        printf("no such vertex.\n");    
+        return -1;   
+    }   
+    return i;
+}
+//构造无向图
+void CreateDN(MGraph *G){  
+    scanf("%d,%d",&(G->vexnum),&(G->arcnum));   
+    for (int i=0; i<G->vexnum; i++) {  
+        scanf("%d",&(G->vexs[i]));  
+    }  
+    for (int i=0; i<G->vexnum; i++) {  
+        for (int j=0; j<G->vexnum; j++) {   
+            G->arcs[i][j].adj=0;    
+            G->arcs[i][j].info=NULL;  
+        }  
+    }   
+    for (int i=0; i<G->arcnum; i++) {     
+        int v1,v2;  
+        scanf("%d,%d",&v1,&v2);  
+        int n=LocateVex(G, v1);  
+        int m=LocateVex(G, v2);     
+        if (m==-1 ||n==-1) {      
+            printf("no this vertex\n"); 
+            return;  
+        }     
+        G->arcs[n][m].adj=1;    
+        G->arcs[m][n].adj=1;//无向图的二阶矩阵沿主对角线对称   
+    }
+}
 
-这一特殊数据结构，实现代码为：
+int FirstAdjVex(MGraph G,int v){    //查找与数组下标为v的顶点之间有边的顶点，返回它在数组中的下标  
+    for(int i = 0; i<G.vexnum; i++){    
+        if( G.arcs[v][i].adj ){    
+            return i;     
+        }   
+    }   
+    return -1;
+}
 
-```
-#include <stdio.h>#include <stdlib.h>#define MAX_VERtEX_NUM 20                   //顶点的最大个数#define VRType int                          //表示顶点之间的关系的变量类型#define InfoType char                       //存储弧或者边额外信息的指针变量类型#define VertexType int                      //图中顶点的数据类型typedef enum{false,true}bool;               //定义bool型常量bool visited[MAX_VERtEX_NUM];               //设置全局数组，记录标记顶点是否被访问过typedef struct Queue{    VertexType data;    struct Queue * next;}Queue;typedef struct {    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。    InfoType * info;                        //弧或边额外含有的信息指针}ArcCell,AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];typedef struct {    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数}MGraph;//根据顶点本身数据，判断出顶点在二维数组中的位置int LocateVex(MGraph * G,VertexType v){    int i=0;    //遍历一维数组，找到变量v    for (; i<G->vexnum; i++) {        if (G->vexs[i]==v) {            break;        }    }    //如果找不到，输出提示语句，返回-1    if (i>G->vexnum) {        printf("no such vertex.\n");        return -1;    }    return i;}//构造无向图void CreateDN(MGraph *G){    scanf("%d,%d",&(G->vexnum),&(G->arcnum));    for (int i=0; i<G->vexnum; i++) {        scanf("%d",&(G->vexs[i]));    }    for (int i=0; i<G->vexnum; i++) {        for (int j=0; j<G->vexnum; j++) {            G->arcs[i][j].adj=0;            G->arcs[i][j].info=NULL;        }    }    for (int i=0; i<G->arcnum; i++) {        int v1,v2;        scanf("%d,%d",&v1,&v2);        int n=LocateVex(G, v1);        int m=LocateVex(G, v2);        if (m==-1 ||n==-1) {            printf("no this vertex\n");            return;        }        G->arcs[n][m].adj=1;        G->arcs[m][n].adj=1;//无向图的二阶矩阵沿主对角线对称    }}int FirstAdjVex(MGraph G,int v){    //查找与数组下标为v的顶点之间有边的顶点，返回它在数组中的下标    for(int i = 0; i<G.vexnum; i++){        if( G.arcs[v][i].adj ){            return i;        }    }    return -1;}int NextAdjVex(MGraph G,int v,int w){    //从前一个访问位置w的下一个位置开始，查找之间有边的顶点    for(int i = w+1; i<G.vexnum; i++){        if(G.arcs[v][i].adj){            return i;        }    }    return -1;}//操作顶点的函数void visitVex(MGraph G, int v){    printf("%d ",G.vexs[v]);}//初始化队列void InitQueue(Queue ** Q){    (*Q)=(Queue*)malloc(sizeof(Queue));    (*Q)->next=NULL;}//顶点元素v进队列void EnQueue(Queue **Q,VertexType v){    Queue * element=(Queue*)malloc(sizeof(Queue));    element->data=v;    Queue * temp=(*Q);    while (temp->next!=NULL) {        temp=temp->next;    }    temp->next=element;}//队头元素出队列void DeQueue(Queue **Q,int *u){    (*u)=(*Q)->next->data;    (*Q)->next=(*Q)->next->next;}//判断队列是否为空bool QueueEmpty(Queue *Q){    if (Q->next==NULL) {        return true;    }    return false;}//广度优先搜索void BFSTraverse(MGraph G){//    int v;    //将用做标记的visit数组初始化为false    for( v = 0; v < G.vexnum; ++v){        visited[v] = false;    }    //对于每个标记为false的顶点调用深度优先搜索函数    Queue * Q;    InitQueue(&Q);    for( v = 0; v < G.vexnum; v++){        if(!visited[v]){            visited[v]=true;            visitVex(G, v);            EnQueue(&Q, G.vexs[v]);            while (!QueueEmpty(Q)) {                int u;                DeQueue(&Q, &u);                u=LocateVex(&G, u);                for (int w=FirstAdjVex(G, u); w>=0; w=NextAdjVex(G, u, w)) {                    if (!visited[w]) {                        visited[w]=true;                        visitVex(G, w);                        EnQueue(&Q, G.vexs[w]);                    }                }            }        }    }}int main() {    MGraph G;//建立一个图的变量    CreateDN(&G);//初始化图    BFSTraverse(G);//广度优先搜索图    return 0;}
+int NextAdjVex(MGraph G,int v,int w){  
+    //从前一个访问位置w的下一个位置开始，查找之间有边的顶点  
+    for(int i = w+1; i<G.vexnum; i++){      
+        if(G.arcs[v][i].adj){    
+            return i;    
+        }    
+    }   
+    return -1;
+}
+
+//操作顶点的函数
+void visitVex(MGraph G, int v){  
+    printf("%d ",G.vexs[v]);
+}
+
+//初始化队列
+void InitQueue(Queue ** Q){ 
+    (*Q)=(Queue*)malloc(sizeof(Queue));   
+    (*Q)->next=NULL;
+}
+
+//顶点元素v进队列
+void EnQueue(Queue **Q,VertexType v){ 
+    Queue * element=(Queue*)malloc(sizeof(Queue));  
+    element->data=v; 
+    Queue * temp=(*Q);  
+    while (temp->next!=NULL) {   
+        temp=temp->next;  
+    }   
+    temp->next=element;
+}
+
+//队头元素出队列
+void DeQueue(Queue **Q,int *u){  
+    (*u)=(*Q)->next->data;  
+    (*Q)->next=(*Q)->next->next;
+}
+
+//判断队列是否为空
+bool QueueEmpty(Queue *Q){  
+    if (Q->next==NULL) {   
+        return true;   
+    }   
+    return false;
+}
+
+//广度优先搜索
+void BFSTraverse(MGraph G){//   
+    int v;    //将用做标记的visit数组初始化为false  
+    for( v = 0; v < G.vexnum; ++v){     
+        visited[v] = false; 
+    }   
+    //对于每个标记为false的顶点调用深度优先搜索函数  
+    Queue * Q;  
+    InitQueue(&Q); 
+    for( v = 0; v < G.vexnum; v++){  
+        if(!visited[v]){      
+            visited[v]=true;       
+            visitVex(G, v);       
+            EnQueue(&Q, G.vexs[v]);     
+            while (!QueueEmpty(Q)) {      
+                int u;        
+                DeQueue(&Q, &u);   
+                u=LocateVex(&G, u);  
+                for (int w=FirstAdjVex(G, u); w>=0; w=NextAdjVex(G, u, w)) {  
+                    if (!visited[w]) {     
+                        visited[w]=true;       
+                        visitVex(G, w);          
+                        EnQueue(&Q, G.vexs[w]);    
+                    }            
+                }      
+            }     
+        }   
+    }
+}
+
+int main() {  
+    MGraph G;//建立一个图的变量 
+    CreateDN(&G);//初始化图  
+    BFSTraverse(G);//广度优先搜索图 
+    return 0;
+}
 ```
 
 
@@ -641,50 +670,29 @@ V1 -> V2 -> v3 -> V4 -> V5 -> V6 -> V7 -> V8
 | [图的遍历算法（深度优先算法DFS和广度优先算法BFS）](https://www.cnblogs.com/kubixuesheng/p/4399705.html) | 详细介绍了两种算法的实现过程，并配备的 C++ 的实现代码 |
 | [广度优先搜索（BFS）和深度优先搜索（DFS）的应用实例 ](https://www.cnblogs.com/idreamo/p/8742617.html) | 从实例出发介绍两种搜索算法                            |
 
-本章的第一节中，介绍了有关
-
-[生成树](http://data.biancheng.net/view/202.html)
-
-和生成森林的有关知识，本节来解决对于给定的无向
-
-[图](http://data.biancheng.net/view/200.html)
-
-，如何构建它们相对应的生成
-
-[树](http://data.biancheng.net/view/23.html)
-
-或者生成森林。
+本章的第一节中，介绍了有关生成树和生成森林的有关知识，本节来解决对于给定的无向图，如何构建它们相对应的生成树或者生成森林。
 
 其实在对无向图进行遍历的时候，遍历过程中所经历过的图中的顶点和边的组合，就是图的生成树或者生成森林。
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912163410958.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200620-629727.png)
 图 1 无向图
- 
 
-例如，图 1 中的无向图是由 V1～V7 的顶点和编号分别为 a～i 的边组成。当使用
-
-[深度优先搜索](http://data.biancheng.net/view/39.html)
-
-算法时，假设 V1 作为遍历的起始点，涉及到的顶点和边的遍历顺序为（不唯一）：
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912163444395.png)
+例如，图 1 中的无向图是由 V1～V7 的顶点和编号分别为 a～i 的边组成。当使用深度优先搜索算法时，假设 V1 作为遍历的起始点，涉及到的顶点和边的遍历顺序为（不唯一）：
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200644-1349.png)
 
 此种遍历顺序构建的生成树为：
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912163502E8.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200643-309081.png)
 
 图 2 深度优先生成树
 
 
-由深度优先搜索得到的树为深度优先生成树。同理，
+由深度优先搜索得到的树为深度优先生成树。同理，广度优先搜索生成的树为广度优先生成树，图 1 无向图以顶点 V1 为起始点进行广度优先搜索遍历得到的树，如图 3 所示：
 
-[广度优先搜索](http://data.biancheng.net/view/39.html)
-
-生成的树为广度优先生成树，图 1 无向图以顶点 V1 为起始点进行广度优先搜索遍历得到的树，如图 3 所示：
-
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912163551311.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200700-538840.png)
 图 3 广度优先生成树
 
-## 非[连通图](http://data.biancheng.net/view/201.html)的生成森林
+## 非连通图的生成森林
 
 非连通图在进行遍历时，实则是对非连通图中每个连通分量分别进行遍历，在遍历过程经过的每个顶点和边，就构成了每个连通分量的生成树。
 
@@ -692,24 +700,189 @@ V1 -> V2 -> v3 -> V4 -> V5 -> V6 -> V7 -> V8
 
 ## 深度优先生成森林
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912163A4559.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200713-513419.png)
 图 4 深度优先生成森林
 
 
 例如，对图 4 中的非连通图 （a） 采用深度优先搜索算法遍历时，得到的深度优先生成森林（由 3 个深度优先生成树构成）如 （b） 所示（不唯一）。
 
-> 非连通图在遍历生成森林时，可以采用[孩子兄弟表示法](http://data.biancheng.net/view/198.html)将森林转化为一整棵[二叉树](http://data.biancheng.net/view/192.html)进行存储。
+> 非连通图在遍历生成森林时，可以采用孩子兄弟表示法将森林转化为一整棵二叉树进行存储。
 
 
 具体实现的代码：
 
-```
-#include <stdio.h>#include <stdlib.h>#define MAX_VERtEX_NUM 20                   //顶点的最大个数#define VRType int                          //表示顶点之间的关系的变量类型#define VertexType int                     //图中顶点的数据类型typedef enum{false,true}bool;               //定义bool型常量bool visited[MAX_VERtEX_NUM];               //设置全局数组，记录标记顶点是否被访问过typedef struct {    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。}ArcCell,AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];typedef struct {    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数}MGraph;//孩子兄弟表示法的链表结点结构typedef struct CSNode{    VertexType data;    struct CSNode * lchild;//孩子结点    struct CSNode * nextsibling;//兄弟结点}*CSTree,CSNode;//根据顶点本身数据，判断出顶点在二维数组中的位置int LocateVex(MGraph G,VertexType v){    int i=0;    //遍历一维数组，找到变量v    for (; i<G.vexnum; i++) {        if (G.vexs[i]==v) {            break;        }    }    //如果找不到，输出提示语句，返回-1    if (i>G.vexnum) {        printf("no such vertex.\n");        return -1;    }    return i;}//构造无向图void CreateDN(MGraph *G){    scanf("%d,%d",&(G->vexnum),&(G->arcnum));    getchar();    for (int i=0; i<G->vexnum; i++) {        scanf("%d",&(G->vexs[i]));    }    for (int i=0; i<G->vexnum; i++) {        for (int j=0; j<G->vexnum; j++) {            G->arcs[i][j].adj=0;        }    }    for (int i=0; i<G->arcnum; i++) {        int v1,v2;        scanf("%d,%d",&v1,&v2);        int n=LocateVex(*G, v1);        int m=LocateVex(*G, v2);        if (m==-1 ||n==-1) {            printf("no this vertex\n");            return;        }        G->arcs[n][m].adj=1;        G->arcs[m][n].adj=1;//无向图的二阶矩阵沿主对角线对称    }}int FirstAdjVex(MGraph G,int v){    //查找与数组下标为v的顶点之间有边的顶点，返回它在数组中的下标    for(int i = 0; i<G.vexnum; i++){        if( G.arcs[v][i].adj ){            return i;        }    }    return -1;}int NextAdjVex(MGraph G,int v,int w){    //从前一个访问位置w的下一个位置开始，查找之间有边的顶点    for(int i = w+1; i<G.vexnum; i++){        if(G.arcs[v][i].adj){            return i;        }    }    return -1;}void DFSTree(MGraph G,int v,CSTree*T){    //将正在访问的该顶点的标志位设为true    visited[v]=true;    bool first=true;    CSTree q=NULL;    //依次遍历该顶点的所有邻接点    for (int w=FirstAdjVex(G, v); w>=0; w=NextAdjVex(G, v, w)) {        //如果该临界点标志位为false，说明还未访问        if (!visited[w]) {            //为该邻接点初始化为结点            CSTree p=(CSTree)malloc(sizeof(CSNode));            p->data=G.vexs[w];            p->lchild=NULL;            p->nextsibling=NULL;            //该结点的第一个邻接点作为孩子结点，其它邻接点作为孩子结点的兄弟结点            if (first) {                (*T)->lchild=p;                first=false;            }            //否则，为兄弟结点            else{                q->nextsibling=p;            }            q=p;            //以当前访问的顶点为树根，继续访问其邻接点            DFSTree(G, w, &q);        }    }}//深度优先搜索生成森林并转化为二叉树void DFSForest(MGraph G,CSTree *T){    (*T)=NULL;    //每个顶点的标记为初始化为false    for (int v=0; v<G.vexnum; v++) {        visited[v]=false;    }    CSTree q=NULL;    //遍历每个顶点作为初始点，建立深度优先生成树    for (int v=0; v<G.vexnum; v++) {        //如果该顶点的标记位为false，证明未访问过        if (!(visited[v])) {            //新建一个结点，表示该顶点            CSTree p=(CSTree)malloc(sizeof(CSNode));            p->data=G.vexs[v];            p->lchild=NULL;            p->nextsibling=NULL;            //如果树未空，则该顶点作为树的树根            if (!(*T)) {                (*T)=p;                       }            //该顶点作为树根的兄弟结点            else{                q->nextsibling=p;            }            //每次都要把q指针指向新的结点，为下次添加结点做铺垫            q=p;            //以该结点为起始点，构建深度优先生成树            DFSTree(G,v,&p);        }    }}//前序遍历二叉树void PreOrderTraverse(CSTree T){    if (T) {        printf("%d ",T->data);        PreOrderTraverse(T->lchild);        PreOrderTraverse(T->nextsibling);    }    return;}int main() {    MGraph G;//建立一个图的变量    CreateDN(&G);//初始化图    CSTree T;    DFSForest(G, &T);    PreOrderTraverse(T);    return 0;}
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_VERtEX_NUM 20                   //顶点的最大个数
+#define VRType int                          //表示顶点之间的关系的变量类型
+#define VertexType int                     //图中顶点的数据类型
+typedef enum{false,true}bool;               //定义bool型常量
+bool visited[MAX_VERtEX_NUM];               //设置全局数组，记录标记顶点是否被访问过
+typedef struct {   
+    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。
+}ArcCell,AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];
+typedef struct {   
+    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据   
+    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系  
+    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数
+}MGraph;
+
+//孩子兄弟表示法的链表结点结构
+typedef struct CSNode{  
+    VertexType data; 
+    struct CSNode * lchild;//孩子结点  
+    struct CSNode * nextsibling;//兄弟结点
+}*CSTree,CSNode;
+
+//根据顶点本身数据，判断出顶点在二维数组中的位置
+int LocateVex(MGraph G,VertexType v){  
+    int i=0;    
+    //遍历一维数组，找到变量v   
+    for (; i<G.vexnum; i++) {  
+        if (G.vexs[i]==v) {   
+            break;  
+        } 
+    }    
+    //如果找不到，输出提示语句，返回-1    
+    if (i>G.vexnum) {    
+        printf("no such vertex.\n");    
+        return -1;   
+    } 
+    return i;
+}
+
+//构造无向图
+void CreateDN(MGraph *G){  
+    scanf("%d,%d",&(G->vexnum),&(G->arcnum));  
+    getchar(); 
+    for (int i=0; i<G->vexnum; i++) {   
+        scanf("%d",&(G->vexs[i]));  
+    }  
+    for (int i=0; i<G->vexnum; i++) {   
+        for (int j=0; j<G->vexnum; j++) {    
+            G->arcs[i][j].adj=0;     
+        }   
+    }  
+    for (int i=0; i<G->arcnum; i++) {   
+        int v1,v2;    
+        scanf("%d,%d",&v1,&v2);    
+        int n=LocateVex(*G, v1);  
+        int m=LocateVex(*G, v2);   
+        if (m==-1 ||n==-1) {      
+            printf("no this vertex\n");      
+            return;    
+        }      
+        G->arcs[n][m].adj=1;     
+        G->arcs[m][n].adj=1;//无向图的二阶矩阵沿主对角线对称   
+    }
+}
+
+int FirstAdjVex(MGraph G,int v){  
+    //查找与数组下标为v的顶点之间有边的顶点，返回它在数组中的下标  
+    for(int i = 0; i<G.vexnum; i++){    
+        if( G.arcs[v][i].adj ){     
+            return i;      
+        }  
+    }  
+    return -1;
+}
+
+int NextAdjVex(MGraph G,int v,int w){   
+    //从前一个访问位置w的下一个位置开始，查找之间有边的顶点  
+    for(int i = w+1; i<G.vexnum; i++){    
+        if(G.arcs[v][i].adj){       
+            return i;    
+        }  
+    }  
+    return -1;
+}
+
+void DFSTree(MGraph G,int v,CSTree*T){  
+    //将正在访问的该顶点的标志位设为true 
+    visited[v]=true;   
+    bool first=true;   
+    CSTree q=NULL;    
+    //依次遍历该顶点的所有邻接点   
+    for (int w=FirstAdjVex(G, v); w>=0; w=NextAdjVex(G, v, w)) {
+        //如果该临界点标志位为false，说明还未访问   
+        if (!visited[w]) {     
+            //为该邻接点初始化为结点       
+            CSTree p=(CSTree)malloc(sizeof(CSNode));  
+            p->data=G.vexs[w];       
+            p->lchild=NULL;     
+            p->nextsibling=NULL;     
+            //该结点的第一个邻接点作为孩子结点，其它邻接点作为孩子结点的兄弟结点   
+            if (first) {         
+                (*T)->lchild=p;    
+                first=false;       
+            }         
+            //否则，为兄弟结点      
+            else{        
+                q->nextsibling=p;      
+            }          
+            q=p;        
+            //以当前访问的顶点为树根，继续访问其邻接点       
+            DFSTree(G, w, &q);    
+        }   
+    }
+}
+
+//深度优先搜索生成森林并转化为二叉树
+void DFSForest(MGraph G,CSTree *T){ 
+    (*T)=NULL;    //每个顶点的标记为初始化为false 
+    for (int v=0; v<G.vexnum; v++) {   
+        visited[v]=false;  
+    }  
+    CSTree q=NULL;   
+    //遍历每个顶点作为初始点，建立深度优先生成树   
+    for (int v=0; v<G.vexnum; v++) { 
+        //如果该顶点的标记位为false，证明未访问过   
+        if (!(visited[v])) {      
+            //新建一个结点，表示该顶点     
+            CSTree p=(CSTree)malloc(sizeof(CSNode));     
+            p->data=G.vexs[v];         
+            p->lchild=NULL;        
+            p->nextsibling=NULL;        
+            //如果树未空，则该顶点作为树的树根    
+            if (!(*T)) {           
+                (*T)=p;        
+            }        
+            //该顶点作为树根的兄弟结点     
+            else{           
+                q->nextsibling=p;  
+            }        
+            //每次都要把q指针指向新的结点，为下次添加结点做铺垫    
+            q=p;       
+            //以该结点为起始点，构建深度优先生成树     
+            DFSTree(G,v,&p);     
+        }   
+    }
+}
+
+//前序遍历二叉树
+void PreOrderTraverse(CSTree T){  
+    if (T) {  
+        printf("%d ",T->data);   
+        PreOrderTraverse(T->lchild);  
+        PreOrderTraverse(T->nextsibling);  
+    }   
+    return;
+}
+
+int main() {   
+    MGraph G;//建立一个图的变量   
+    CreateDN(&G);//初始化图  
+    CSTree T;  
+    DFSForest(G, &T); 
+    PreOrderTraverse(T); 
+    return 0;
+}
 ```
 
 运行程序，拿图 4（a）中的非连通图为例，构建的深度优先生成森林，使用孩子兄弟表示法表示为：
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912163P2F9.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200757-553735.png)
 图5 孩子兄弟表示法表示深度优先生成森林
 
 > 图中，3 种颜色的树各代表一棵深度优先生成树，使用孩子兄弟表示法表示，也就是将三棵树的树根相连，第一棵树的树根作为整棵树的树根。
@@ -752,7 +925,7 @@ V1 -> V2 -> v3 -> V4 -> V5 -> V6 -> V7 -> V8
 
 拿图 4（a）中的非连通图为例，通过广度优先搜索得到的广度优先生成森林用孩子兄弟表示法为：
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912163U9C6.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200808-902107.png)
 图6 广度优先生成森林（孩子兄弟表示法）
 
 
@@ -793,19 +966,19 @@ V1 -> V2 -> v3 -> V4 -> V5 -> V6 -> V7 -> V8
 12,13
 1 2 13 3 6 12 11 4 5 7 8 9 10
 
-在无向[图](http://data.biancheng.net/view/200.html)中，如果任意两个顶点之间含有不止一条通路，这个图就被称为重[连通图](http://data.biancheng.net/view/201.html)。在重连通图中，在删除某个顶点及该顶点相关的边后，图中各顶点之间的连通性也不会被破坏。
+在无向图中，如果任意两个顶点之间含有不止一条通路，这个图就被称为重连通图。在重连通图中，在删除某个顶点及该顶点相关的边后，图中各顶点之间的连通性也不会被破坏。
 
 在一个无向图中，如果删除某个顶点及其相关联的边后，原来的图被分割为两个及以上的连通分量，则称该顶点为无向图中的一个关节点（或者“割点”）。
 
-![img](http://data.biancheng.net/uploads/allimg/170911/2-1F9111F216335.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/201013-564296.png)
 图 1 连通图
- 
+
 
 图 1 是连通图但不是重连通图，图中有4个关节点，分别是：A、B、D 和 G。比如删除顶点 B 及相关联的边后，原图就变为：
 
-![img](http://data.biancheng.net/uploads/allimg/170911/2-1F9111F253129.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/201006-785214.png)
 图 2 连通分量
- 
+
 
 可以看到，图被分割为各自独立的 3 部分，顶点集合分别为：{A、C、F、L、M、J}、{G、H、I、K} 和 {D、E}。
 
@@ -825,22 +998,10 @@ V1 -> V2 -> v3 -> V4 -> V5 -> V6 -> V7 -> V8
 
 了解了什么是重连通图之后，如何编写程序直接判断一个图是否是重连通图呢？
 
-对于任意一个连通图来说，都可以通过
+对于任意一个连通图来说，都可以通过深度优先搜索算法获得一棵深度优先生成树，例如，图 1 通过深度优先搜索获得的深度优先生成树为：
 
-[深度优先搜索](http://data.biancheng.net/view/39.html)
-
-算法获得一棵
-
-[深度优先生成树](http://data.biancheng.net/view/45.html)
-
-，例如，图 1 通过深度优先搜索获得的深度优先
-
-[生成树](http://data.biancheng.net/view/202.html)
-
-为：
-
-![img](http://data.biancheng.net/uploads/allimg/170911/2-1F9111F601611.png)
-图 3 深度优先生成[树](http://data.biancheng.net/view/23.html)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200932-893173.png)
+图 3 深度优先生成树
 
 
 虚线表示遍历生成树时未用到的边，简称“回边”。也就是图中有，但是遍历时没有用到，生成树中用虚线表示出来。
@@ -875,9 +1036,9 @@ V1 -> V2 -> v3 -> V4 -> V5 -> V6 -> V7 -> V8
 
 AOE 网是在 AOV 网的基础上，其中每一个边都具有各自的权值，是一个有向无环网。其中权值表示活动持续的时间。
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912154422b1.png)
-[图](http://data.biancheng.net/view/200.html) 1 AOE网
- 
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200902-701130.png)
+图] 1 AOE网
+
 
 如图 1 所示就是一个 AOE 网，例如 a1=6 表示完成 a1 活动完成需要 6 天；AOE 网中每个顶点表示在它之前的活动已经完成，可以开始后边的活动，例如 V5 表示 a4 和 a5 活动已经完成，a7 和 a8 可以开始。
 
@@ -920,23 +1081,23 @@ l(i)：表示活动 ai 的最晚开始时间，如果活动 ai 是由弧 <Vk,Vj>
 
 Ve(j)，求出从源点到各顶点的最长路径长度为（长度最大的）：
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F91215503aH.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200852-638509.png)
 
 Vl(j)，求出各顶点的最晚发生时间（从后往前推，多种情况下选择最小的）：
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912155103423.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200847-280541.png)
 
 e(i)，求出各边中ai活动的最早开始时间：
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F91215511SY.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200840-784218.png)
 
 l(i),求各边中ai活动的最晚开始时间（多种情况下，选择最小的）：
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912155132560.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200831-772585.png)
 
 通过对比 l(i) 和 e(i) ，其中 a1 、 a4 、 a7 、 a8 、 a10 、 a11 的值都各自相同，所以，在图 1 中的 AOE 网中有两条关键路径：
 
-![img](http://data.biancheng.net/uploads/allimg/170912/2-1F912155150E8.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/200825-550885.png)
 图 2 关键路径
 
 

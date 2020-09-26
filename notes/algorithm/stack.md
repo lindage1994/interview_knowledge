@@ -1,9 +1,8 @@
 # 栈（stack）及其存储结构和特点详解
 
-[栈](http://data.biancheng.net/view/169.html)是一个有着特殊规则的数据结构。我们熟悉汉诺塔游戏（如图1 所示），这里有一个明确的规则，即每次只能移动顶端的一个圆盘。
+**栈**是一个有着特殊规则的数据结构。我们熟悉汉诺塔游戏（如图1 所示），这里有一个明确的规则，即每次只能移动顶端的一个圆盘。
 
-
-![img](http://data.biancheng.net/uploads/allimg/180923/1-1P92309254a13.jpg)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/193814-536274.jpeg)
 图 1 汉诺塔游戏
 
 
@@ -17,15 +16,11 @@
 
 ## 栈的存储结构
 
-栈一般使用一段连续的空间进行存储，通常预先分配一个长度，可以简单地使用
-
-[数组](http://data.biancheng.net/view/181.html)
-
-去实现，具体的存储结构如图 2 所示。
+栈一般使用一段连续的空间进行存储，通常预先分配一个长度，可以简单地使用**数组**去实现，具体的存储结构如图 2 所示。
 
 
 
-![img](http://data.biancheng.net/uploads/allimg/180923/1-1P923092AK95.jpg)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/193824-663197.jpeg)
 图 2 栈的存储结构
 
 

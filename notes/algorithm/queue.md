@@ -1,11 +1,10 @@
 # 什么是队列，队列及其应用（超详细）
 
-队列，和[栈](http://data.biancheng.net/view/169.html)一样，也是一种对数据的"存"和"取"有严格要求的线性存储结构。
+**队列**，和**栈**一样，也是一种对数据的"存"和"取"有严格要求的线性存储结构。
 
 与栈结构不同的是，队列的两端都"开口"，要求数据只能从一端进，从另一端出，如图1 所示：
 
-
-![队列存储结构](http://data.biancheng.net/uploads/allimg/181203/2-1Q203200556309.gif)
+![队列存储结构](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/193946-341482.gif)
 图 1 队列存储结构
 
 通常，称进数据的一端为 "队尾"，出数据的一端为 "队头"，数据元素进队列的过程称为 "入队"，出队列的过程称为 "出队"。
@@ -20,8 +19,8 @@
 
 队列存储结构的实现有以下两种方式：
 
-1. [顺序队列](http://data.biancheng.net/view/173.html)：在[顺序表](http://data.biancheng.net/view/158.html)的基础上实现的队列结构；
-2. [链队列](http://data.biancheng.net/view/174.html)：在[链表](http://data.biancheng.net/view/160.html)的基础上实现的队列结构；
+1. **顺序队列**：在**顺序表**的基础上实现的队列结构；
+2. **链队列**：在**链表**的基础上实现的队列结构；
 
 
 两者的区别仅是顺序表和链表的区别，即在实际的物理空间中，数据集中存储的队列是顺序队列，分散存储的队列是链队列。
@@ -36,7 +35,7 @@
 
 
 
-顺序[队列](http://data.biancheng.net/view/172.html)，即采用[顺序表](http://data.biancheng.net/view/158.html)模拟实现的队列结构。
+顺序队列，即采用顺序表模拟实现的队列结构。
 
 我们知道，队列具有以下两个特点：
 
@@ -50,8 +49,7 @@
 
 由于顺序队列的底层使用的是[数组](http://data.biancheng.net/view/181.html)，因此需预先申请一块足够大的内存空间初始化顺序队列。除此之外，为了满足顺序队列中数据从队尾进，队头出且先进先出的要求，我们还需要定义两个指针（top 和 rear）分别用于指向顺序队列中的队头元素和队尾元素，如 图 1 所示：
 
-
-![顺序队列实现示意图](http://data.biancheng.net/uploads/allimg/181204/2-1Q204202R4539.gif)
+![顺序队列实现示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194117-898743.gif)
 图 1 顺序队列实现示意图
 
 
@@ -61,15 +59,13 @@
 
 例如，在图 1 基础上将 `{1,2,3,4}` 用顺序队列存储的实现操作如图 2 所示：
 
-
-![数据进顺序队列的过程实现示意图](http://data.biancheng.net/uploads/allimg/181204/2-1Q20420293O01.gif)
+![数据进顺序队列的过程实现示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194135-953081.gif)
 图 2 数据进顺序队列的过程实现示意图
 
 
 在图 2 基础上，顺序队列中数据出队列的实现过程如图 3 所示：
 
-
-![数据出顺序队列的过程示意图](http://data.biancheng.net/uploads/allimg/181204/2-1Q204202950120.gif)
+![数据出顺序队列的过程示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194133-497683.gif)
 图 3 数据出顺序队列的过程示意图
 
 
@@ -104,8 +100,7 @@
 
 为了解决以上两个问题，可以使用巧妙的方法将顺序表打造成一个环状表，如图 4 所示：
 
-
-![环状顺序队列](http://data.biancheng.net/uploads/allimg/181204/2-1Q204203432215.gif)
+![环状顺序队列](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194149-700846.gif)
 图 4 环状顺序队列
 
 
@@ -174,14 +169,13 @@ int main() {
 
 顺序队列的存储状态不同，但是判断条件相同。为了对其进行区分，最简单的解决办法是：牺牲掉数组中的一个存储空间，判断数组满员的条件是：尾指针的下一个位置和头指针相遇，就说明数组满了，即程序中第 5 行所示。
 
-**链式队列**，简称"链队列"，即使用[链表](http://data.biancheng.net/view/160.html)实现的队列存储结构。
+**链式队列**，简称"链队列"，即使用**链表**实现的队列存储结构。
 
 链式队列的实现思想同**顺序队列**
 
 类似，只需创建两个指针（命名为 top 和 rear）分别指向链表中队列的队头元素和队尾元素，如 图1 所示:
 
-
-![链式队列的初始状态](http://data.biancheng.net/uploads/allimg/181205/2-1Q205211052O7.gif)
+![链式队列的初始状态](G:\2-1Q205211052O7.gif)
 图 1 链式队列的初始状态
 
 
@@ -208,8 +202,7 @@ int main() {
 
 例如，在图 1 的基础上，我们依次将 `{1,2,3}` 依次入队，各个数据元素入队的过程如图 2 所示:
 
-
-![{1,2,3} 入链式队列](http://data.biancheng.net/uploads/allimg/181205/2-1Q2052111543C.gif)
+![{1,2,3} 入链式队列](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194227-629396.gif)
 图 2 {1,2,3} 入链式队列
 
 
@@ -232,8 +225,7 @@ QNode* enQueue(QNode * rear,int data){    //1、用节点包裹入队元素    Q
 
 例如，在图 2b) 的基础上，我们将元素 1 和 2 出队，则操作过程如图 3 所示：
 
-
-![链式队列中数据元素出队](http://data.biancheng.net/uploads/allimg/181205/2-1Q205211240637.gif)
+![链式队列中数据元素出队](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194238-764804.gif)
 图 3 链式队列中数据元素出队
 
 
@@ -249,15 +241,7 @@ void DeQueue(QNode * top,QNode * rear){    if (top->next==NULL) {        printf(
 
 通过学习链式队列最基本的数据入队和出队操作，我们可以就实际问题，对以上代码做适当的修改。
 
-前面在学习顺序队列时，由于
-
-[顺序表](http://data.biancheng.net/view/158.html)
-
-的局限性，我们在顺序队列中实现数据入队和出队的基础上，又对实现代码做了改进，令其能够充分利用
-
-[数组](http://data.biancheng.net/view/181.html)
-
-中的空间。链式队列就不需要考虑空间利用的问题，因为链式队列本身就是实时申请空间。因此，这可以算作是链式队列相比顺序队列的一个优势。
+前面在学习顺序队列时，由于**顺序表**的局限性，我们在顺序队列中实现数据入队和出队的基础上，又对实现代码做了改进，令其能够充分利用**数组**中的空间。链式队列就不需要考虑空间利用的问题，因为链式队列本身就是实时申请空间。因此，这可以算作是链式队列相比顺序队列的一个优势。
 
 这里给出链式队列入队和出队的完整 C 语言代码为：
 
