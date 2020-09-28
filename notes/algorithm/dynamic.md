@@ -195,7 +195,7 @@ for(int i = n-1; i >= 1; i--) {
 
 当然，各个阶段决策的选取不是任意确定的，它依赖于当前面临的状态，又影响以后的发展，当各个阶段决策确定后，就组成一个决策序列，因而也就确定了整个过程的一条活动路线，如图所示：（看词条图）
 
-![多阶段决策](https://bkimg.cdn.bcebos.com/pic/4610b912c8fcc3ce0150f43a9245d688d43f2022?x-bce-process=image/resize,m_lfit,w_220,h_220,limit_1)
+![多阶段决策](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/190957-256269.jpeg)
 
 这种把一个问题看作是一个前后关联具有链状结构的多阶段过程就称为多阶段决策过程，这种问题就称为多阶段决策问题。
 

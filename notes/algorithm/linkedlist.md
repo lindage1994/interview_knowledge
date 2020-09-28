@@ -1,22 +1,14 @@
-前面详细地介绍了[顺序表](http://data.biancheng.net/view/158.html)，本节给大家介绍另外一种线性存储结构——链表。
+链表，别名链式存储结构或单链表，用于存储逻辑关系为 "一对一" 的数据。与顺序表不同，链表不限制数据的物理存储状态，换句话说，使用链表存储的数据元素，其物理存储位置是随机的。
 
-链表，别名链式存储结构或单链表，用于存储逻辑关系为 "一对一" 的数据。与[顺序表](http://data.biancheng.net/view/158.html)不同，链表不限制数据的物理存储状态，换句话说，使用链表存储的数据元素，其物理存储位置是随机的。
+例如，使用链表存储 `{1,2,3}`，数据的物理存储状态如图 1 所示：
 
-例如，使用链表存储 `{1,2,3}`，数据的物理存储状态如
-
-[图](http://data.biancheng.net/view/200.html)
-
- 1 所示：
-
-
-![链表随机存储数据](http://data.biancheng.net/uploads/allimg/181123/2-1Q12321231CA.gif)
+![链表随机存储数据](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/191209-420219.gif)
 图 1 链表随机存储数据
 
 
 我们看到，图 1 根本无法体现出各数据之间的逻辑关系。对此，链表的解决方案是，每个数据元素在存储时都配备一个指针，用于指向自己的直接后继元素。如图 2 所示：
 
-
-![各数据元素配备指针](http://data.biancheng.net/uploads/allimg/181123/2-1Q12321243O36.gif)
+![各数据元素配备指针](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/191218-786435.gif)
 图 2 各数据元素配备指针
 
 
@@ -32,22 +24,23 @@
 
 即链表中存储各数据元素的结构如图 3 所示：
 
-
-![img](http://data.biancheng.net/uploads/allimg/181123/2-1Q1232126112G.gif)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/191229-384621.gif)
 图 3 节点结构
 
 
 图 3 所示的结构在链表中称为节点。也就是说，链表实际存储的是一个一个的节点，真正的数据元素包含在这些节点中，如图 4 所示：
 
-
-![链表中的节点](http://data.biancheng.net/uploads/allimg/181123/2-1Q123212Q3337.gif)
+![链表中的节点](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/191238-736805.gif)
 图 4 链表中的节点
 
 
 因此，链表中每个节点的具体实现，需要使用 C 语言中的结构体，具体实现代码为：
 
-```
-typedef struct Link{    char elem; //代表数据域    struct Link * next; //代表指针域，指向直接后继元素}link; //link为节点名，每个节点都是一个 link 结构体
+```c
+typedef struct Link{  
+    char elem; //代表数据域  
+    struct Link * next; //代表指针域，指向直接后继元素
+}link; //link为节点名，每个节点都是一个 link 结构体
 ```
 
 提示，由于指针域中的指针要指向的也是一个节点，因此要声明为 Link 类型（这里要写成 `struct Link*` 的形式）。
@@ -60,25 +53,16 @@ typedef struct Link{    char elem; //代表数据域    struct Link * next; //�
 
 2. 节点
 
-   ：链表中的节点又细分为
-
-   头节点
-
-   、
-
-   首元节点
-
-   和其他节点：
+   ：链表中的节点又细分为头节点、首元节点和其他节点：
 
    - 头节点：其实就是一个不存任何数据的空节点，通常作为链表的第一个节点。对于链表来说，头节点不是必须的，它的作用只是为了方便解决某些实际问题；
-   - 首元节点：由于头节点（也就是空节点）的缘故，链表中称第一个存有数据的节点为首元节点。首元节点只是对链表中第一个存有数据节点的一个称谓，没有实际意义；
+- 首元节点：由于头节点（也就是空节点）的缘故，链表中称第一个存有数据的节点为首元节点。首元节点只是对链表中第一个存有数据节点的一个称谓，没有实际意义；
    - 其他节点：链表中其他的节点；
 
 
 因此，一个存储 `{1,2,3}` 的完整链表结构如图 5 所示：
 
-
-![完整的链表示意图](http://data.biancheng.net/uploads/allimg/181123/2-1Q123213124343.gif)
+![完整的链表示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/191331-78994.gif)
 图 5 完整的链表示意图
 
 注意：链表中有头节点时，头指针指向头节点；反之，若链表中没有头节点，则头指针指向首元节点。
@@ -95,21 +79,97 @@ typedef struct Link{    char elem; //代表数据域    struct Link * next; //�
 
 例如，创建一个存储 `{1,2,3,4}` 且无头节点的链表，C 语言实现代码如下：
 
-```
-link * initLink() {    int i;    link * p = NULL;//创建头指针    link * temp = (link*)malloc(sizeof(link));//创建首元节点    //首元节点先初始化    temp->elem = 1;    temp->next = NULL;    p = temp;//头指针指向首元节点    //从第二个节点开始创建    for (i = 2; i < 5; i++) {        //创建一个新节点并初始化        link *a = (link*)malloc(sizeof(link));        a->elem = i;        a->next = NULL;        //将temp节点与新建立的a节点建立逻辑关系        temp->next = a;        //指针temp每次都指向新链表的最后一个节点，其实就是 a节点，这里写temp=a也对        temp = temp->next;    }    //返回建立的节点，只返回头指针 p即可，通过头指针即可找到整个链表    return p;}
+```c
+link * initLink() {    
+    int i;    link * p = NULL;//创建头指针   
+    link * temp = (link*)malloc(sizeof(link));//创建首元节点 
+    //首元节点先初始化 
+    temp->elem = 1; 
+    temp->next = NULL;
+    p = temp;//头指针指向首元节点  
+    //从第二个节点开始创建 
+    for (i = 2; i < 5; i++) {  
+        //创建一个新节点并初始化   
+        link *a = (link*)malloc(sizeof(link));    
+        a->elem = i;   
+        a->next = NULL;   
+        //将temp节点与新建立的a节点建立逻辑关系    
+        temp->next = a;     
+        //指针temp每次都指向新链表的最后一个节点，其实就是 a节点，这里写temp=a也对   
+        temp = temp->next;   
+    }    //返回建立的节点，只返回头指针 p即可，通过头指针即可找到整个链表   
+    return p;
+}
 ```
 
 如果想创建一个存储 `{1,2,3,4}` 且含头节点的链表，则 C 语言实现代码为：
 
-```
-link * initLink(){    int i;    link * p=(link*)malloc(sizeof(link));//创建一个头结点    link * temp=p;//声明一个指针指向头结点，    //生成链表    for (i=1; i<5; i++) {        link *a=(link*)malloc(sizeof(link));        a->elem=i;        a->next=NULL;        temp->next=a;        temp=temp->next;    }    return p;}
+```c
+link * initLink(){  
+    int i;  
+    link * p=(link*)malloc(sizeof(link));//创建一个头结点 
+    link * temp=p;//声明一个指针指向头结点，
+    //生成链表  
+    for (i=1; i<5; i++) {   
+        link *a=(link*)malloc(sizeof(link));    
+        a->elem=i;     
+        a->next=NULL;    
+        temp->next=a;    
+        temp=temp->next; 
+    }   
+    return p;
+}
 ```
 
 
 我们只需在主函数中调用 initLink 函数，即可轻松创建一个存储 `{1,2,3,4}` 的链表，C 语言完整代码如下：
 
-```
-#include <stdio.h>#include <stdlib.h>//链表中节点的结构typedef struct Link {    int  elem;    struct Link *next;}link;//初始化链表的函数link * initLink();//用于输出链表的函数void display(link *p);int main() {    link*p = NULL;    //初始化链表（1，2，3，4）    printf("初始化链表为：\n");    p = initLink();    display(p);    return 0;}link * initLink() {    int i;    link * p = NULL;//创建头指针    link * temp = (link*)malloc(sizeof(link));//创建首元节点    //首元节点先初始化    temp->elem = 1;    temp->next = NULL;    p = temp;//头指针指向首元节点    for (i = 2; i < 5; i++) {        link *a = (link*)malloc(sizeof(link));        a->elem = i;        a->next = NULL;        temp->next = a;        temp = temp->next;    }    return p;}void display(link *p) {    link* temp = p;//将temp指针重新指向头结点    //只要temp指针指向的结点的next不是Null，就执行输出语句。    while (temp) {        printf("%d ", temp->elem);        temp = temp->next;    }    printf("\n");}
+```c
+#include <stdio.h>
+#include <stdlib.h>
+//链表中节点的结构
+typedef struct Link {  
+    int  elem;  
+    struct Link *next;
+}link;
+//初始化链表的函数
+link * initLink();
+//用于输出链表的函数
+void display(link *p);
+int main() {  
+    link*p = NULL;  
+    //初始化链表（1，2，3，4） 
+    printf("初始化链表为：\n"); 
+    p = initLink();  
+    display(p);  
+    return 0;
+}
+link * initLink() {  
+    int i; 
+    link * p = NULL;//创建头指针  
+    link * temp = (link*)malloc(sizeof(link));//创建首元节点  
+    //首元节点先初始化   
+    temp->elem = 1; 
+    temp->next = NULL;  
+    p = temp;//头指针指向首元节点  
+    for (i = 2; i < 5; i++) {   
+        link *a = (link*)malloc(sizeof(link));    
+        a->elem = i;    
+        a->next = NULL;    
+        temp->next = a;    
+        temp = temp->next;   
+    }   
+    return p;
+}
+void display(link *p) {  
+    link* temp = p;//将temp指针重新指向头结点   
+    //只要temp指针指向的结点的next不是Null，就执行输出语句。  
+    while (temp) {   
+        printf("%d ", temp->elem);   
+        temp = temp->next;  
+    }    
+    printf("\n");
+}
 ```
 
 程序运行结果为：
@@ -120,34 +180,52 @@ link * initLink(){    int i;    link * p=(link*)malloc(sizeof(link));//创建一
 
 注意，如果使用带有头节点创建链表的方式，则输出链表的 display 函数需要做适当地修改：
 
+```c
+void display(link *p){   
+    link* temp=p;//将temp指针重新指向头结点   
+    //只要temp指针指向的结点的next不是Null，就执行输出语句。  
+    while (temp->next) {     
+        temp=temp->next;   
+        printf("%d",temp->elem); 
+    }  
+    printf("\n");
+}
 ```
-纯文本复制
-void display(link *p){    link* temp=p;//将temp指针重新指向头结点    //只要temp指针指向的结点的next不是Null，就执行输出语句。    while (temp->next) {        temp=temp->next;        printf("%d",temp->elem);    }    printf("\n");}
-```
 
-
-
-《[链表及创建](http://data.biancheng.net/view/160.html)》一节我们学习了如何使用
-
-[链表](http://data.biancheng.net/view/160.html)
-
-存储数据元素，以及如何使用 C 语言创建链表。本节将详细介绍对链表的一些基本操作，包括对链表中数据的添加、删除、查找（遍历）和更改。
+链表存储数据元素，以及如何使用 C 语言创建链表。本节将详细介绍对链表的一些基本操作，包括对链表中数据的添加、删除、查找（遍历）和更改。
 
 注意，以下对链表的操作实现均建立在已创建好链表的基础上，创建链表的代码如下所示：
 
-```
-//声明节点结构typedef struct Link {    int  elem;//存储整形元素    struct Link *next;//指向直接后继元素的指针}link;//创建链表的函数link * initLink() {    link * p = (link*)malloc(sizeof(link));//创建一个头结点    link * temp = p;//声明一个指针指向头结点，用于遍历链表    int i = 0;    //生成链表    for (i = 1; i < 5; i++) {        //创建节点并初始化        link *a = (link*)malloc(sizeof(link));        a->elem = i;        a->next = NULL;        //建立新节点与直接前驱节点的逻辑关系        temp->next = a;        temp = temp->next;    }    return p;}
+```c
+//声明节点结构
+typedef struct Link {   
+    int  elem;//存储整形元素   
+    struct Link *next;//指向直接后继元素的指针
+}link;
+
+//创建链表的函数
+link * initLink() {  
+    link * p = (link*)malloc(sizeof(link));//创建一个头结点  
+    link * temp = p;//声明一个指针指向头结点，用于遍历链表  
+    int i = 0;    //生成链表   
+    for (i = 1; i < 5; i++) {    
+        //创建节点并初始化      
+        link *a = (link*)malloc(sizeof(link));  
+        a->elem = i;     
+        a->next = NULL;    
+        //建立新节点与直接前驱节点的逻辑关系     
+        temp->next = a;    
+        temp = temp->next;  
+    }  
+    return p;
+}
 ```
 
 从实现代码中可以看到，该链表是一个具有头节点的链表。由于头节点本身不用于存储数据，因此在实现对链表中数据的"增删查改"时要引起注意。
 
 ## 链表插入元素
 
-同
-
-[顺序表](http://data.biancheng.net/view/158.html)
-
-一样，向链表中增添元素，根据添加位置不同，可分为以下 3 种情况：
+同顺序表一样，向链表中增添元素，根据添加位置不同，可分为以下 3 种情况：
 
 - 插入到链表的头部（头节点之后），作为首元节点；
 - 插入到链表中间的某个位置；
@@ -160,14 +238,11 @@ void display(link *p){    link* temp=p;//将temp指针重新指向头结点    /
 2. 将插入位置前结点的 next 指针指向插入结点；
 
 
-例如，我们在链表 `{1,2,3,4}` 的基础上分别实现在头部、中间部位、尾部插入新元素 5，其实现过程如
-
-[图](http://data.biancheng.net/view/200.html)
+例如，我们在链表 `{1,2,3,4}` 的基础上分别实现在头部、中间部位、尾部插入新元素 5，其实现过程如图
 
  1 所示：
 
-
-![链表中插入元素的 3 种情况示意图](http://data.biancheng.net/uploads/allimg/181124/2-1Q1242005532U.gif)
+![链表中插入元素的 3 种情况示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/191926-387588.gif)
 图 1 链表中插入元素的 3 种情况示意图
 
 
@@ -177,8 +252,28 @@ void display(link *p){    link* temp=p;//将temp指针重新指向头结点    /
 
 通过以上的讲解，我们可以尝试编写 C 语言代码来实现链表插入元素的操作：
 
-```
-//p为原链表，elem表示新数据元素，add表示新元素要插入的位置link * insertElem(link * p, int elem, int add) {    link * temp = p;//创建临时结点temp    link * c = NULL;    int i = 0;    //首先找到要插入位置的上一个结点    for (i = 1; i < add; i++) {        if (temp == NULL) {            printf("插入位置无效\n");            return p;        }        temp = temp->next;    }    //创建插入结点c    c = (link*)malloc(sizeof(link));    c->elem = elem;    //向链表中插入结点    c->next = temp->next;    temp->next = c;    return  p;}
+```c
+//p为原链表，elem表示新数据元素，add表示新元素要插入的位置
+link * insertElem(link * p, int elem, int add) {  
+    link * temp = p;//创建临时结点temp  
+    link * c = NULL;   
+    int i = 0;   
+    //首先找到要插入位置的上一个结点  
+    for (i = 1; i < add; i++) {   
+        if (temp == NULL) {       
+            printf("插入位置无效\n");      
+            return p;     
+        }     
+        temp = temp->next;
+    }  
+    //创建插入结点c 
+    c = (link*)malloc(sizeof(link)); 
+    c->elem = elem;  
+    //向链表中插入结点  
+    c->next = temp->next;  
+    temp->next = c;   
+    return  p;
+}
 ```
 
 提示，insertElem 函数中加入一个 if 语句，用于判断用户输入的插入位置是否有效。例如，在已存储 `{1,2,3}` 的链表中，用户要求在链表中第 100 个数据元素所在的位置插入新元素，显然用户操作无效，此时就会触发 if 语句。
@@ -197,15 +292,27 @@ temp->next=temp->next->next;
 
 例如，从存有 `{1,2,3,4}` 的链表中删除元素 3，则此代码的执行效果如图 2 所示：
 
-
-![链表删除元素示意图](http://data.biancheng.net/uploads/allimg/181124/2-1Q124200Q3239.gif)
+![链表删除元素示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/192201-315665.gif)
 图 2 链表删除元素示意图
 
 
 因此，链表删除元素的 C 语言实现如下所示：
 
-```
-//p为原链表，add为要删除元素的值link * delElem(link * p, int add) {    link * temp = p;    link * del = NULL;    int i = 0;    //temp指向被删除结点的上一个结点    for (i = 1; i < add; i++) {        temp = temp->next;    }    del = temp->next;//单独设置一个指针指向被删除结点，以防丢失    temp->next = temp->next->next;//删除某个结点的方法就是更改前一个结点的指针域    free(del);//手动释放该结点，防止内存泄漏    return p;}
+```c
+//p为原链表，add为要删除元素的值
+link * delElem(link * p, int add) {  
+    link * temp = p;  
+    link * del = NULL;  
+    int i = 0;   
+    //temp指向被删除结点的上一个结点  
+    for (i = 1; i < add; i++) {  
+        temp = temp->next; 
+    } 
+    del = temp->next;//单独设置一个指针指向被删除结点，以防丢失   
+    temp->next = temp->next->next;//删除某个结点的方法就是更改前一个结点的指针域  
+    free(del);//手动释放该结点，防止内存泄漏 
+    return p;
+}
 ```
 
 我们可以看到，从链表上摘下的节点 del 最终通过 free 函数进行了手动释放。
@@ -216,8 +323,23 @@ temp->next=temp->next->next;
 
 因此，链表中查找特定数据元素的 C 语言实现代码为：
 
-```
-//p为原链表，elem表示被查找元素、int selectElem(link * p, int elem) {    //新建一个指针t，初始化为头指针 p    link * t = p;    int i = 1;    //由于头节点的存在，因此while中的判断为t->next    while (t->next) {        t = t->next;        if (t->elem == elem) {            return i;        }        i++;    }    //程序执行至此处，表示查找失败    return -1;}
+```c
+//p为原链表，elem表示被查找元素、
+int selectElem(link * p, int elem) {   
+    //新建一个指针t，初始化为头指针 p  
+    link * t = p;  
+    int i = 1;  
+    //由于头节点的存在，因此while中的判断为t->next  
+    while (t->next) {   
+        t = t->next;  
+        if (t->elem == elem) {    
+            return i;  
+        }    
+        i++;   
+    }  
+    //程序执行至此处，表示查找失败  
+    return -1;
+}
 ```
 
 注意，遍历有头节点的链表时，需避免头节点对测试数据的影响，因此在遍历链表时，建立使用上面代码中的遍历方法，直接越过头节点对链表进行有效遍历。
@@ -228,17 +350,155 @@ temp->next=temp->next->next;
 
 直接给出链表中更新数据元素的 C 语言实现代码：
 
-```
-//更新函数，其中，add 表示更改结点在链表中的位置，newElem 为新的数据域的值link *amendElem(link * p, int add, int newElem) {    int i = 0;    link * temp = p;    temp = temp->next;//在遍历之前，temp指向首元结点    //遍历到被删除结点    for (i = 1; i < add; i++) {        temp = temp->next;    }    temp->elem = newElem;    return p;}
+```c
+//更新函数，其中，add 表示更改结点在链表中的位置，newElem 为新的数据域的值
+link *amendElem(link * p, int add, int newElem) {  
+    int i = 0;  
+    link * temp = p;   
+    temp = temp->next;//在遍历之前，temp指向首元结点   
+    //遍历到被删除结点  
+    for (i = 1; i < add; i++) {    
+        temp = temp->next;   
+    }  
+    temp->elem = newElem; 
+    return p;
+}
 ```
 
 ## 总结
 
 以上内容详细介绍了对链表中数据元素做"增删查改"的实现过程及 C 语言代码，在此给出本节的完整可运行代码：
 
-```
-纯文本复制
-#include <stdio.h>#include <stdlib.h>typedef struct Link {    int  elem;    struct Link *next;}link;link * initLink();//链表插入的函数，p是链表，elem是插入的结点的数据域，add是插入的位置link * insertElem(link * p, int elem, int add);//删除结点的函数，p代表操作链表，add代表删除节点的位置link * delElem(link * p, int add);//查找结点的函数，elem为目标结点的数据域的值int selectElem(link * p, int elem);//更新结点的函数，newElem为新的数据域的值link *amendElem(link * p, int add, int newElem);void display(link *p);int main() {    link *p = NULL;    int address;    //初始化链表（1，2，3，4）    printf("初始化链表为：\n");    p = initLink();    display(p);    printf("在第4的位置插入元素5：\n");    p = insertElem(p, 5, 4);    display(p);    printf("删除元素3:\n");    p = delElem(p, 3);    display(p);    printf("查找元素2的位置为：\n");    address = selectElem(p, 2);    if (address == -1) {        printf("没有该元素");    }    else {        printf("元素2的位置为：%d\n", address);    }    printf("更改第3的位置上的数据为7:\n");    p = amendElem(p, 3, 7);    display(p);    return 0;}link * initLink() {    link * p = (link*)malloc(sizeof(link));//创建一个头结点    link * temp = p;//声明一个指针指向头结点，用于遍历链表    int i = 0;    //生成链表    for (i = 1; i < 5; i++) {        link *a = (link*)malloc(sizeof(link));        a->elem = i;        a->next = NULL;        temp->next = a;        temp = temp->next;    }    return p;}link * insertElem(link * p, int elem, int add) {    link * temp = p;//创建临时结点temp    link * c = NULL;    int i = 0;    //首先找到要插入位置的上一个结点    for (i = 1; i < add; i++) {        if (temp == NULL) {            printf("插入位置无效\n");            return p;        }        temp = temp->next;    }    //创建插入结点c    c = (link*)malloc(sizeof(link));    c->elem = elem;    //向链表中插入结点    c->next = temp->next;    temp->next = c;    return  p;}link * delElem(link * p, int add) {    link * temp = p;    link * del = NULL;    int i = 0;    //遍历到被删除结点的上一个结点    for (i = 1; i < add; i++) {        temp = temp->next;    }    del = temp->next;//单独设置一个指针指向被删除结点，以防丢失    temp->next = temp->next->next;//删除某个结点的方法就是更改前一个结点的指针域    free(del);//手动释放该结点，防止内存泄漏    return p;}int selectElem(link * p, int elem) {    link * t = p;    int i = 1;    while (t->next) {        t = t->next;        if (t->elem == elem) {            return i;        }        i++;    }    return -1;}link *amendElem(link * p, int add, int newElem) {    int i = 0;    link * temp = p;    temp = temp->next;//tamp指向首元结点    //temp指向被删除结点    for (i = 1; i < add; i++) {        temp = temp->next;    }    temp->elem = newElem;    return p;}void display(link *p) {    link* temp = p;//将temp指针重新指向头结点    //只要temp指针指向的结点的next不是Null，就执行输出语句。    while (temp->next) {        temp = temp->next;        printf("%d ", temp->elem);    }    printf("\n");}
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Link {
+    int  elem;
+    struct Link *next;
+}link;
+link * initLink();
+//链表插入的函数，p是链表，elem是插入的结点的数据域，add是插入的位置
+link * insertElem(link * p, int elem, int add);
+//删除结点的函数，p代表操作链表，add代表删除节点的位置
+link * delElem(link * p, int add);
+//查找结点的函数，elem为目标结点的数据域的值
+int selectElem(link * p, int elem);
+//更新结点的函数，newElem为新的数据域的值
+link *amendElem(link * p, int add, int newElem);
+void display(link *p);
+
+int main() {
+    link *p = NULL;
+    int address;
+    //初始化链表（1，2，3，4）
+    printf("初始化链表为：\n");
+    p = initLink();
+    display(p);
+
+    printf("在第4的位置插入元素5：\n");
+    p = insertElem(p, 5, 4);
+    display(p);
+
+    printf("删除元素3:\n");
+    p = delElem(p, 3);
+    display(p);
+
+    printf("查找元素2的位置为：\n");
+    address = selectElem(p, 2);
+    if (address == -1) {
+        printf("没有该元素");
+    }
+    else {
+        printf("元素2的位置为：%d\n", address);
+    }
+    printf("更改第3的位置上的数据为7:\n");
+    p = amendElem(p, 3, 7);
+    display(p);
+
+    return 0;
+}
+
+link * initLink() {
+    link * p = (link*)malloc(sizeof(link));//创建一个头结点
+    link * temp = p;//声明一个指针指向头结点，用于遍历链表
+    int i = 0;
+    //生成链表
+    for (i = 1; i < 5; i++) {
+        link *a = (link*)malloc(sizeof(link));
+        a->elem = i;
+        a->next = NULL;
+        temp->next = a;
+        temp = temp->next;
+    }
+    return p;
+}
+link * insertElem(link * p, int elem, int add) {
+    link * temp = p;//创建临时结点temp
+    link * c = NULL;
+    int i = 0;
+    //首先找到要插入位置的上一个结点
+    for (i = 1; i < add; i++) {
+        if (temp == NULL) {
+            printf("插入位置无效\n");
+            return p;
+        }
+        temp = temp->next;
+    }
+    //创建插入结点c
+    c = (link*)malloc(sizeof(link));
+    c->elem = elem;
+    //向链表中插入结点
+    c->next = temp->next;
+    temp->next = c;
+    return  p;
+}
+
+link * delElem(link * p, int add) {
+    link * temp = p;
+    link * del = NULL;
+    int i = 0;
+    //遍历到被删除结点的上一个结点
+    for (i = 1; i < add; i++) {
+        temp = temp->next;
+    }
+    del = temp->next;//单独设置一个指针指向被删除结点，以防丢失
+    temp->next = temp->next->next;//删除某个结点的方法就是更改前一个结点的指针域
+    free(del);//手动释放该结点，防止内存泄漏
+    return p;
+}
+int selectElem(link * p, int elem) {
+    link * t = p;
+    int i = 1;
+    while (t->next) {
+        t = t->next;
+        if (t->elem == elem) {
+            return i;
+        }
+        i++;
+    }
+    return -1;
+}
+link *amendElem(link * p, int add, int newElem) {
+    int i = 0;
+    link * temp = p;
+    temp = temp->next;//tamp指向首元结点
+    //temp指向被删除结点
+    for (i = 1; i < add; i++) {
+        temp = temp->next;
+    }
+    temp->elem = newElem;
+    return p;
+}
+void display(link *p) {
+    link* temp = p;//将temp指针重新指向头结点
+    //只要temp指针指向的结点的next不是Null，就执行输出语句。
+    while (temp->next) {
+        temp = temp->next;
+        printf("%d ", temp->elem);
+    }
+    printf("\n");
+}
 ```
 
 代码运行结果：
@@ -254,37 +514,25 @@ temp->next=temp->next->next;
 更改第3的位置上的数据为7:
 1 2 7 4
 
-《[顺序表和链表优缺点》](http://data.biancheng.net/view/vip_216.html)一节，我们了解了两种存储结构各自的特点，那么，是否存在一种存储结构，可以融合
-
-[顺序表](http://data.biancheng.net/view/158.html)
-
-和
-
-[链表](http://data.biancheng.net/view/160.html)
+是否存在一种存储结构，可以融合顺序表和链表
 
 各自的优点，从而既能快速访问元素，又能快速增加或删除数据元素。
 
 静态链表，也是线性存储结构的一种，它兼顾了顺序表和链表的优点于一身，可以看做是顺序表和链表的升级版。
 
-使用静态链表存储数据，数据全部存储在[数组](http://data.biancheng.net/view/181.html)中（和顺序表一样），但存储位置是随机的，数据之间"一对一"的逻辑关系通过一个整形变量（称为"游标"，和指针功能类似）维持（和链表类似）。
+使用静态链表存储数据，数据全部存储在数组中（和顺序表一样），但存储位置是随机的，数据之间"一对一"的逻辑关系通过一个整形变量（称为"游标"，和指针功能类似）维持（和链表类似）。
 
 例如，使用静态链表存储 `{1,2,3}` 的过程如下：
 
-创建一个足够大的数组，假设大小为 6，如
+创建一个足够大的数组，假设大小为 6，如图 1 所示：
 
-[图](http://data.biancheng.net/view/200.html)
-
- 1 所示：
-
-
-![空数组](http://data.biancheng.net/uploads/allimg/181126/2-1Q1260R610450.gif)
+![空数组](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/192629-719908.gif)
 图 1 空数组
 
 
 接着，在将数据存放到数组中时，给各个数据元素配备一个整形变量，此变量用于指明各个元素的直接后继元素所在数组中的位置下标，如图 2 所示：
 
-
-![静态链表存储数据](http://data.biancheng.net/uploads/allimg/181126/2-1Q1260RHSQ.gif)
+![静态链表存储数据](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/192703-23627.gif)
 图 2 静态链表存储数据
 
 通常，静态链表会将第一个数据元素放到数组下标为 1 的位置（a[1]）中。
@@ -303,8 +551,11 @@ temp->next=temp->next->next;
 
 因此，静态链表中节点的构成用 C 语言实现为：
 
-```
-typedef struct {    int data;//数据域    int cur;//游标}component;
+```c
+typedef struct {
+    int data;//数据域   
+    int cur;//游标
+}component;
 ```
 
 ## 备用链表
@@ -319,8 +570,7 @@ typedef struct {    int data;//数据域    int cur;//游标}component;
 
 例如，使用静态链表存储 `{1,2,3}`，假设使用长度为 6 的数组 a，则存储状态可能如图 3 所示：
 
-
-![备用链表和数据链表](http://data.biancheng.net/uploads/allimg/181126/2-1Q1260S02X93.gif)
+![备用链表和数据链表](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/192742-221210.gif)
 图 3 备用链表和数据链表
 
 
@@ -332,33 +582,29 @@ typedef struct {    int data;//数据域    int cur;//游标}component;
 
 在数据链表未初始化之前，数组中所有位置都处于空闲状态，因此都应被链接在备用链表上，如图 4 所示：
 
-
-![未存储数据之前静态链表的状态](http://data.biancheng.net/uploads/allimg/181126/2-1Q1260S13YN.gif)
+![未存储数据之前静态链表的状态](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/192751-270327.gif)
 图 4 未存储数据之前静态链表的状态
 
 
 当向静态链表中添加数据时，需提前从备用链表中摘除节点，以供新数据使用。
 
-备用链表摘除节点最简单的方法是摘除 a[0] 的直接后继节点；同样，向备用链表中添加空闲节点也是添加作为 a[0] 新的直接后继节点。因为 a[0] 是备用链表的第一个节点，我们知道它的位置，操作它的直接后继节点相对容易，无需遍历备用链表，耗费的[时间复杂度](http://data.biancheng.net/view/2.html)为 `O(1)`。
+备用链表摘除节点最简单的方法是摘除 a[0] 的直接后继节点；同样，向备用链表中添加空闲节点也是添加作为 a[0] 新的直接后继节点。因为 a[0] 是备用链表的第一个节点，我们知道它的位置，操作它的直接后继节点相对容易，无需遍历备用链表，耗费的时间复杂度为 `O(1)`。
 
 因此，在图 4 的基础上，向静态链表中添加元素 1 的过程如图 5 所示：
 
-
-![静态链表中添加元素 1](http://data.biancheng.net/uploads/allimg/181126/2-1Q1260S229302.gif)
+![静态链表中添加元素 1](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/192812-984973.gif)
 图 5 静态链表中添加元素 1
 
 
 在图 5 的基础上，添加元素 2 的过程如图 6 所示：
 
-
-![静态链表中继续添加元素 2](http://data.biancheng.net/uploads/allimg/181126/2-1Q1260S305P9.gif)
+![静态链表中继续添加元素 2](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/192903-115611.gif)
 图 6 静态链表中继续添加元素 2
 
 
 在图 6 的基础上，继续添加元素 3 ，过程如图 7 所示：
 
-
-![静态链表中继续添加元素 3](http://data.biancheng.net/uploads/allimg/181126/2-1Q1260S34aS.gif)
+![静态链表中继续添加元素 3](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/192914-958379.gif)
 图 7 静态链表中继续添加元素 3
 
 
@@ -464,9 +710,188 @@ typedef struct {    int data;//数据域    int cur;//游标}component;
 
 这里给出以上对静态链表做 "增删查改" 操作的完整实现代码：
 
-```
-纯文本复制
-#include <stdio.h>#define maxSize 7typedef struct {    int data;    int cur;}component;//将结构体数组中所有分量链接到备用链表中void reserveArr(component *array);//初始化静态链表int initArr(component *array);//向链表中插入数据，body表示链表的头结点在数组中的位置，add表示插入元素的位置，num表示要插入的数据void insertArr(component * array, int body, int add, int num);//删除链表中存有num的结点,返回新数据链表中第一个节点所在的位置int deletArr(component * array, int body, int num);//查找存储有num的结点在数组的位置int selectNum(component * array, int body, int num);//将链表中的字符oldElem改为newElemvoid amendElem(component * array, int body, int oldElem, int newElem);//输出函数void displayArr(component * array, int body);//从备用链表中摘除空闲节点的实现函数int mallocArr(component * array);//将摘除下来的节点链接到备用链表上void freeArr(component * array, int k);int main() {    component array[maxSize];    int body = initArr(array);    int selectAdd;    printf("静态链表为：\n");    displayArr(array, body);    printf("在第3的位置上插入元素4:\n");    insertArr(array, body, 3, 4);    displayArr(array, body);    printf("删除数据域为1的结点:\n");    body = deletArr(array, body, 1);    displayArr(array, body);    printf("查找数据域为4的结点的位置:\n");    selectAdd = selectNum(array, body, 4);    printf("%d\n", selectAdd);    printf("将结点数据域为4改为5:\n");    amendElem(array, body, 4, 5);    displayArr(array, body);    return 0;}//创建备用链表void reserveArr(component *array) {    int i = 0;    for (i = 0; i < maxSize; i++) {        array[i].cur = i + 1;//将每个数组分量链接到一起    }    array[maxSize - 1].cur = 0;//链表最后一个结点的游标值为0}//初始化静态链表int initArr(component *array) {    int tempBody = 0, body = 0;    int i = 0;    reserveArr(array);    body = mallocArr(array);    //建立首元结点    array[body].data = 1;    array[body].cur = 0;    //声明一个变量，把它当指针使，指向链表的最后的一个结点，当前和首元结点重合    tempBody = body;    for (i = 2; i < 4; i++) {        int j = mallocArr(array); //从备用链表中拿出空闲的分量        array[j].data = i;      //初始化新得到的空间结点        array[tempBody].cur = j; //将新得到的结点链接到数据链表的尾部        tempBody = j;             //将指向链表最后一个结点的指针后移    }    array[tempBody].cur = 0;//新的链表最后一个结点的指针设置为0    return body;}//向链表中插入数据，body表示链表的头结点在数组中的位置，add表示插入元素的位置，num表示要插入的数据void insertArr(component * array, int body, int add, int num) {    int tempBody = body;//tempBody做遍历结构体数组使用    int i = 0, insert = 0;    //找到要插入位置的上一个结点在数组中的位置    for (i = 1; i < add; i++) {        tempBody = array[tempBody].cur;    }    insert = mallocArr(array);//申请空间，准备插入    array[insert].data = num;    array[insert].cur = array[tempBody].cur;//新插入结点的游标等于其直接前驱结点的游标    array[tempBody].cur = insert;//直接前驱结点的游标等于新插入结点所在数组中的下标}//删除结点函数，num表示被删除结点中数据域存放的数据int deletArr(component * array, int body, int num) {    int tempBody = body;    int del = 0;    int newbody = 0;    //找到被删除结点的位置    while (array[tempBody].data != num) {        tempBody = array[tempBody].cur;        //当tempBody为0时，表示链表遍历结束，说明链表中没有存储该数据的结点        if (tempBody == 0) {            printf("链表中没有此数据");            return;        }    }    //运行到此，证明有该结点    del = tempBody;    tempBody = body;    //删除首元结点，需要特殊考虑    if (del == body) {        newbody = array[del].cur;        freeArr(array, del);        return newbody;    }    else    {        //找到该结点的上一个结点，做删除操作        while (array[tempBody].cur != del) {            tempBody = array[tempBody].cur;        }        //将被删除结点的游标直接给被删除结点的上一个结点        array[tempBody].cur = array[del].cur;        //回收被摘除节点的空间        freeArr(array, del);        return body;    }  }//在以body作为头结点的链表中查找数据域为elem的结点在数组中的位置int selectNum(component * array, int body, int num) {    //当游标值为0时，表示链表结束    while (array[body].cur != 0) {        if (array[body].data == num) {            return body;        }        body = array[body].cur;    }    //判断最后一个结点是否符合要求    if (array[body].data == num) {        return body;    }    return -1;//返回-1，表示在链表中没有找到该元素}//在以body作为头结点的链表中将数据域为oldElem的结点，数据域改为newElemvoid amendElem(component * array, int body, int oldElem, int newElem) {    int add = selectNum(array, body, oldElem);    if (add == -1) {        printf("无更改元素");        return;    }    array[add].data = newElem;}void displayArr(component * array, int body) {    int tempBody = body;//tempBody准备做遍历使用    while (array[tempBody].cur) {        printf("%d,%d ", array[tempBody].data, array[tempBody].cur);        tempBody = array[tempBody].cur;    }    printf("%d,%d\n", array[tempBody].data, array[tempBody].cur);}//提取分配空间int mallocArr(component * array) {    //若备用链表非空，则返回分配的结点下标，否则返回0（当分配最后一个结点时，该结点的游标值为0）    int i = array[0].cur;    if (array[0].cur) {        array[0].cur = array[i].cur;    }    return i;}//备用链表回收空间的函数，其中array为存储数据的数组，k表示未使用节点所在数组的下标void freeArr(component * array, int k) {    array[k].cur = array[0].cur;    array[0].cur = k;}
+```c
+#include <stdio.h>
+#define maxSize 7
+typedef struct {
+    int data;
+    int cur;
+}component;
+//将结构体数组中所有分量链接到备用链表中
+void reserveArr(component *array);
+//初始化静态链表
+int initArr(component *array);
+//向链表中插入数据，body表示链表的头结点在数组中的位置，add表示插入元素的位置，num表示要插入的数据
+void insertArr(component * array, int body, int add, int num);
+//删除链表中存有num的结点,返回新数据链表中第一个节点所在的位置
+int deletArr(component * array, int body, int num);
+//查找存储有num的结点在数组的位置
+int selectNum(component * array, int body, int num);
+//将链表中的字符oldElem改为newElem
+void amendElem(component * array, int body, int oldElem, int newElem);
+//输出函数
+void displayArr(component * array, int body);
+//从备用链表中摘除空闲节点的实现函数
+int mallocArr(component * array);
+//将摘除下来的节点链接到备用链表上
+void freeArr(component * array, int k);
+
+int main() {
+    component array[maxSize];
+    int body = initArr(array);
+    int selectAdd;
+    printf("静态链表为：\n");
+    displayArr(array, body);
+
+    printf("在第3的位置上插入元素4:\n");
+    insertArr(array, body, 3, 4);
+    displayArr(array, body);
+
+    printf("删除数据域为1的结点:\n");
+    body = deletArr(array, body, 1);
+    displayArr(array, body);
+
+    printf("查找数据域为4的结点的位置:\n");
+    selectAdd = selectNum(array, body, 4);
+    printf("%d\n", selectAdd);
+    printf("将结点数据域为4改为5:\n");
+    amendElem(array, body, 4, 5);
+    displayArr(array, body);
+    return 0;
+}
+//创建备用链表
+void reserveArr(component *array) {
+    int i = 0;
+    for (i = 0; i < maxSize; i++) {
+        array[i].cur = i + 1;//将每个数组分量链接到一起
+    }
+    array[maxSize - 1].cur = 0;//链表最后一个结点的游标值为0
+}
+
+//初始化静态链表
+int initArr(component *array) {
+    int tempBody = 0, body = 0;
+    int i = 0;
+    reserveArr(array);
+    body = mallocArr(array);
+    //建立首元结点
+    array[body].data = 1;
+    array[body].cur = 0;
+    //声明一个变量，把它当指针使，指向链表的最后的一个结点，当前和首元结点重合
+    tempBody = body;
+    for (i = 2; i < 4; i++) {
+        int j = mallocArr(array); //从备用链表中拿出空闲的分量
+        array[j].data = i;      //初始化新得到的空间结点
+        array[tempBody].cur = j; //将新得到的结点链接到数据链表的尾部
+        tempBody = j;             //将指向链表最后一个结点的指针后移
+    }
+    array[tempBody].cur = 0;//新的链表最后一个结点的指针设置为0
+    return body;
+}
+
+//向链表中插入数据，body表示链表的头结点在数组中的位置，add表示插入元素的位置，num表示要插入的数据
+void insertArr(component * array, int body, int add, int num) {
+    int tempBody = body;//tempBody做遍历结构体数组使用
+    int i = 0, insert = 0;
+    //找到要插入位置的上一个结点在数组中的位置
+    for (i = 1; i < add; i++) {
+        tempBody = array[tempBody].cur;
+    }
+    insert = mallocArr(array);//申请空间，准备插入
+    array[insert].data = num;
+
+    array[insert].cur = array[tempBody].cur;//新插入结点的游标等于其直接前驱结点的游标
+    array[tempBody].cur = insert;//直接前驱结点的游标等于新插入结点所在数组中的下标
+}
+
+//删除结点函数，num表示被删除结点中数据域存放的数据
+int deletArr(component * array, int body, int num) {
+    int tempBody = body;
+    int del = 0;
+    int newbody = 0;
+    //找到被删除结点的位置
+    while (array[tempBody].data != num) {
+        tempBody = array[tempBody].cur;
+        //当tempBody为0时，表示链表遍历结束，说明链表中没有存储该数据的结点
+        if (tempBody == 0) {
+            printf("链表中没有此数据");
+            return;
+        }
+    }
+    //运行到此，证明有该结点
+    del = tempBody;
+    tempBody = body;
+    //删除首元结点，需要特殊考虑
+    if (del == body) {
+        newbody = array[del].cur;
+        freeArr(array, del);
+        return newbody;
+    }
+    else
+    {
+        //找到该结点的上一个结点，做删除操作
+        while (array[tempBody].cur != del) {
+            tempBody = array[tempBody].cur;
+        }
+        //将被删除结点的游标直接给被删除结点的上一个结点
+        array[tempBody].cur = array[del].cur;
+        //回收被摘除节点的空间
+        freeArr(array, del);
+        return body;
+    }  
+}
+
+//在以body作为头结点的链表中查找数据域为elem的结点在数组中的位置
+int selectNum(component * array, int body, int num) {
+    //当游标值为0时，表示链表结束
+    while (array[body].cur != 0) {
+        if (array[body].data == num) {
+            return body;
+        }
+        body = array[body].cur;
+    }
+    //判断最后一个结点是否符合要求
+    if (array[body].data == num) {
+        return body;
+    }
+    return -1;//返回-1，表示在链表中没有找到该元素
+}
+
+//在以body作为头结点的链表中将数据域为oldElem的结点，数据域改为newElem
+void amendElem(component * array, int body, int oldElem, int newElem) {
+    int add = selectNum(array, body, oldElem);
+    if (add == -1) {
+        printf("无更改元素");
+        return;
+    }
+    array[add].data = newElem;
+}
+
+void displayArr(component * array, int body) {
+    int tempBody = body;//tempBody准备做遍历使用
+    while (array[tempBody].cur) {
+        printf("%d,%d ", array[tempBody].data, array[tempBody].cur);
+        tempBody = array[tempBody].cur;
+    }
+    printf("%d,%d\n", array[tempBody].data, array[tempBody].cur);
+
+}
+
+//提取分配空间
+int mallocArr(component * array) {
+    //若备用链表非空，则返回分配的结点下标，否则返回0（当分配最后一个结点时，该结点的游标值为0）
+    int i = array[0].cur;
+    if (array[0].cur) {
+        array[0].cur = array[i].cur;
+    }
+    return i;
+}
+
+//备用链表回收空间的函数，其中array为存储数据的数组，k表示未使用节点所在数组的下标
+void freeArr(component * array, int k) {
+    array[k].cur = array[0].cur;
+    array[0].cur = k;
+}
 ```
 
 程序运行结果为：
@@ -482,21 +907,7 @@ typedef struct {    int data;//数据域    int cur;//游标}component;
 将结点数据域为4改为5:
 2,3 3,4 5,0
 
-无论是
-
-[静态链表](http://data.biancheng.net/view/163.html)
-
-还是动态
-
-[链表](http://data.biancheng.net/view/160.html)
-
-，有时在解决具体问题时，需要我们对其结构进行稍微地调整。比如，可以把链表的两头连接，使其成为了一个环状链表，通常称为循环链表。
-
-和它名字的表意一样，只需要将表中最后一个结点的指针指向头结点，链表就能成环儿，如
-
-[图](http://data.biancheng.net/view/200.html)
-
- 1 所示。
+无论是静态链表还是动态链表，有时在解决具体问题时，需要我们对其结构进行稍微地调整。比如，可以把链表的两头连接，使其成为了一个环状链表，通常称为循环链表。和它名字的表意一样，只需要将表中最后一个结点的指针指向头结点，链表就能成环儿，如图1 所示。
 
 
 ![img](http://data.biancheng.net/uploads/allimg/170718/2-1FGQ54T3422.png)
@@ -509,12 +920,9 @@ typedef struct {    int data;//数据域    int cur;//游标}component;
 
 ## 循环链表实现约瑟夫环
 
-约瑟夫环问题，是一个经典的循环链表问题，题意是：已知 n 个人（分别用编号 1，2，3，…，n 表示）围坐在一张圆桌周围，从编号为 k 的人开始顺时针报数，数到 m 的那个人出列；他的下一个人又从 1 开始，还是顺时针开始报数，数到 m 的那个人又出列；依次重复下去，直到圆桌上剩余一个人。
+约瑟夫环问题，是一个经典的循环链表问题，题意是：已知 n 个人（分别用编号 1，2，3，…，n 表示）围坐在一张圆桌周围，从编号为 k 的人开始顺时针报数，数到 m 的那个人出列；他的下一个人又从 1 开始，还是顺时针开始报数，数到 m 的那个人又出列；依次重复下去，直到圆桌上剩余一个人。如图 2 所示，假设此时圆周周围有 5 个人，要求从编号为 3 的人开始顺时针数数，数到 2 的那个人出列：
 
-如图 2 所示，假设此时圆周周围有 5 个人，要求从编号为 3 的人开始顺时针数数，数到 2 的那个人出列：
-
-
-![循环链表实现约瑟夫环](http://data.biancheng.net/uploads/allimg/170718/2-1FGQ54403413.png)
+![循环链表实现约瑟夫环](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/193124-314936.png)
 图 2 循环链表实现约瑟夫环
 
 
@@ -620,28 +1028,9 @@ int main() {
 
 
 
-目前我们所学到的
+目前我们所学到的链表，无论是动态链表还是静态链表，表中各节点中都只包含一个指针（游标），且都统一指向直接后继节点，通常称这类链表为单向链表（或单链表）。虽然使用单链表能 100% 解决逻辑关系为 "一对一" 数据的存储问题，但在解决某些特殊问题时，单链表并不是效率最优的存储结构。比如说，某场景中需要大量地查找某结点的前趋结点，这种情况下使用单链表无疑是灾难性的，因为单链表更适合 "从前往后" 找，"从后往前" 找并不是它的强项。对于逆向查找（从后往前）相关的问题，使用本节讲解的双向链表，会更加事半功倍。双向链表，简称双链表。从名字上理解双向链表，即链表是 "双向" 的，如图 1 所示：
 
-[链表](http://data.biancheng.net/view/160.html)
-
-，无论是动态链表还是
-
-[静态链表](http://data.biancheng.net/view/163.html)
-
-，表中各节点中都只包含一个指针（游标），且都统一指向直接后继节点，通常称这类链表为单向链表（或单链表）。
-
-虽然使用单链表能 100% 解决逻辑关系为 "一对一" 数据的存储问题，但在解决某些特殊问题时，单链表并不是效率最优的存储结构。比如说，某场景中需要大量地查找某结点的前趋结点，这种情况下使用单链表无疑是灾难性的，因为单链表更适合 "从前往后" 找，"从后往前" 找并不是它的强项。
-
-对于逆向查找（从后往前）相关的问题，使用本节讲解的双向链表，会更加事半功倍。
-
-双向链表，简称双链表。从名字上理解双向链表，即链表是 "双向" 的，如
-
-[图](http://data.biancheng.net/view/200.html)
-
- 1 所示：
-
-
-![双向链表结构示意图](http://data.biancheng.net/uploads/allimg/181128/2-1Q12R01Q63Q.gif)
+![双向链表结构示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/193148-177263.gif)
 图 1 双向链表结构示意图
 
 所谓双向，指的是各节点之间的逻辑关系是双向的，但通常头指针只设置一个，除非实际情况需要，可以为最后一个节点再设置一个“头指针”。
@@ -652,7 +1041,7 @@ int main() {
 2. 数据域：用于存储数据元素；
 3. 指针域：用于指向当前节点的直接后继节点。
 
-![双向链表的节点构成](http://data.biancheng.net/uploads/allimg/181128/2-1Q12R01910615.gif)
+![双向链表的节点构成](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/28/193158-753996.gif)
 图 2 双向链表的节点构成
 
 
