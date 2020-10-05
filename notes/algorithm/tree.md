@@ -6,7 +6,7 @@
 
 ​    (A)                                     (B) 
 
-[图](http://data.biancheng.net/view/200.html) 1 树的示例
+图1 树的示例
 
 
 图 1(A) 是使用树结构存储的集合 {A,B,C,D,E,F,G,H,I,J,K,L,M} 的示意图。对于数据 A 来说，和数据 B、C、D 有关系；对于数据 B 来说，和 E、F 有关系。这就是“一对多”的关系。
@@ -85,9 +85,7 @@ Tree =（root,F）
 
 图 2（B）使用的是凹入表示法（了解即可），表示方式是：最长条为根结点，相同长度的表示在同一层次。例如 B、C、D 长度相同，都为 A 的子结点，E 和 F 长度相同，为 B 的子结点，K 和 L 长度相同，为 E 的子结点，依此类推。
 
-最常用的表示方法是使用
-
-[广义表](http://data.biancheng.net/view/189.html)
+最常用的表示方法是使用广义表
 
 的方式。图 1（A）用广义表表示为：
 
@@ -97,11 +95,7 @@ Tree =（root,F）
 
 树型存储结构类似于家族的族谱，各个结点之间也同样可能具有父子、兄弟、表兄弟的关系。本节中，要重点理解树的根结点和子树的定义，同时要会计算树中各个结点的度和层次，以及树的深度。
 
-通过《[树的存储结构](http://data.biancheng.net/view/23.html)》一节的学习，我们了解了一些
-
-[树](http://data.biancheng.net/view/23.html)
-
-存储结构的基本知识。本节将给大家介绍一类具体的树结构——二叉树。
+通过《[树的存储结构](http://data.biancheng.net/view/23.html)》一节的学习，我们了解了一些树存储结构的基本知识。本节将给大家介绍一类具体的树结构——二叉树。
 
 简单地理解，满足以下两个条件的树就是二叉树：
 
@@ -109,11 +103,7 @@ Tree =（root,F）
 2. 树中包含的各个节点的度不能超过 2，即只能是 0、1 或者 2；
 
 
-例如，
-
-[图](http://data.biancheng.net/view/200.html)
-
- 1a) 就是一棵二叉树，而图 1b) 则不是。
+例如，图1a) 就是一棵二叉树，而图 1b) 则不是。
 
 ![二叉树示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205205-158306.gif)
 图 1 二叉树示意图
@@ -154,8 +144,7 @@ Tree =（root,F）
 
 如果二叉树中除去最后一层节点为满二叉树，且最后一层的结点依次从左到右分布，则此二叉树被称为完全二叉树。
 
-
-![完全二叉树示意图](http://data.biancheng.net/uploads/allimg/181226/2-1Q22620003J18.gif)
+![完全二叉树示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/05/193638-918639.gif)
 图 3 完全二叉树示意图
 
 
@@ -175,31 +164,15 @@ Tree =（root,F）
 
 本节介绍了什么是二叉树，以及二叉树的性质，同时还介绍了满二叉树和完全二叉树以及各自所特有的性质，初学者需理解并牢记这些性质，才能更熟练地使用二叉树解决实际问题。
 
+二叉树的存储结构有两种，分别为顺序存储和链式存储。本节先介绍二叉树的顺序存储结构。
 
-
-
-
-[二叉树](http://data.biancheng.net/view/192.html)
-
-的存储结构有两种，分别为顺序存储和链式存储。本节先介绍二叉[树](http://data.biancheng.net/view/23.html)的顺序存储结构。
-
-二叉树的顺序存储，指的是使用
-
-[顺序表](http://data.biancheng.net/view/158.html)
-
-（
-
-[数组](http://data.biancheng.net/view/181.html)
-
-）存储二叉树。需要注意的是，顺序存储只适用于完全二叉树。换句话说，只有完全二叉树才可以使用顺序表存储。因此，如果我们想顺序存储普通二叉树，需要提前将普通二叉树转化为完全二叉树。
+二叉树的顺序存储，指的是使用顺序表（数组）存储二叉树。需要注意的是，顺序存储只适用于完全二叉树。换句话说，只有完全二叉树才可以使用顺序表存储。因此，如果我们想顺序存储普通二叉树，需要提前将普通二叉树转化为完全二叉树。
 
 有读者会说，满二叉树也可以使用顺序存储。要知道，满二叉树也是完全二叉树，因为它满足完全二叉树的所有特征。
 
 普通二叉树转完全二叉树的方法很简单，只需给二叉树额外添加一些节点，将其"拼凑"成完全二叉树即可。如
 
-[图](http://data.biancheng.net/view/200.html)
-
- 1 所示：
+图1 所示：
 
 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205255-880150.png)
 图 1 普通二叉树的转化
@@ -217,15 +190,13 @@ Tree =（root,F）
 
 例如，存储图 2 所示的完全二叉树，其存储状态如图 3 所示：
 
-
-![img](http://data.biancheng.net/uploads/allimg/170830/2-1FS0105529235.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/05/193751-559776.png)
 图 3 完全二叉树存储状态示意图
 
 
 同样，存储由普通二叉树转化来的完全二叉树也是如此。例如，图 1 中普通二叉树的数组存储状态如图 4 所示：
 
-
-![img](http://data.biancheng.net/uploads/allimg/170830/2-1FS0105A9146.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/05/193824-554778.png)
 图 4 普通二叉树的存储状态
 
 
@@ -237,35 +208,15 @@ Tree =（root,F）
 
 
 
-上一节讲了
-
-[二叉树](http://data.biancheng.net/view/192.html)
-
-的顺序存储，通过学习你会发现，其实二叉
-
-[树](http://data.biancheng.net/view/23.html)
-
-并不适合用
-
-[数组](http://data.biancheng.net/view/181.html)
-
-存储，因为并不是每个二叉树都是完全二叉树，普通二叉树使用
-
-[顺序表](http://data.biancheng.net/view/158.html)
-
-存储或多或多会存在空间浪费的现象。
+上一节讲了二叉树的顺序存储，通过学习你会发现，其实二叉树并不适合用数组存储，因为并不是每个二叉树都是完全二叉树，普通二叉树使用顺序表存储或多或多会存在空间浪费的现象。
 
 本节我们学习二叉树的链式存储结构。
 
 ![普通二叉树示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205342-25697.gif)
-[图](http://data.biancheng.net/view/200.html) 1 普通二叉树示意图
+图1 普通二叉树示意图
 
 
-如图 1 所示，此为一棵普通的二叉树，若将其采用链式存储，则只需从树的根节点开始，将各个节点及其左右孩子使用
-
-[链表](http://data.biancheng.net/view/160.html)
-
-存储即可。因此，图 1 对应的链式存储结构如图 2 所示：
+如图 1 所示，此为一棵普通的二叉树，若将其采用链式存储，则只需从树的根节点开始，将各个节点及其左右孩子使用链表存储即可。因此，图 1 对应的链式存储结构如图 2 所示：
 
 ![二叉树链式存储结构示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205338-40317.gif)
 图 2 二叉树链式存储结构示意图
@@ -277,7 +228,7 @@ Tree =（root,F）
 - 节点存储的数据（data）；
 - 指向右孩子节点的指针（Rchild）；
 
-![二叉树节点结构](http://data.biancheng.net/uploads/allimg/181228/2-1Q22R02Q6392.gif)
+![二叉树节点结构](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/05/193941-186113.gif)
 图 3 二叉树节点结构
 
 
@@ -290,8 +241,37 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 图 2 中的链式存储结构对应的 C 语言代码为：
 
-```
-#include <stdio.h>#include <stdlib.h>#define TElemType inttypedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,*rchild;//左右孩子指针}BiTNode,*BiTree;void CreateBiTree(BiTree *T){    *T=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->data=1;    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->data=2;    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->data=3;    (*T)->rchild->lchild=NULL;    (*T)->rchild->rchild=NULL;    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->lchild->data=4;    (*T)->lchild->rchild=NULL;    (*T)->lchild->lchild->lchild=NULL;    (*T)->lchild->lchild->rchild=NULL;}int main() {    BiTree Tree;    CreateBiTree(&Tree);    printf("%d",Tree->lchild->lchild->data);    return 0;}
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#define TElemType inttypedef 
+struct BiTNode{  
+    TElemType data;//数据域   
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+
+void CreateBiTree(BiTree *T){  
+    *T=(BiTNode*)malloc(sizeof(BiTNode));   
+    (*T)->data=1;   
+    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->data=2; 
+    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild->data=3; 
+    (*T)->rchild->lchild=NULL;  
+    (*T)->rchild->rchild=NULL; 
+    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->lchild->data=4;  
+    (*T)->lchild->rchild=NULL;  
+    (*T)->lchild->lchild->lchild=NULL;  
+    (*T)->lchild->lchild->rchild=NULL;
+}
+
+int main() {  
+    BiTree Tree; 
+    CreateBiTree(&Tree); 
+    printf("%d",Tree->lchild->lchild->data);  
+    return 0;
+}
 ```
 
 程序输出结果：
@@ -307,16 +287,14 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 利用图 4 所示的三叉链表，我们可以很轻松地找到各节点的父节点。因此，在解决实际问题时，用合适的链表结构存储二叉树，可以起到事半功倍的效果。
 
-[二叉树](http://data.biancheng.net/view/192.html)
-
-先序遍历的实现思想是：
+二叉树先序遍历的实现思想是：
 
 1. 访问根节点；
-2. 访问当前节点的左子[树](http://data.biancheng.net/view/23.html)；
+2. 访问当前节点的左子树；
 3. 若当前节点无左子树，则访问当前节点的右子树；
 
 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205408-383418.png)
-[图](http://data.biancheng.net/view/200.html) 1 二叉树
+图1 二叉树
 
 
 以图 1 为例，采用先序遍历的思想遍历该二叉树的过程为：
@@ -339,8 +317,58 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 二叉树的先序遍历采用的是递归的思想，因此可以递归实现，其 C 语言实现代码为：
 
-```
-#include <stdio.h>#include <string.h>#define TElemType int//构造结点的结构体typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,*rchild;//左右孩子指针}BiTNode,*BiTree;//初始化树的函数void CreateBiTree(BiTree *T){    *T=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->data=1;    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));      (*T)->lchild->data=2;    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild->data=5;    (*T)->lchild->rchild->lchild=NULL;    (*T)->lchild->rchild->rchild=NULL;    (*T)->rchild->data=3;    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->lchild->data=6;    (*T)->rchild->lchild->lchild=NULL;    (*T)->rchild->lchild->rchild=NULL;    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->rchild->data=7;    (*T)->rchild->rchild->lchild=NULL;    (*T)->rchild->rchild->rchild=NULL;    (*T)->lchild->lchild->data=4;    (*T)->lchild->lchild->lchild=NULL;    (*T)->lchild->lchild->rchild=NULL;}//模拟操作结点元素的函数，输出结点本身的数值void displayElem(BiTNode* elem){    printf("%d ",elem->data);}//先序遍历void PreOrderTraverse(BiTree T){    if (T) {        displayElem(T);//调用操作结点数据的函数方法        PreOrderTraverse(T->lchild);//访问该结点的左孩子        PreOrderTraverse(T->rchild);//访问该结点的右孩子    }    //如果结点为空，返回上一层    return;}int main() {    BiTree Tree;    CreateBiTree(&Tree);    printf("先序遍历: \n");}
+```c
+#include <stdio.h>
+#include <string.h>
+#define TElemType int//构造结点的结构体
+typedef struct BiTNode{ 
+    TElemType data;//数据域  
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;//初始化树的函数
+void CreateBiTree(BiTree *T){   
+    *T=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->data=1;  
+    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->data=2; 
+    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->rchild->data=5;  
+    (*T)->lchild->rchild->lchild=NULL; 
+    (*T)->lchild->rchild->rchild=NULL; 
+    (*T)->rchild->data=3; 
+    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild->lchild->data=6; 
+    (*T)->rchild->lchild->lchild=NULL;  
+    (*T)->rchild->lchild->rchild=NULL;  
+    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild->rchild->data=7;  
+    (*T)->rchild->rchild->lchild=NULL;  
+    (*T)->rchild->rchild->rchild=NULL;  
+    (*T)->lchild->lchild->data=4;  
+    (*T)->lchild->lchild->lchild=NULL;  
+    (*T)->lchild->lchild->rchild=NULL;
+}
+//模拟操作结点元素的函数，输出结点本身的数值
+void displayElem(BiTNode* elem){  
+    printf("%d ",elem->data);
+}
+//先序遍历
+void PreOrderTraverse(BiTree T){   
+    if (T) {     
+        displayElem(T);//调用操作结点数据的函数方法   
+        PreOrderTraverse(T->lchild);//访问该结点的左孩子  
+        PreOrderTraverse(T->rchild);//访问该结点的右孩子  
+    }  
+    //如果结点为空，返回上一层   
+    return;
+}
+
+int main() {   
+    BiTree Tree;  
+    CreateBiTree(&Tree); 
+    printf("先序遍历: \n");
+}
 ```
 
 运行结果：
@@ -350,15 +378,88 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 ## 非递归实现
 
-而递归的底层实现依靠的是
+而递归的底层实现依靠的是栈存储结构，因此，二叉树的先序遍历既可以直接采用递归思想实现，也可以使用栈的存储结构模拟递归的思想实现，其 C 语言实现代码为：
 
-[栈](http://data.biancheng.net/view/169.html)
+```c
+#include <stdio.h>
+#include <string.h>
+#define TElemType int
+int top=-1;//top变量时刻表示栈顶元素所在位置
+//构造结点的结构体
+typedef struct BiTNode{  
+    TElemType data;//数据域  
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+//初始化树的函数
+void CreateBiTree(BiTree *T){  
+    *T=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->data=1;  
+    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->data=2;   
+    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->rchild->data=5; 
+    (*T)->lchild->rchild->lchild=NULL; 
+    (*T)->lchild->rchild->rchild=NULL; 
+    (*T)->rchild->data=3; 
+    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild->lchild->data=6;
+    (*T)->rchild->lchild->lchild=NULL;  
+    (*T)->rchild->lchild->rchild=NULL;  
+    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild->rchild->data=7;  
+    (*T)->rchild->rchild->lchild=NULL;  
+    (*T)->rchild->rchild->rchild=NULL;   
+    (*T)->lchild->lchild->data=4;   
+    (*T)->lchild->lchild->lchild=NULL; 
+    (*T)->lchild->lchild->rchild=NULL;
+}
+//前序遍历使用的进栈函数
+void push(BiTNode** a,BiTNode* elem){  
+    a[++top]=elem;
+}
 
-存储结构，因此，二叉树的先序遍历既可以直接采用递归思想实现，也可以使用栈的存储结构模拟递归的思想实现，其 C 语言实现代码为：
+//弹栈函数
+void pop( ){   
+    if (top==-1) {    
+        return ;  
+    }   
+    top--;
+}
+//模拟操作结点元素的函数，输出结点本身的数值
+void displayElem(BiTNode* elem){   
+    printf("%d ",elem->data);
+}
+//拿到栈顶元素
+BiTNode* getTop(BiTNode**a){  
+    return a[top];
+}
+//先序遍历非递归算法
+void PreOrderTraverse(BiTree Tree){ 
+    BiTNode* a[20];//定义一个顺序栈  
+    BiTNode * p;//临时指针  
+    push(a, Tree);//根结点进栈  
+    while (top!=-1) {     
+        p=getTop(a);//取栈顶元素  
+        pop();//弹栈     
+        while (p) {       
+            displayElem(p);//调用结点的操作函数    
+            //如果该结点有右孩子，右孩子进栈    
+            if (p->rchild) {        
+                push(a,p->rchild);   
+            }        
+            p=p->lchild;//一直指向根结点最后一个左孩子    
+        }  
+    }
+}
 
-```
-纯文本复制
-#include <stdio.h>#include <string.h>#define TElemType intint top=-1;//top变量时刻表示栈顶元素所在位置//构造结点的结构体typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,*rchild;//左右孩子指针}BiTNode,*BiTree;//初始化树的函数void CreateBiTree(BiTree *T){    *T=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->data=1;    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->data=2;    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild->data=5;    (*T)->lchild->rchild->lchild=NULL;    (*T)->lchild->rchild->rchild=NULL;    (*T)->rchild->data=3;    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->lchild->data=6;    (*T)->rchild->lchild->lchild=NULL;    (*T)->rchild->lchild->rchild=NULL;    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->rchild->data=7;    (*T)->rchild->rchild->lchild=NULL;    (*T)->rchild->rchild->rchild=NULL;    (*T)->lchild->lchild->data=4;    (*T)->lchild->lchild->lchild=NULL;    (*T)->lchild->lchild->rchild=NULL;}//前序遍历使用的进栈函数void push(BiTNode** a,BiTNode* elem){    a[++top]=elem;}//弹栈函数void pop( ){    if (top==-1) {        return ;    }    top--;}//模拟操作结点元素的函数，输出结点本身的数值void displayElem(BiTNode* elem){    printf("%d ",elem->data);}//拿到栈顶元素BiTNode* getTop(BiTNode**a){    return a[top];}//先序遍历非递归算法void PreOrderTraverse(BiTree Tree){    BiTNode* a[20];//定义一个顺序栈    BiTNode * p;//临时指针    push(a, Tree);//根结点进栈    while (top!=-1) {        p=getTop(a);//取栈顶元素        pop();//弹栈        while (p) {            displayElem(p);//调用结点的操作函数            //如果该结点有右孩子，右孩子进栈            if (p->rchild) {                push(a,p->rchild);            }            p=p->lchild;//一直指向根结点最后一个左孩子        }    }}int main(){    BiTree Tree;    CreateBiTree(&Tree);    printf("先序遍历: \n");    PreOrderTraverse(Tree);}
+int main(){   
+    BiTree Tree; 
+    CreateBiTree(&Tree); 
+    printf("先序遍历: \n"); 
+    PreOrderTraverse(Tree);
+}
 ```
 
 运行结果
@@ -366,16 +467,14 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 先序遍历:
 1 2 4 5 3 6 7
 
-[二叉树](http://data.biancheng.net/view/192.html)
+二叉树中序遍历的实现思想是：
 
-中序遍历的实现思想是：
-
-1. 访问当前节点的左子[树](http://data.biancheng.net/view/23.html)；
+1. 访问当前节点的左子树；
 2. 访问根节点；
 3. 访问当前节点的右子树；
 
 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205447-354874.png)
-[图](http://data.biancheng.net/view/200.html) 1 二叉树
+图1 二叉树
 
 
 以图 1 为例，采用中序遍历的思想遍历该二叉树的过程为：
@@ -400,8 +499,60 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 二叉树的中序遍历采用的是递归的思想，因此可以递归实现，其 C 语言实现代码为：
 
-```
-#include <stdio.h>#include <string.h>#define TElemType int//构造结点的结构体typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,*rchild;//左右孩子指针}BiTNode,*BiTree;//初始化树的函数void CreateBiTree(BiTree *T){    *T=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->data=1;    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));      (*T)->lchild->data=2;    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild->data=5;    (*T)->lchild->rchild->lchild=NULL;    (*T)->lchild->rchild->rchild=NULL;    (*T)->rchild->data=3;    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->lchild->data=6;    (*T)->rchild->lchild->lchild=NULL;    (*T)->rchild->lchild->rchild=NULL;    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->rchild->data=7;    (*T)->rchild->rchild->lchild=NULL;    (*T)->rchild->rchild->rchild=NULL;    (*T)->lchild->lchild->data=4;    (*T)->lchild->lchild->lchild=NULL;    (*T)->lchild->lchild->rchild=NULL;}//模拟操作结点元素的函数，输出结点本身的数值void displayElem(BiTNode* elem){    printf("%d ",elem->data);}//中序遍历void INOrderTraverse(BiTree T){    if (T) {        INOrderTraverse(T->lchild);//遍历左孩子        displayElem(T);//调用操作结点数据的函数方法        INOrderTraverse(T->rchild);//遍历右孩子    }    //如果结点为空，返回上一层    return;}int main() {    BiTree Tree;    CreateBiTree(&Tree);    printf("中序遍历算法: \n");    INOrderTraverse(Tree);}
+```c
+#include <stdio.h>
+#include <string.h>
+#define TElemType int
+//构造结点的结构体
+typedef struct BiTNode{  
+    TElemType data;//数据域  
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+//初始化树的函数
+void CreateBiTree(BiTree *T){  
+    *T=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->data=1;   
+    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->data=2;  
+    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->rchild->data=5;   
+    (*T)->lchild->rchild->lchild=NULL;  
+    (*T)->lchild->rchild->rchild=NULL;   
+    (*T)->rchild->data=3;  
+    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild->lchild->data=6;  
+    (*T)->rchild->lchild->lchild=NULL;  
+    (*T)->rchild->lchild->rchild=NULL;  
+    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild->rchild->data=7;   
+    (*T)->rchild->rchild->lchild=NULL;  
+    (*T)->rchild->rchild->rchild=NULL;  
+    (*T)->lchild->lchild->data=4;  
+    (*T)->lchild->lchild->lchild=NULL;  
+    (*T)->lchild->lchild->rchild=NULL;
+}
+//模拟操作结点元素的函数，输出结点本身的数值
+void displayElem(BiTNode* elem){  
+    printf("%d ",elem->data);
+}
+//中序遍历
+void INOrderTraverse(BiTree T){  
+    if (T) {     
+        INOrderTraverse(T->lchild);//遍历左孩子   
+        displayElem(T);//调用操作结点数据的函数方法   
+        INOrderTraverse(T->rchild);//遍历右孩子   
+    }   
+    //如果结点为空，返回上一层
+    return;
+}
+int main() {  
+    BiTree Tree; 
+    CreateBiTree(&Tree);  
+    printf("中序遍历算法: \n");  
+    INOrderTraverse(Tree);
+}
 ```
 
 运行结果：
@@ -411,11 +562,7 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 ## 非递归实现
 
-而递归的底层实现依靠的是
-
-[栈](http://data.biancheng.net/view/169.html)
-
-存储结构，因此，二叉树的先序遍历既可以直接采用递归思想实现，也可以使用栈的存储结构模拟递归的思想实现。
+而递归的底层实现依靠的是栈存储结构，因此，二叉树的先序遍历既可以直接采用递归思想实现，也可以使用栈的存储结构模拟递归的思想实现。
 
 中序遍历的非递归方式实现思想是：从根结点开始，遍历左孩子同时压栈，当遍历结束，说明当前遍历的结点没有左孩子，从栈中取出来调用操作函数，然后访问该结点的右孩子，继续以上重复性的操作。
 
@@ -423,9 +570,107 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 两种非递归方法实现二叉树中序遍历的代码实现为：
 
-```
-纯文本复制
-#include <stdio.h>#include <string.h>#define TElemType intint top=-1;//top变量时刻表示栈顶元素所在位置//构造结点的结构体typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,*rchild;//左右孩子指针}BiTNode,*BiTree;//初始化树的函数void CreateBiTree(BiTree *T){    *T=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->data=1;    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->data=2;    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild->data=5;    (*T)->lchild->rchild->lchild=NULL;    (*T)->lchild->rchild->rchild=NULL;    (*T)->rchild->data=3;    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->lchild->data=6;    (*T)->rchild->lchild->lchild=NULL;    (*T)->rchild->lchild->rchild=NULL;    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->rchild->data=7;    (*T)->rchild->rchild->lchild=NULL;    (*T)->rchild->rchild->rchild=NULL;    (*T)->lchild->lchild->data=4;    (*T)->lchild->lchild->lchild=NULL;    (*T)->lchild->lchild->rchild=NULL;}//前序和中序遍历使用的进栈函数void push(BiTNode** a,BiTNode* elem){    a[++top]=elem;}//弹栈函数void pop( ){    if (top==-1) {        return ;    }    top--;}//模拟操作结点元素的函数，输出结点本身的数值void displayElem(BiTNode* elem){    printf("%d ",elem->data);}//拿到栈顶元素BiTNode* getTop(BiTNode**a){    return a[top];}//中序遍历非递归算法void InOrderTraverse1(BiTree Tree){    BiTNode* a[20];//定义一个顺序栈    BiTNode * p;//临时指针    push(a, Tree);//根结点进栈    while (top!=-1) {//top!=-1说明栈内不为空，程序继续运行        while ((p=getTop(a)) &&p){//取栈顶元素，且不能为NULL            push(a, p->lchild);//将该结点的左孩子进栈，如果没有左孩子，NULL进栈        }        pop();//跳出循环，栈顶元素肯定为NULL，将NULL弹栈        if (top!=-1) {            p=getTop(a);//取栈顶元素            pop();//栈顶元素弹栈            displayElem(p);            push(a, p->rchild);//将p指向的结点的右孩子进栈        }    }}//中序遍历实现的另一种方法void InOrderTraverse2(BiTree Tree){    BiTNode* a[20];//定义一个顺序栈    BiTNode * p;//临时指针    p=Tree;    //当p为NULL或者栈为空时，表明树遍历完成    while (p || top!=-1) {        //如果p不为NULL，将其压栈并遍历其左子树        if (p) {            push(a, p);            p=p->lchild;        }        //如果p==NULL，表明左子树遍历完成，需要遍历上一层结点的右子树        else{            p=getTop(a);            pop();            displayElem(p);            p=p->rchild;        }    }}int main(){    BiTree Tree;    CreateBiTree(&Tree);    printf("\n中序遍历算法1: \n");    InOrderTraverse1(Tree);    printf("\n中序遍历算法2: \n");    InOrderTraverse2(Tree);}
+```c
+#include <stdio.h>
+#include <string.h>
+#define TElemType int
+int top=-1;//top变量时刻表示栈顶元素所在位置
+//构造结点的结构体
+typedef struct BiTNode{  
+    TElemType data;//数据域    
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+//初始化树的函数
+void CreateBiTree(BiTree *T){  
+    *T=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)->data=1;  
+    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->data=2;   
+    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->rchild->data=5;   
+    (*T)->lchild->rchild->lchild=NULL; 
+    (*T)->lchild->rchild->rchild=NULL;  
+    (*T)->rchild->data=3;  
+    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild->lchild->data=6; 
+    (*T)->rchild->lchild->lchild=NULL;  
+    (*T)->rchild->lchild->rchild=NULL;  
+    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild->rchild->data=7;   
+    (*T)->rchild->rchild->lchild=NULL;  
+    (*T)->rchild->rchild->rchild=NULL;  
+    (*T)->lchild->lchild->data=4; 
+    (*T)->lchild->lchild->lchild=NULL;  
+    (*T)->lchild->lchild->rchild=NULL;
+}
+//前序和中序遍历使用的进栈函数
+void push(BiTNode** a,BiTNode* elem){ 
+    a[++top]=elem;
+}
+//弹栈函数
+void pop( ){  
+    if (top==-1) {    
+        return ;  
+    }   
+    top--;
+}
+//模拟操作结点元素的函数，输出结点本身的数值
+void displayElem(BiTNode* elem){   
+    printf("%d ",elem->data);
+}
+//拿到栈顶元素
+BiTNode* getTop(BiTNode**a){ 
+    return a[top];
+}
+//中序遍历非递归算法
+void InOrderTraverse1(BiTree Tree){ 
+    BiTNode* a[20];//定义一个顺序栈   
+    BiTNode * p;//临时指针   
+    push(a, Tree);//根结点进栈 
+    while (top!=-1) {//top!=-1说明栈内不为空，程序继续运行   
+        while ((p=getTop(a)) &&p){//取栈顶元素，且不能为NULL   
+            push(a, p->lchild);//将该结点的左孩子进栈，如果没有左孩子，NULL进栈  
+        }      
+        pop();//跳出循环，栈顶元素肯定为NULL，将NULL弹栈       
+        if (top!=-1) {       
+            p=getTop(a);//取栈顶元素    
+            pop();//栈顶元素弹栈   
+            displayElem(p);     
+            push(a, p->rchild);//将p指向的结点的右孩子进栈  
+        }   
+    }
+}
+//中序遍历实现的另一种方法
+void InOrderTraverse2(BiTree Tree){
+    BiTNode* a[20];//定义一个顺序栈
+    BiTNode * p;//临时指针  
+    p=Tree;   
+    //当p为NULL或者栈为空时，表明树遍历完成   
+    while (p || top!=-1) {   
+        //如果p不为NULL，将其压栈并遍历其左子树 
+        if (p) {      
+            push(a, p);    
+            p=p->lchild;    
+        }     
+        //如果p==NULL，表明左子树遍历完成，需要遍历上一层结点的右子树  
+        else{       
+            p=getTop(a);  
+            pop();        
+            displayElem(p);
+            p=p->rchild;    
+        }   
+    }
+}
+int main(){   
+    BiTree Tree;   
+    CreateBiTree(&Tree); 
+    printf("\n中序遍历算法1: \n");  
+    InOrderTraverse1(Tree);  
+    printf("\n中序遍历算法2: \n"); 
+    InOrderTraverse2(Tree);
+}
 ```
 
 运行结果
@@ -437,16 +682,10 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 
 
-[二叉树](http://data.biancheng.net/view/192.html)
-
-后序遍历的实现思想是：从根节点出发，依次遍历各节点的左右子
-
-[树](http://data.biancheng.net/view/23.html)
-
-，直到当前节点左右子树遍历完成后，才访问该节点元素。
+二叉树后序遍历的实现思想是：从根节点出发，依次遍历各节点的左右子树，直到当前节点左右子树遍历完成后，才访问该节点元素。
 
 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205506-924107.png)
-[图](http://data.biancheng.net/view/200.html) 1 二叉树
+图 1 二叉树
 
 
 如图 1 中，对此二叉树进行后序遍历的操作过程为：
@@ -469,8 +708,59 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 后序遍历的递归实现代码为：
 
-```
-#include <stdio.h>#include <string.h>#define TElemType int//构造结点的结构体typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,*rchild;//左右孩子指针}BiTNode,*BiTree;//初始化树的函数void CreateBiTree(BiTree *T){    *T=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->data=1;    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));      (*T)->lchild->data=2;    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild->data=5;    (*T)->lchild->rchild->lchild=NULL;    (*T)->lchild->rchild->rchild=NULL;    (*T)->rchild->data=3;    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->lchild->data=6;    (*T)->rchild->lchild->lchild=NULL;    (*T)->rchild->lchild->rchild=NULL;    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->rchild->data=7;    (*T)->rchild->rchild->lchild=NULL;    (*T)->rchild->rchild->rchild=NULL;    (*T)->lchild->lchild->data=4;    (*T)->lchild->lchild->lchild=NULL;    (*T)->lchild->lchild->rchild=NULL;}//模拟操作结点元素的函数，输出结点本身的数值void displayElem(BiTNode* elem){    printf("%d ",elem->data);}//后序遍历void PostOrderTraverse(BiTree T){    if (T) {        PostOrderTraverse(T->lchild);//遍历左孩子        PostOrderTraverse(T->rchild);//遍历右孩子        displayElem(T);//调用操作结点数据的函数方法    }    //如果结点为空，返回上一层    return;}int main() {    BiTree Tree;    CreateBiTree(&Tree);    printf("后序遍历: \n");    PostOrderTraverse(Tree);}
+```c
+#include <stdio.h>
+#include <string.h>
+#define TElemType int//构造结点的结构体
+typedef struct BiTNode{  
+    TElemType data;//数据域   
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+//初始化树的函数
+void CreateBiTree(BiTree *T){ 
+    *T=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->data=1;  
+    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->data=2;  
+    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->rchild->data=5;
+    (*T)->lchild->rchild->lchild=NULL;  
+    (*T)->lchild->rchild->rchild=NULL;  
+    (*T)->rchild->data=3; 
+    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild->lchild->data=6;  
+    (*T)->rchild->lchild->lchild=NULL; 
+    (*T)->rchild->lchild->rchild=NULL;   
+    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild->rchild->data=7; 
+    (*T)->rchild->rchild->lchild=NULL;  
+    (*T)->rchild->rchild->rchild=NULL;  
+    (*T)->lchild->lchild->data=4;  
+    (*T)->lchild->lchild->lchild=NULL; 
+    (*T)->lchild->lchild->rchild=NULL;
+}
+//模拟操作结点元素的函数，输出结点本身的数值
+void displayElem(BiTNode* elem){  
+    printf("%d ",elem->data);
+}
+//后序遍历
+void PostOrderTraverse(BiTree T){ 
+    if (T) {    
+        PostOrderTraverse(T->lchild);//遍历左孩子   
+        PostOrderTraverse(T->rchild);//遍历右孩子  
+        displayElem(T);//调用操作结点数据的函数方法  
+    }  
+    //如果结点为空，返回上一层  
+    return;
+}
+int main() { 
+    BiTree Tree;  
+    CreateBiTree(&Tree);  
+    printf("后序遍历: \n"); 
+    PostOrderTraverse(Tree);
+}
 ```
 
 运行结果：
@@ -480,11 +770,7 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 ## 非递归实现
 
-递归算法底层的实现使用的是
-
-[栈](http://data.biancheng.net/view/169.html)
-
-存储结构，所以可以直接使用栈写出相应的非递归算法。
+递归算法底层的实现使用的是栈存储结构，所以可以直接使用栈写出相应的非递归算法。
 
 后序遍历是在遍历完当前结点的左右孩子之后，才调用操作函数，所以需要在操作结点进栈时，为每个结点配备一个标志位。当遍历该结点的左孩子时，设置当前结点的标志位为 0，进栈；当要遍历该结点的右孩子时，设置当前结点的标志位为 1，进栈。
 
@@ -492,9 +778,100 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 完整实现代码为：
 
-```
-纯文本复制
-#include <stdio.h>#include <string.h>#define TElemType intint top=-1;//top变量时刻表示栈顶元素所在位置//构造结点的结构体typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,*rchild;//左右孩子指针}BiTNode,*BiTree;//初始化树的函数void CreateBiTree(BiTree *T){    *T=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->data=1;    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->data=2;    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild->data=5;    (*T)->lchild->rchild->lchild=NULL;    (*T)->lchild->rchild->rchild=NULL;    (*T)->rchild->data=3;    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->lchild->data=6;    (*T)->rchild->lchild->lchild=NULL;    (*T)->rchild->lchild->rchild=NULL;    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->rchild->data=7;    (*T)->rchild->rchild->lchild=NULL;    (*T)->rchild->rchild->rchild=NULL;    (*T)->lchild->lchild->data=4;    (*T)->lchild->lchild->lchild=NULL;    (*T)->lchild->lchild->rchild=NULL;}//弹栈函数void pop( ){    if (top==-1) {        return ;    }    top--;}//模拟操作结点元素的函数，输出结点本身的数值void displayElem(BiTNode* elem){    printf("%d ",elem->data);}//后序遍历非递归算法typedef struct SNode{    BiTree p;    int tag;}SNode;//后序遍历使用的进栈函数void postpush(SNode *a,SNode sdata){    a[++top]=sdata;}//后序遍历函数void PostOrderTraverse(BiTree Tree){    SNode a[20];//定义一个顺序栈    BiTNode * p;//临时指针    int tag;    SNode sdata;    p=Tree;    while (p||top!=-1) {        while (p) {            //为该结点入栈做准备            sdata.p=p;            sdata.tag=0;//由于遍历是左孩子，设置标志位为0            postpush(a, sdata);//压栈            p=p->lchild;//以该结点为根结点，遍历左孩子        }        sdata=a[top];//取栈顶元素        pop();//栈顶元素弹栈        p=sdata.p;        tag=sdata.tag;        //如果tag==0，说明该结点还没有遍历它的右孩子        if (tag==0) {            sdata.p=p;            sdata.tag=1;            postpush(a, sdata);//更改该结点的标志位，重新压栈            p=p->rchild;//以该结点的右孩子为根结点，重复循环        }        //如果取出来的栈顶元素的tag==1，说明此结点左右子树都遍历完了，可以调用操作函数了        else{            displayElem(p);            p=NULL;        }    }}int main(){    BiTree Tree;    CreateBiTree(&Tree);    printf("后序遍历: \n");    PostOrderTraverse(Tree);}
+```c
+#include <stdio.h>
+#include <string.h>
+#define TElemType int
+int top=-1;//top变量时刻表示栈顶元素所在位置
+//构造结点的结构体
+typedef struct BiTNode{  
+    TElemType data;//数据域   
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+//初始化树的函数
+void CreateBiTree(BiTree *T){ 
+    *T=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->data=1; 
+    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->data=2;  
+    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));   
+    (*T)->lchild->rchild->data=5; 
+    (*T)->lchild->rchild->lchild=NULL; 
+    (*T)->lchild->rchild->rchild=NULL;  
+    (*T)->rchild->data=3;   
+    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild->lchild->data=6;  
+    (*T)->rchild->lchild->lchild=NULL;  
+    (*T)->rchild->lchild->rchild=NULL;  
+    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild->rchild->data=7; 
+    (*T)->rchild->rchild->lchild=NULL; 
+    (*T)->rchild->rchild->rchild=NULL;  
+    (*T)->lchild->lchild->data=4;  
+    (*T)->lchild->lchild->lchild=NULL;  
+    (*T)->lchild->lchild->rchild=NULL;
+}
+//弹栈函数
+void pop( ){  
+    if (top==-1) {     
+        return ;  
+    }   
+    top--;
+}
+//模拟操作结点元素的函数，输出结点本身的数值
+void displayElem(BiTNode* elem){  
+    printf("%d ",elem->data);
+}
+//后序遍历非递归算法
+typedef struct SNode{   
+    BiTree p;   
+    int tag;
+}SNode;
+//后序遍历使用的进栈函数
+void postpush(SNode *a,SNode sdata){ 
+    a[++top]=sdata;
+}
+//后序遍历函数
+void PostOrderTraverse(BiTree Tree){  
+    SNode a[20];//定义一个顺序栈   
+    BiTNode * p;//临时指针  
+    int tag;  
+    SNode sdata;  
+    p=Tree;   
+    while (p||top!=-1) {  
+        while (p) {       
+            //为该结点入栈做准备   
+            sdata.p=p;         
+            sdata.tag=0;//由于遍历是左孩子，设置标志位为0   
+            postpush(a, sdata);//压栈  
+            p=p->lchild;//以该结点为根结点，遍历左孩子   
+        }     
+        sdata=a[top];//取栈顶元素    
+        pop();//栈顶元素弹栈    
+        p=sdata.p;  
+        tag=sdata.tag;   
+        //如果tag==0，说明该结点还没有遍历它的右孩子    
+        if (tag==0) {     
+            sdata.p=p;        
+            sdata.tag=1;      
+            postpush(a, sdata);//更改该结点的标志位，重新压栈    
+            p=p->rchild;//以该结点的右孩子为根结点，重复循环  
+        }    
+        //如果取出来的栈顶元素的tag==1，说明此结点左右子树都遍历完了，可以调用操作函数了  
+        else{      
+            displayElem(p);   
+            p=NULL;    
+        }  
+    }
+}
+int main(){ 
+    BiTree Tree;  
+    CreateBiTree(&Tree);   
+    printf("后序遍历: \n");   
+    PostOrderTraverse(Tree);
+}
 ```
 
 运行结果
@@ -502,28 +879,12 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 后序遍历:
 4 5 2 6 7 3 1
 
-前边介绍了
+前边介绍了二叉树的先序、中序和后序的遍历算法，运用了栈的数据结构，主要思想就是按照先左子树后右子树的顺序依次遍历树中各个结点。
 
-[二叉树](http://data.biancheng.net/view/192.html)
-
-的先序、中序和后序的遍历算法，运用了
-
-[栈](http://data.biancheng.net/view/169.html)
-
-的数据结构，主要思想就是按照先左子
-
-[树](http://data.biancheng.net/view/23.html)
-
-后右子树的顺序依次遍历树中各个结点。
-
-本节介绍另外一种遍历方式：按照二叉树中的层次从左到右依次遍历每层中的结点。具体的实现思路是：通过使用
-
-[队列](http://data.biancheng.net/view/172.html)
-
-的数据结构，从树的根结点开始，依次将其左孩子和右孩子入队。而后每次队列中一个结点出队，都将其左孩子和右孩子入队，直到树中所有结点都出队，出队结点的先后顺序就是层次遍历的最终结果。
+本节介绍另外一种遍历方式：按照二叉树中的层次从左到右依次遍历每层中的结点。具体的实现思路是：通过使用队列的数据结构，从树的根结点开始，依次将其左孩子和右孩子入队。而后每次队列中一个结点出队，都将其左孩子和右孩子入队，直到树中所有结点都出队，出队结点的先后顺序就是层次遍历的最终结果。
 
 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205519-968023.png)
-[图](http://data.biancheng.net/view/200.html)1 二叉树
+图1 二叉树
 
 ## 层次遍历的实现过程
 
@@ -537,39 +898,92 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 ## 实现代码
 
-```
-纯文本复制
-#include <stdio.h>#define TElemType int//初始化队头和队尾指针开始时都为0int front=0,rear=0;typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,*rchild;//左右孩子指针}BiTNode,*BiTree;void CreateBiTree(BiTree *T){    *T=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->data=1;    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));       (*T)->lchild->data=2;    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->lchild->rchild->data=5;    (*T)->lchild->rchild->lchild=NULL;    (*T)->lchild->rchild->rchild=NULL;       (*T)->rchild->data=3;    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->lchild->data=6;    (*T)->rchild->lchild->lchild=NULL;    (*T)->rchild->lchild->rchild=NULL;       (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));    (*T)->rchild->rchild->data=7;    (*T)->rchild->rchild->lchild=NULL;    (*T)->rchild->rchild->rchild=NULL;       (*T)->lchild->lchild->data=4;    (*T)->lchild->lchild->lchild=NULL;    (*T)->lchild->lchild->rchild=NULL;}//入队函数void EnQueue(BiTree *a,BiTree node){    a[rear++]=node;}//出队函数BiTNode* DeQueue(BiTNode** a){    return a[front++];}//输出函数void displayNode(BiTree node){    printf("%d ",node->data);}int main() {    BiTree tree;    //初始化二叉树    CreateBiTree(&tree);    BiTNode * p;    //采用顺序队列，初始化创建队列数组    BiTree a[20];    //根结点入队    EnQueue(a, tree);    //当队头和队尾相等时，表示队列为空    while(front<rear) {        //队头结点出队        p=DeQueue(a);        displayNode(p);        //将队头结点的左右孩子依次入队        if (p->lchild!=NULL) {            EnQueue(a, p->lchild);        }        if (p->rchild!=NULL) {            EnQueue(a, p->rchild);        }    }    return 0;}
+```c
+#include <stdio.h>
+#define TElemType int
+//初始化队头和队尾指针开始时都为0
+int front=0,rear=0;
+typedef struct BiTNode{  
+    TElemType data;//数据域   
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+void CreateBiTree(BiTree *T){  
+    *T=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->data=1;  
+    (*T)->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild=(BiTNode*)malloc(sizeof(BiTNode));    
+    (*T)->lchild->data=2; 
+    (*T)->lchild->lchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->lchild->rchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->lchild->rchild->data=5;  
+    (*T)->lchild->rchild->lchild=NULL;  
+    (*T)->lchild->rchild->rchild=NULL;  
+    (*T)->rchild->data=3;   
+    (*T)->rchild->lchild=(BiTNode*)malloc(sizeof(BiTNode));  
+    (*T)->rchild->lchild->data=6;  
+    (*T)->rchild->lchild->lchild=NULL;  
+    (*T)->rchild->lchild->rchild=NULL;   
+    (*T)->rchild->rchild=(BiTNode*)malloc(sizeof(BiTNode)); 
+    (*T)->rchild->rchild->data=7; 
+    (*T)->rchild->rchild->lchild=NULL;  
+    (*T)->rchild->rchild->rchild=NULL;  
+    (*T)->lchild->lchild->data=4;  
+    (*T)->lchild->lchild->lchild=NULL;  
+    (*T)->lchild->lchild->rchild=NULL;
+}
+//入队函数
+void EnQueue(BiTree *a,BiTree node){ 
+    a[rear++]=node;
+}
+//出队函数
+BiTNode* DeQueue(BiTNode** a){  
+    return a[front++];
+}
+//输出函数
+void displayNode(BiTree node){  
+    printf("%d ",node->data);
+}
+int main() { 
+    BiTree tree;    //初始化二叉树  
+    CreateBiTree(&tree);   
+    BiTNode * p;    //采用顺序队列，初始化创建队列数组   
+    BiTree a[20];    //根结点入队  
+    EnQueue(a, tree);    //当队头和队尾相等时，表示队列为空   
+    while(front<rear) {       
+        //队头结点出队   
+        p=DeQueue(a);     
+        displayNode(p);        //将队头结点的左右孩子依次入队    
+        if (p->lchild!=NULL) {    
+            EnQueue(a, p->lchild);   
+        }      
+        if (p->rchild!=NULL) {   
+            EnQueue(a, p->rchild);    
+        }  
+    }   
+    return 0;
+}
 ```
 
 运行结果：
 
 1 2 3 4 5 6 7
 
-前面讲了
-
-[二叉树](http://data.biancheng.net/view/192.html)
-
-的顺序存储和链式存储，本节来学习如何存储具有普通
-
-[树](http://data.biancheng.net/view/23.html)
-
-结构的数据。
+前面讲了二叉树的顺序存储和链式存储，本节来学习如何存储具有普通树结构的数据。
 
 ![普通树存储结构](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205603-532051.gif)
-[图](http://data.biancheng.net/view/200.html) 1 普通树存储结构
+图 1 普通树存储结构
 
 
 如图 1 所示，这是一棵普通的树，该如何存储呢？通常，存储具有普通树结构数据的方法有 3 种：
 
 1. 双亲表示法；
-2. [孩子表示法](http://data.biancheng.net/view/197.html)；
-3. [孩子兄弟表示法](http://data.biancheng.net/view/198.html)；
+2. 孩子表示法；
+3. 孩子兄弟表示法；
 
 
 本节先来学习双亲表示法。
 
-双亲表示法采用[顺序表](http://data.biancheng.net/view/158.html)（也就是[数组](http://data.biancheng.net/view/181.html)）存储普通树，其实现的核心思想是：顺序存储各个节点的同时，给各节点附加一个记录其父节点位置的变量。
+双亲表示法采用顺序表（也就是数组）存储普通树，其实现的核心思想是：顺序存储各个节点的同时，给各节点附加一个记录其父节点位置的变量。
 
 注意，根节点没有父节点（父节点又称为双亲节点），因此根节点记录父节点位置的变量通常置为 -1。
 
@@ -581,16 +995,76 @@ typedef struct BiTNode{    TElemType data;//数据域    struct BiTNode *lchild,
 
 图 2 存储普通树的过程转化为 C 语言代码为：
 
-```
-#define MAX_SIZE 100//宏定义树中结点的最大数量typedef char ElemType;//宏定义树结构中数据类型typedef struct Snode{    TElemType data;//树中结点的数据类型    int parent;//结点的父结点在数组中的位置下标}PTNode;typedef struct {    PTNode tnode[MAX_SIZE];//存放树中所有结点    int n;//根的位置下标和结点数}PTree;
+```c
+#define MAX_SIZE 100//宏定义树中结点的最大数量
+typedef char ElemType;//宏定义树结构中数据类型
+typedef struct Snode{  
+    TElemType data;//树中结点的数据类型  
+    int parent;//结点的父结点在数组中的位置下标
+}PTNode;
+typedef struct {  
+    PTNode tnode[MAX_SIZE];//存放树中所有结点   
+    int n;//根的位置下标和结点数
+}PTree;
 ```
 
 
 因此，存储图 1 中普通树的 C 语言实现代码为：
 
-```
-纯文本复制
-#include<stdio.h>#include<stdlib.h>#define MAX_SIZE 20typedef char ElemType;//宏定义树结构中数据类型typedef struct Snode  //结点结构{    ElemType data;    int parent;}PNode;typedef struct  //树结构{    PNode tnode[MAX_SIZE];    int n;                 //结点个数}PTree;PTree InitPNode(PTree tree){    int i,j;    char ch;    printf("请输出节点个数:\n");    scanf("%d",&(tree.n));    printf("请输入结点的值其双亲位于数组中的位置下标:\n");    for(i=0; i<tree.n; i++)    {        fflush(stdin);        scanf("%c %d",&ch,&j);        tree.tnode[i].data = ch;        tree.tnode[i].parent = j;    }    return tree;}void FindParent(PTree tree){    char a;    int isfind = 0;    printf("请输入要查询的结点值:\n");    fflush(stdin);    scanf("%c",&a);    for(int i =0;i<tree.n;i++){        if(tree.tnode[i].data == a){            isfind=1;            int ad=tree.tnode[i].parent;            printf("%c的父节点为 %c,存储位置下标为 %d",a,tree.tnode[ad].data,ad);            break;        }    }    if(isfind == 0){        printf("树中无此节点");    }}int main(){    PTree tree;    tree = InitPNode(tree);    FindParent(tree);    return 0;}
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX_SIZE 20
+typedef char ElemType;//宏定义树结构中数据类型
+typedef struct Snode  //结点结构
+{  
+    ElemType data;  
+    int parent;
+}PNode;
+typedef struct  //树结构
+{  
+    PNode tnode[MAX_SIZE]; 
+    int n;      
+    //结点个数
+}PTree;
+PTree InitPNode(PTree tree){  
+    int i,j;  
+    char ch;  
+    printf("请输出节点个数:\n");  
+    scanf("%d",&(tree.n)); 
+    printf("请输入结点的值其双亲位于数组中的位置下标:\n");  
+    for(i=0; i<tree.n; i++)    {     
+        fflush(stdin);      
+        scanf("%c %d",&ch,&j);  
+        tree.tnode[i].data = ch;   
+        tree.tnode[i].parent = j;   
+    }  
+    return tree;
+}
+void FindParent(PTree tree){  
+    char a;  
+    int isfind = 0;  
+    printf("请输入要查询的结点值:\n"); 
+    fflush(stdin);  
+    scanf("%c",&a);   
+    for(int i =0;i<tree.n;i++){  
+        if(tree.tnode[i].data == a){  
+            isfind=1;       
+            int ad=tree.tnode[i].parent; 
+            printf("%c的父节点为 %c,存储位置下标为 %d",a,tree.tnode[ad].data,ad);    
+            break;  
+        }   
+    }   
+    if(isfind == 0){  
+        printf("树中无此节点"); 
+    }
+}
+int main(){  
+    PTree tree; 
+    tree = InitPNode(tree); 
+    FindParent(tree);   
+    return 0;
+}
 ```
 
 程序运行示例：
@@ -612,33 +1086,13 @@ K 6
 C
 C的父节点为 R,存储位置下标为 0
 
-前面学习了如何用
+前面学习了如何用双亲表示法存储普通树，本节再学习一种存储普通树的方法——孩子表示法。
 
-[双亲表示法](http://data.biancheng.net/view/196.html)
-
-存储普通
-
-[树](http://data.biancheng.net/view/23.html)
-
-，本节再学习一种存储普通树的方法——孩子表示法。
-
-孩子表示法存储普通树采用的是 "
-
-[顺序表](http://data.biancheng.net/view/158.html)
-
-+
-
-[链表](http://data.biancheng.net/view/160.html)
-
-" 的组合结构，其存储过程是：从树的根节点开始，使用顺序表依次存储树中各个节点，需要注意的是，与双亲表示法不同，孩子表示法会给各个节点配备一个链表，用于存储各节点的孩子节点位于顺序表中的位置。
+孩子表示法存储普通树采用的是 "顺序表+链表" 的组合结构，其存储过程是：从树的根节点开始，使用顺序表依次存储树中各个节点，需要注意的是，与双亲表示法不同，孩子表示法会给各个节点配备一个链表，用于存储各节点的孩子节点位于顺序表中的位置。
 
 如果节点没有孩子节点（叶子节点），则该节点的链表为空链表。
 
-例如，使用孩子表示法存储
-
-[图](http://data.biancheng.net/view/200.html)
-
- 1a) 中的普通树，则最终存储状态如图 1b) 所示：
+例如，使用孩子表示法存储图1a) 中的普通树，则最终存储状态如图 1b) 所示：
 
 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205644-768408.gif)
 图 1 孩子表示法存储普通树示意图
@@ -646,8 +1100,76 @@ C的父节点为 R,存储位置下标为 0
 
 图 1 所示转化为 C 语言代码为：
 
-```
-#include<stdio.h>#include<stdlib.h>#define MAX_SIZE 20#define TElemType char//孩子表示法typedef struct CTNode{    int child;//链表中每个结点存储的不是数据本身，而是数据在数组中存储的位置下标    struct CTNode * next;}ChildPtr;typedef struct {    TElemType data;//结点的数据类型    ChildPtr* firstchild;//孩子链表的头指针}CTBox;typedef struct{    CTBox nodes[MAX_SIZE];//存储结点的数组    int n,r;//结点数量和树根的位置}CTree;//孩子表示法存储普通树CTree initTree(CTree tree){    printf("输入节点数量：\n");    scanf("%d",&(tree.n));    for(int i=0;i<tree.n;i++){        printf("输入第 %d 个节点的值：\n",i+1);        fflush(stdin);        scanf("%c",&(tree.nodes[i].data));        tree.nodes[i].firstchild=(ChildPtr*)malloc(sizeof(ChildPtr));        tree.nodes[i].firstchild->next=NULL;        printf("输入节点 %c 的孩子节点数量：\n",tree.nodes[i].data);        int Num;        scanf("%d",&Num);        if(Num!=0){            ChildPtr * p = tree.nodes[i].firstchild;            for(int j = 0 ;j<Num;j++){                ChildPtr * newEle=(ChildPtr*)malloc(sizeof(ChildPtr));                newEle->next=NULL;                printf("输入第 %d 个孩子节点在顺序表中的位置",j+1);                scanf("%d",&(newEle->child));                p->next= newEle;                p=p->next;            }        }    }    return tree;}void findKids(CTree tree,char a){    int hasKids=0;    for(int i=0;i<tree.n;i++){        if(tree.nodes[i].data==a){            ChildPtr * p=tree.nodes[i].firstchild->next;            while(p){                hasKids = 1;                printf("%c ",tree.nodes[p->child].data);                p=p->next;            }            break;        }    }    if(hasKids==0){        printf("此节点为叶子节点");    }}int main(){    CTree tree;    tree = initTree(tree);    //默认数根节点位于数组notes[0]处    tree.r=0;    printf("找出节点 F 的所有孩子节点：");    findKids(tree,'F');    return 0;}
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX_SIZE 20
+#define TElemType char
+//孩子表示法
+typedef struct CTNode{   
+    int child;//链表中每个结点存储的不是数据本身，而是数据在数组中存储的位置下标  
+    struct CTNode * next;
+}ChildPtr;
+typedef struct { 
+    TElemType data;//结点的数据类型    
+    ChildPtr* firstchild;//孩子链表的头指针
+}CTBox;
+typedef struct{  
+    CTBox nodes[MAX_SIZE];//存储结点的数组  
+    int n,r;//结点数量和树根的位置
+}CTree;
+//孩子表示法存储普通树
+CTree initTree(CTree tree){   
+    printf("输入节点数量：\n");  
+    scanf("%d",&(tree.n)); 
+    for(int i=0;i<tree.n;i++){ 
+        printf("输入第 %d 个节点的值：\n",i+1);   
+        fflush(stdin);     
+        scanf("%c",&(tree.nodes[i].data)); 
+        tree.nodes[i].firstchild=(ChildPtr*)malloc(sizeof(ChildPtr));   
+        tree.nodes[i].firstchild->next=NULL;    
+        printf("输入节点 %c 的孩子节点数量：\n",tree.nodes[i].data);     
+        int Num;    
+        scanf("%d",&Num);    
+        if(Num!=0){    
+            ChildPtr * p = tree.nodes[i].firstchild;   
+            for(int j = 0 ;j<Num;j++){  
+                ChildPtr * newEle=(ChildPtr*)malloc(sizeof(ChildPtr));  
+                newEle->next=NULL;     
+                printf("输入第 %d 个孩子节点在顺序表中的位置",j+1);     
+                scanf("%d",&(newEle->child));   
+                p->next= newEle;       
+                p=p->next;        
+            }      
+        }  
+    }  
+    return tree;
+}
+void findKids(CTree tree,char a){ 
+    int hasKids=0;  
+    for(int i=0;i<tree.n;i++){   
+        if(tree.nodes[i].data==a){   
+            ChildPtr * p=tree.nodes[i].firstchild->next;    
+            while(p){        
+                hasKids = 1;     
+                printf("%c ",tree.nodes[p->child].data);   
+                p=p->next;       
+            }        
+            break;   
+        }   
+    }  
+    if(hasKids==0){   
+        printf("此节点为叶子节点");  
+    }
+}
+int main(){  
+    CTree tree;   
+    tree = initTree(tree);    //默认数根节点位于数组notes[0]处  
+    tree.r=0;   
+    printf("找出节点 F 的所有孩子节点："); 
+    findKids(tree,'F');
+    return 0;
+}
 ```
 
 程序运行结果为：
@@ -715,27 +1237,15 @@ K
 
 使用图 2 结构存储普通树，既能快速找到指定节点的父节点，又能快速找到指定节点的孩子节点。该结构的实现方法很简单，只需整合这两节的代码即可，因此不再赘述。
 
-前面讲解了存储普通
-
-[树](http://data.biancheng.net/view/23.html)
-
-的
-
-[双亲表示法](http://data.biancheng.net/view/196.html)
-
-和
-
-[孩子表示法](http://data.biancheng.net/view/197.html)
-
-，本节来讲解最后一种常用方法——孩子兄弟表示法。
+前面讲解了存储普通树的双亲表示法和孩子表示法，本节来讲解最后一种常用方法——孩子兄弟表示法。
 
 ![普通树示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/205954-945731.gif)
-[图](http://data.biancheng.net/view/200.html) 1 普通树示意图
+图1 普通树示意图
 
 
 树结构中，位于同一层的节点之间互为兄弟节点。例如，图 1 的普通树中，节点 A、B 和 C 互为兄弟节点，而节点 D、E 和 F 也互为兄弟节点。
 
-孩子兄弟表示法，采用的是链式存储结构，其存储树的实现思想是：从树的根节点开始，依次用[链表](http://data.biancheng.net/view/160.html)存储各个节点的孩子节点和兄弟节点。
+孩子兄弟表示法，采用的是链式存储结构，其存储树的实现思想是：从树的根节点开始，依次用链表)存储各个节点的孩子节点和兄弟节点。
 
 因此，该链表中的节点应包含以下 3 部分内容（如图 2 所示）：
 
@@ -749,8 +1259,12 @@ K
 
 用 C 语言代码表示节点结构为：
 
-```
-#define ElemType chartypedef struct CSNode{    ElemType data;    struct CSNode * firstchild,*nextsibling;}CSNode,*CSTree;
+```c
+#define ElemType char
+typedef struct CSNode{ 
+    ElemType data; 
+    struct CSNode * firstchild,*nextsibling;
+}CSNode,*CSTree;
 ```
 
 
@@ -764,33 +1278,17 @@ K
 
 实现图 3 中的 C 语言实现代码也很简单，根据图中链表的结构即可轻松完成链表的创建和使用，因此不再给出具体代码。
 
-接下来观察图 1 和图 3。图 1 为原普通树，图 3 是由图 1 经过孩子兄弟表示法转化而来的一棵树，确切地说，图 3 是一棵
-
-[二叉树](http://data.biancheng.net/view/192.html)
-
-。因此可以得出这样一个结论，即通过孩子兄弟表示法，任意一棵普通树都可以相应转化为一棵二叉树，换句话说，任意一棵普通树都有唯一的一棵二叉树于其对应。
+接下来观察图 1 和图 3。图 1 为原普通树，图 3 是由图 1 经过孩子兄弟表示法转化而来的一棵树，确切地说，图 3 是一棵二叉树。因此可以得出这样一个结论，即通过孩子兄弟表示法，任意一棵普通树都可以相应转化为一棵二叉树，换句话说，任意一棵普通树都有唯一的一棵二叉树于其对应。
 
 因此，孩子兄弟表示法可以作为将普通树转化为二叉树的最有效方法，通常又被称为"二叉树表示法"或"二叉链表表示法"。
 
 
 
-赫夫曼
-
-[树](http://data.biancheng.net/view/23.html)
-
-，别名“哈夫曼树”、“最优树”以及“最优
-
-[二叉树](http://data.biancheng.net/view/192.html)
-
-”。学习哈夫曼树之前，首先要了解几个名词。
+赫夫曼树，别名“哈夫曼树”、“最优树”以及“最优二叉树”。学习哈夫曼树之前，首先要了解几个名词。
 
 ## 哈夫曼树相关的几个名词
 
-路径：在一棵树中，一个结点到另一个结点之间的通路，称为路径。
-
-[图](http://data.biancheng.net/view/200.html)
-
- 1 中，从根结点到结点 a 之间的通路就是一条路径。
+路径：在一棵树中，一个结点到另一个结点之间的通路，称为路径。图1 中，从根结点到结点 a 之间的通路就是一条路径。
 
 路径长度：在一条路径中，每经过一个结点，路径长度都要加 1 。例如在一棵树中，规定根结点所在层数为1层，那么从根结点到第 i 层结点的路径长度为 i - 1 。图 1 中从根结点到结点 c 的路径长度为 3。
 
@@ -832,8 +1330,12 @@ K
 
 所以，哈夫曼树中结点构成用代码表示为：
 
-```
-//哈夫曼树结点结构typedef struct {    int weight;//结点权重    int parent, left, right;//父结点、左孩子、右孩子在数组中的位置下标}HTNode, *HuffmanTree;
+```c
+//哈夫曼树结点结构
+typedef struct {   
+    int weight;//结点权重   
+    int parent, left, right;//父结点、左孩子、右孩子在数组中的位置下标
+}HTNode, *HuffmanTree;
 ```
 
 ## 哈弗曼树中的查找算法
@@ -848,16 +1350,86 @@ K
 
 实现代码：
 
-```
-//HT数组中存放的哈夫曼树，end表示HT数组中存放结点的最终位置，s1和s2传递的是HT数组中权重值最小的两个结点在数组中的位置void Select(HuffmanTree HT, int end, int *s1, int *s2){    int min1, min2;    //遍历数组初始下标为 1    int i = 1;    //找到还没构建树的结点    while(HT[i].parent != 0 && i <= end){        i++;    }    min1 = HT[i].weight;    *s1 = i;       i++;    while(HT[i].parent != 0 && i <= end){        i++;    }    //对找到的两个结点比较大小，min2为大的，min1为小的    if(HT[i].weight < min1){        min2 = min1;        *s2 = *s1;        min1 = HT[i].weight;        *s1 = i;    }else{        min2 = HT[i].weight;        *s2 = i;    }    //两个结点和后续的所有未构建成树的结点做比较    for(int j=i+1; j <= end; j++)    {        //如果有父结点，直接跳过，进行下一个        if(HT[j].parent != 0){            continue;        }        //如果比最小的还小，将min2=min1，min1赋值新的结点的下标        if(HT[j].weight < min1){            min2 = min1;            min1 = HT[j].weight;            *s2 = *s1;            *s1 = j;        }        //如果介于两者之间，min2赋值为新的结点的位置下标        else if(HT[j].weight >= min1 && HT[j].weight < min2){            min2 = HT[j].weight;            *s2 = j;        }    }}
+```c
+//HT数组中存放的哈夫曼树，end表示HT数组中存放结点的最终位置，s1和s2传递的是HT数组中权重值最小的两个结点在数组中的位置
+void Select(HuffmanTree HT, int end, int *s1, int *s2){  
+    int min1, min2;    //遍历数组初始下标为 1 
+    int i = 1;    //找到还没构建树的结点  
+    while(HT[i].parent != 0 && i <= end){  
+        i++;  
+    }   
+    min1 = HT[i].weight; 
+    *s1 = i;   
+    i++;  
+    while(HT[i].parent != 0 && i <= end){   
+        i++;  
+    }  
+    //对找到的两个结点比较大小，min2为大的，min1为小的   
+    if(HT[i].weight < min1){    
+        min2 = min1;       
+        *s2 = *s1;    
+        min1 = HT[i].weight;    
+        *s1 = i;  
+    }else{  
+        min2 = HT[i].weight;    
+        *s2 = i;
+    }   
+    //两个结点和后续的所有未构建成树的结点做比较 
+    for(int j=i+1; j <= end; j++)    {    
+        //如果有父结点，直接跳过，进行下一个   
+        if(HT[j].parent != 0){    
+            continue;     
+        }     
+        //如果比最小的还小，将min2=min1，min1赋值新的结点的下标  
+        if(HT[j].weight < min1){   
+            min2 = min1;      
+            min1 = HT[j].weight;     
+            *s2 = *s1;      
+            *s1 = j;   
+        }      
+        //如果介于两者之间，min2赋值为新的结点的位置下标   
+        else if(HT[j].weight >= min1 && HT[j].weight < min2){   
+            min2 = HT[j].weight;       
+            *s2 = j;     
+        }  
+    }
+}
 ```
 
 > 注意：s1和s2传入的是实参的地址，所以函数运行完成后，实参中存放的自然就是哈夫曼树中权重值最小的两个结点在数组中的位置。
 
 ## 构建哈弗曼树的代码实现
 
-```
-//HT为地址传递的存储哈夫曼树的数组，w为存储结点权重值的数组，n为结点个数void CreateHuffmanTree(HuffmanTree *HT, int *w, int n){    if(n<=1) return; // 如果只有一个编码就相当于0    int m = 2*n-1; // 哈夫曼树总节点数，n就是叶子结点    *HT = (HuffmanTree) malloc((m+1) * sizeof(HTNode)); // 0号位置不用    HuffmanTree p = *HT;    // 初始化哈夫曼树中的所有结点    for(int i = 1; i <= n; i++)    {        (p+i)->weight = *(w+i-1);        (p+i)->parent = 0;        (p+i)->left = 0;        (p+i)->right = 0;    }    //从树组的下标 n+1 开始初始化哈夫曼树中除叶子结点外的结点    for(int i = n+1; i <= m; i++)    {        (p+i)->weight = 0;        (p+i)->parent = 0;        (p+i)->left = 0;        (p+i)->right = 0;    }    //构建哈夫曼树    for(int i = n+1; i <= m; i++)    {        int s1, s2;        Select(*HT, i-1, &s1, &s2);        (*HT)[s1].parent = (*HT)[s2].parent = i;        (*HT)[i].left = s1;        (*HT)[i].right = s2;        (*HT)[i].weight = (*HT)[s1].weight + (*HT)[s2].weight;    }}
+```c
+//HT为地址传递的存储哈夫曼树的数组，w为存储结点权重值的数组，n为结点个数
+void CreateHuffmanTree(HuffmanTree *HT, int *w, int n){  
+    if(n<=1) return; // 如果只有一个编码就相当于0 
+    int m = 2*n-1; // 哈夫曼树总节点数，n就是叶子结点  
+    *HT = (HuffmanTree) malloc((m+1) * sizeof(HTNode)); // 0号位置不用   
+    HuffmanTree p = *HT;    // 初始化哈夫曼树中的所有结点  
+    for(int i = 1; i <= n; i++)    {   
+        (p+i)->weight = *(w+i-1);   
+        (p+i)->parent = 0;     
+        (p+i)->left = 0;      
+        (p+i)->right = 0;  
+    }   
+    //从树组的下标 n+1 开始初始化哈夫曼树中除叶子结点外的结点  
+    for(int i = n+1; i <= m; i++)    {    
+        (p+i)->weight = 0;      
+        (p+i)->parent = 0;  
+        (p+i)->left = 0;     
+        (p+i)->right = 0;   
+    }   
+    //构建哈夫曼树  
+    for(int i = n+1; i <= m; i++)    {     
+        int s1, s2;    
+        Select(*HT, i-1, &s1, &s2);  
+        (*HT)[s1].parent = (*HT)[s2].parent = i;   
+        (*HT)[i].left = s1;  
+        (*HT)[i].right = s2;     
+        (*HT)[i].weight = (*HT)[s1].weight + (*HT)[s2].weight;  
+    }
+}
 ```
 
 ## 哈夫曼编码
@@ -894,8 +1466,133 @@ K
 
 ## 本节完整代码（可运行）
 
-```
-#include<stdlib.h>#include<stdio.h>#include<string.h>//哈夫曼树结点结构typedef struct {    int weight;//结点权重    int parent, left, right;//父结点、左孩子、右孩子在数组中的位置下标}HTNode, *HuffmanTree;//动态二维数组，存储哈夫曼编码typedef char ** HuffmanCode;//HT数组中存放的哈夫曼树，end表示HT数组中存放结点的最终位置，s1和s2传递的是HT数组中权重值最小的两个结点在数组中的位置void Select(HuffmanTree HT, int end, int *s1, int *s2){    int min1, min2;    //遍历数组初始下标为 1    int i = 1;    //找到还没构建树的结点    while(HT[i].parent != 0 && i <= end){        i++;    }    min1 = HT[i].weight;    *s1 = i;       i++;    while(HT[i].parent != 0 && i <= end){        i++;    }    //对找到的两个结点比较大小，min2为大的，min1为小的    if(HT[i].weight < min1){        min2 = min1;        *s2 = *s1;        min1 = HT[i].weight;        *s1 = i;    }else{        min2 = HT[i].weight;        *s2 = i;    }    //两个结点和后续的所有未构建成树的结点做比较    for(int j=i+1; j <= end; j++)    {        //如果有父结点，直接跳过，进行下一个        if(HT[j].parent != 0){            continue;        }        //如果比最小的还小，将min2=min1，min1赋值新的结点的下标        if(HT[j].weight < min1){            min2 = min1;            min1 = HT[j].weight;            *s2 = *s1;            *s1 = j;        }        //如果介于两者之间，min2赋值为新的结点的位置下标        else if(HT[j].weight >= min1 && HT[j].weight < min2){            min2 = HT[j].weight;            *s2 = j;        }    }}//HT为地址传递的存储哈夫曼树的数组，w为存储结点权重值的数组，n为结点个数void CreateHuffmanTree(HuffmanTree *HT, int *w, int n){    if(n<=1) return; // 如果只有一个编码就相当于0    int m = 2*n-1; // 哈夫曼树总节点数，n就是叶子结点    *HT = (HuffmanTree) malloc((m+1) * sizeof(HTNode)); // 0号位置不用    HuffmanTree p = *HT;    // 初始化哈夫曼树中的所有结点    for(int i = 1; i <= n; i++)    {        (p+i)->weight = *(w+i-1);        (p+i)->parent = 0;        (p+i)->left = 0;        (p+i)->right = 0;    }    //从树组的下标 n+1 开始初始化哈夫曼树中除叶子结点外的结点    for(int i = n+1; i <= m; i++)    {        (p+i)->weight = 0;        (p+i)->parent = 0;        (p+i)->left = 0;        (p+i)->right = 0;    }    //构建哈夫曼树    for(int i = n+1; i <= m; i++)    {        int s1, s2;        Select(*HT, i-1, &s1, &s2);        (*HT)[s1].parent = (*HT)[s2].parent = i;        (*HT)[i].left = s1;        (*HT)[i].right = s2;        (*HT)[i].weight = (*HT)[s1].weight + (*HT)[s2].weight;    }}//HT为哈夫曼树，HC为存储结点哈夫曼编码的二维动态数组，n为结点的个数void HuffmanCoding(HuffmanTree HT, HuffmanCode *HC,int n){    *HC = (HuffmanCode) malloc((n+1) * sizeof(char *));    char *cd = (char *)malloc(n*sizeof(char)); //存放结点哈夫曼编码的字符串数组    cd[n-1] = '\0';//字符串结束符       for(int i=1; i<=n; i++){        //从叶子结点出发，得到的哈夫曼编码是逆序的，需要在字符串数组中逆序存放        int start = n-1;        //当前结点在数组中的位置        int c = i;        //当前结点的父结点在数组中的位置        int j = HT[i].parent;        // 一直寻找到根结点        while(j != 0){            // 如果该结点是父结点的左孩子则对应路径编码为0，否则为右孩子编码为1            if(HT[j].left == c)                cd[--start] = '0';            else                cd[--start] = '1';            //以父结点为孩子结点，继续朝树根的方向遍历            c = j;            j = HT[j].parent;        }        //跳出循环后，cd数组中从下标 start 开始，存放的就是该结点的哈夫曼编码        (*HC)[i] = (char *)malloc((n-start)*sizeof(char));        strcpy((*HC)[i], &cd[start]);    }    //使用malloc申请的cd动态数组需要手动释放    free(cd);}//打印哈夫曼编码的函数void PrintHuffmanCode(HuffmanCode htable,int *w,int n){    printf("Huffman code : \n");    for(int i = 1; i <= n; i++)        printf("%d code = %s\n",w[i-1], htable[i]);}int main(void){    int w[5] = {2, 8, 7, 6, 5};    int n = 5;    HuffmanTree htree;    HuffmanCode htable;    CreateHuffmanTree(&htree, w, n);    HuffmanCoding(htree, &htable, n);    PrintHuffmanCode(htable,w, n);    return 0;}
+```c
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+//哈夫曼树结点结构
+typedef struct {   
+    int weight;//结点权重 
+    int parent, left, right;//父结点、左孩子、右孩子在数组中的位置下标
+}HTNode, *HuffmanTree;//动态二维数组，存储哈夫曼编码
+typedef char ** HuffmanCode;//HT数组中存放的哈夫曼树，end表示HT数组中存放结点的最终位置，s1和s2传递的是HT数组中权重值最小的两个结点在数组中的位置
+void Select(HuffmanTree HT, int end, int *s1, int *s2){   
+    int min1, min2;   
+    //遍历数组初始下标为 1   
+    int i = 1;   
+    //找到还没构建树的结点  
+    while(HT[i].parent != 0 && i <= end){  
+        i++;  
+    }   
+    min1 = HT[i].weight;  
+    *s1 = i;   
+    i++;  
+    while(HT[i].parent != 0 && i <= end){    
+        i++;  
+    }  
+    //对找到的两个结点比较大小，min2为大的，min1为小的  
+    if(HT[i].weight < min1){     
+        min2 = min1;       
+        *s2 = *s1;     
+        min1 = HT[i].weight; 
+        *s1 = i;   
+    }else{   
+        min2 = HT[i].weight;  
+        *s2 = i;  
+    }   
+    //两个结点和后续的所有未构建成树的结点做比较   
+    for(int j=i+1; j <= end; j++)    {    
+        //如果有父结点，直接跳过，进行下一个      
+        if(HT[j].parent != 0){    
+            continue;   
+        }       
+        //如果比最小的还小，将min2=min1，min1赋值新的结点的下标  
+        if(HT[j].weight < min1){      
+            min2 = min1;      
+            min1 = HT[j].weight;  
+            *s2 = *s1;   
+            *s1 = j;    
+        }     
+        //如果介于两者之间，min2赋值为新的结点的位置下标   
+        else if(HT[j].weight >= min1 && HT[j].weight < min2){   
+            min2 = HT[j].weight;     
+            *s2 = j;    
+        }   
+    }
+}
+//HT为地址传递的存储哈夫曼树的数组，w为存储结点权重值的数组，n为结点个数
+void CreateHuffmanTree(HuffmanTree *HT, int *w, int n){   
+    if(n<=1) return; // 如果只有一个编码就相当于0  
+    int m = 2*n-1; // 哈夫曼树总节点数，n就是叶子结点   
+    *HT = (HuffmanTree) malloc((m+1) * sizeof(HTNode)); // 0号位置不用 
+    HuffmanTree p = *HT;   
+    // 初始化哈夫曼树中的所有结点  
+    for(int i = 1; i <= n; i++)    {  
+        (p+i)->weight = *(w+i-1);    
+        (p+i)->parent = 0;     
+        (p+i)->left = 0;       
+        (p+i)->right = 0;   
+    }   
+    //从树组的下标 n+1 开始初始化哈夫曼树中除叶子结点外的结点 
+    for(int i = n+1; i <= m; i++)    {  
+        (p+i)->weight = 0;     
+        (p+i)->parent = 0;    
+        (p+i)->left = 0;    
+        (p+i)->right = 0; 
+    }   
+    //构建哈夫曼树  
+    for(int i = n+1; i <= m; i++)    {  
+        int s1, s2;      
+        Select(*HT, i-1, &s1, &s2);   
+        (*HT)[s1].parent = (*HT)[s2].parent = i; 
+        (*HT)[i].left = s1;     
+        (*HT)[i].right = s2;      
+        (*HT)[i].weight = (*HT)[s1].weight + (*HT)[s2].weight; 
+    }
+}
+//HT为哈夫曼树，HC为存储结点哈夫曼编码的二维动态数组，n为结点的个数
+void HuffmanCoding(HuffmanTree HT, HuffmanCode *HC,int n){   
+    *HC = (HuffmanCode) malloc((n+1) * sizeof(char *));  
+    char *cd = (char *)malloc(n*sizeof(char)); //存放结点哈夫曼编码的字符串数组  
+    cd[n-1] = '\0';//字符串结束符    
+    for(int i=1; i<=n; i++){      
+        //从叶子结点出发，得到的哈夫曼编码是逆序的，需要在字符串数组中逆序存放    
+        int start = n-1;        //当前结点在数组中的位置      
+        int c = i;        //当前结点的父结点在数组中的位置     
+        int j = HT[i].parent;        // 一直寻找到根结点      
+        while(j != 0){        
+            // 如果该结点是父结点的左孩子则对应路径编码为0，否则为右孩子编码为1     
+            if(HT[j].left == c)     
+                cd[--start] = '0';      
+            else          
+                cd[--start] = '1';      
+            //以父结点为孩子结点，继续朝树根的方向遍历       
+            c = j;         
+            j = HT[j].parent;    
+        }       
+        //跳出循环后，cd数组中从下标 start 开始，存放的就是该结点的哈夫曼编码    
+        (*HC)[i] = (char *)malloc((n-start)*sizeof(char));      
+        strcpy((*HC)[i], &cd[start]);   
+    }  
+    //使用malloc申请的cd动态数组需要手动释放  
+    free(cd);
+}
+//打印哈夫曼编码的函数
+void PrintHuffmanCode(HuffmanCode htable,int *w,int n){    
+    printf("Huffman code : \n");  
+    for(int i = 1; i <= n; i++)   
+        printf("%d code = %s\n",w[i-1], htable[i]);
+}
+int main(void){   
+    int w[5] = {2, 8, 7, 6, 5};   
+    int n = 5;   
+    HuffmanTree htree;  
+    HuffmanCode htable;  
+    CreateHuffmanTree(&htree, w, n);  
+    HuffmanCoding(htree, &htable, n); 
+    PrintHuffmanCode(htable,w, n);  
+    return 0;
+}
 ```
 
 运行结果
@@ -925,8 +1622,35 @@ Huffman code :
 
 实现代码为：
 
-```
-#include <stdio.h>//设置一个数组，数组的下标表示集合中的元素，所以数组只用下标为1，2，3的空间int set[5];//i代表数组下标，n表示集合中最大的元素值void PowerSet(int i,int n){    //当i>n时，说明集合中所有的元素都做了选择，开始判断    if (i>n) {        for (int j=1; j<=n; j++) {            //如果树组中存放的是 1，说明在当初尝试时，选择取该元素，即对应的数组下标，所以，可以输出            if (set[j]==1) {                printf("%d ",j);            }        }        printf("\n");    }else{        //如果选择要该元素，对应的数组单元中赋值为1；反之，赋值为0。然后继续向下探索        set[i]=1;PowerSet(i+1, n);        set[i]=0;PowerSet(i+1, n);    }}int main() {    int n=3;    for (int i=0; i<5; i++) {        set[i]=0;    }    PowerSet(1, n);    return 0;}
+```c
+#include <stdio.h>
+//设置一个数组，数组的下标表示集合中的元素，所以数组只用下标为1，2，3的空间
+int set[5];
+//i代表数组下标，n表示集合中最大的元素值
+void PowerSet(int i,int n){ 
+    //当i>n时，说明集合中所有的元素都做了选择，开始判断 
+    if (i>n) {      
+        for (int j=1; j<=n; j++) {  
+            //如果树组中存放的是 1，说明在当初尝试时，选择取该元素，即对应的数组下标，所以，可以输出   
+            if (set[j]==1) {      
+                printf("%d ",j);  
+            }     
+        } 
+        printf("\n"); 
+    }else{    
+        //如果选择要该元素，对应的数组单元中赋值为1；反之，赋值为0。然后继续向下探索   
+        set[i]=1;PowerSet(i+1, n);     
+        set[i]=0;PowerSet(i+1, n); 
+    }
+}
+int main() { 
+    int n=3;   
+    for (int i=0; i<5; i++) {    
+        set[i]=0;  
+    }  
+    PowerSet(1, n);  
+    return 0;
+}
 ```
 
 运行结果：
@@ -954,14 +1678,10 @@ Huffman code :
 使用回溯法解决问题的过程，实际上是建立一棵“状态树”的过程。例如，在解决列举集合{1,2,3}所有子集的问题中，对于每个元素，都有两种状态，取还是舍，所以构建的状态树为：
 
 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210141-843530.png)
-[图](http://data.biancheng.net/view/200.html)1 状态树
+图1 状态树
 
 
-回溯法的求解过程实质上是先序遍历“状态树”的过程。树中每一个叶子结点，都有可能是问题的答案。图 1 中的状态树是满
-
-[二叉树](http://data.biancheng.net/view/192.html)
-
-，得到的叶子结点全部都是问题的解。
+回溯法的求解过程实质上是先序遍历“状态树”的过程。树中每一个叶子结点，都有可能是问题的答案。图 1 中的状态树是满二叉树，得到的叶子结点全部都是问题的解。
 
 在某些情况下，回溯法解决问题的过程中创建的状态树并不都是满二叉树，因为在试探的过程中，有时会发现此种情况下，再往下进行没有意义，所以会放弃这条死路，回溯到上一步。在树中的体现，就是在树的最后一层不是满的，即不是满二叉树，需要自己判断哪些叶子结点代表的是正确的结果。
 
@@ -982,30 +1702,83 @@ Huffman code :
 
 实现代码：
 
-```
-纯文本复制
-#include <stdio.h>int Queenes[8]={0},Counts=0;int Check(int line,int list){    //遍历该行之前的所有行    for (int index=0; index<line; index++) {        //挨个取出前面行中皇后所在位置的列坐标        int data=Queenes[index];        //如果在同一列，该位置不能放        if (list==data) {            return 0;        }        //如果当前位置的斜上方有皇后，在一条斜线上，也不行        if ((index+data)==(line+list)) {            return 0;        }        //如果当前位置的斜下方有皇后，在一条斜线上，也不行        if ((index-data)==(line-list)) {            return 0;        }    }    //如果以上情况都不是，当前位置就可以放皇后    return 1;}//输出语句void print(){    for (int line = 0; line < 8; line++)    {        int list;        for (list = 0; list < Queenes[line]; list++)            printf("0");        printf("#");        for (list = Queenes[line] + 1; list < 8; list++){            printf("0");        }        printf("\n");    }    printf("================\n");}void eight_queen(int line){    //在数组中为0-7列    for (int list=0; list<8; list++) {        //对于固定的行列，检查是否和之前的皇后位置冲突        if (Check(line, list)) {            //不冲突，以行为下标的数组位置记录列数            Queenes[line]=list;            //如果最后一样也不冲突，证明为一个正确的摆法            if (line==7) {                //统计摆法的Counts加1                Counts++;                //输出这个摆法                print();                //每次成功，都要将数组重归为0                Queenes[line]=0;                return;            }            //继续判断下一样皇后的摆法，递归            eight_queen(line+1);            //不管成功失败，该位置都要重新归0，以便重复使用。            Queenes[line]=0;        }    }}int main() {    //调用回溯函数，参数0表示从棋盘的第一行开始判断    eight_queen(0);    printf("摆放的方式有%d种",Counts);    return 0;}
+```c
+#include <stdio.h>
+int Queenes[8]={0},Counts=0;
+int Check(int line,int list){  
+    //遍历该行之前的所有行   
+    for (int index=0; index<line; index++) {  
+        //挨个取出前面行中皇后所在位置的列坐标    
+        int data=Queenes[index];    
+        //如果在同一列，该位置不能放  
+        if (list==data) {     
+            return 0;   
+        }     
+        //如果当前位置的斜上方有皇后，在一条斜线上，也不行    
+        if ((index+data)==(line+list)) {   
+            return 0;      
+        }     
+        //如果当前位置的斜下方有皇后，在一条斜线上，也不行     
+        if ((index-data)==(line-list)) {   
+            return 0;     
+        }   
+    }    
+    //如果以上情况都不是，当前位置就可以放皇后  
+    return 1;
+}
+//输出语句
+void print(){   
+    for (int line = 0; line < 8; line++) {       
+        int list;   
+        for (list = 0; list < Queenes[line]; list++)   
+            printf("0");     
+        printf("#");  
+        for (list = Queenes[line] + 1; list < 8; list++){  
+            printf("0");   
+        }     
+        printf("\n");  
+    }  
+    printf("================\n");
+}
+void eight_queen(int line){  
+    //在数组中为0-7列   
+    for (int list=0; list<8; list++) {   
+        //对于固定的行列，检查是否和之前的皇后位置冲突     
+        if (Check(line, list)) {     
+            //不冲突，以行为下标的数组位置记录列数    
+            Queenes[line]=list;      
+            //如果最后一样也不冲突，证明为一个正确的摆法   
+            if (line==7) {          
+                //统计摆法的Counts加1      
+                Counts++;    
+                //输出这个摆法   
+                print();       
+                //每次成功，都要将数组重归为0     
+                Queenes[line]=0;     
+                return;     
+            }        
+            //继续判断下一样皇后的摆法，递归         
+            eight_queen(line+1);      
+            //不管成功失败，该位置都要重新归0，以便重复使用。     
+            Queenes[line]=0;     
+        }   
+    }
+}
+int main() {   
+    //调用回溯函数，参数0表示从棋盘的第一行开始判断  
+    eight_queen(0);  
+    printf("摆放的方式有%d种",Counts); 
+    return 0;
+}
 ```
 
 大家可以自己运行一下程序，查看运行结果，由于八皇后问题有92种摆法，这里不一一列举。
 
-本节要讨论的是当给定 n（n>=0）个结点时，可以构建多少种形态不同的
-
-[树](http://data.biancheng.net/view/23.html)
-
-。
+本节要讨论的是当给定 n（n>=0）个结点时，可以构建多少种形态不同的树。
 
 > 如果两棵树中各个结点的位置都一一对应，可以说这两棵树相似。如果两棵树不仅相似，而且对应结点上的数据也相同，就可以说这两棵树等价。本节中，形态不同的树指的是互不相似的树。
 
-前面介绍过，对于任意一棵普通树，通过
-
-[孩子兄弟表示法](http://data.biancheng.net/view/198.html)
-
-的转化，都可以找到唯一的一棵
-
-[二叉树](http://data.biancheng.net/view/192.html)
-
-与之对应。所以本节研究的题目也可以转化成：n 个结点可以构建多少种形态不同的二叉树。
+前面介绍过，对于任意一棵普通树，通过孩子兄弟表示法的转化，都可以找到唯一的一棵二叉树与之对应。所以本节研究的题目也可以转化成：n 个结点可以构建多少种形态不同的二叉树。
 
 每一棵普通树对应的都是一棵没有右子树的二叉树，所以对于 n 个结点的树来说，树的形态改变是因为除了根结点之外的其它结点改变形态得到的，所以，n 个结点构建的形态不同的树与之对应的是 n-1 个结点构建的形态不同的二叉树。
 
@@ -1013,11 +1786,7 @@ Huffman code :
 
 ## 方法一
 
-最直接的一种方法就是推理。当 n=0 时，只能构建一棵空树；当 n=2 时，可以构建 2 棵形态不同的二叉树，如
-
-[图](http://data.biancheng.net/view/200.html)
-
- 1（A）；当 n=3 时，可以构建 5 棵形态互不相同的二叉树，如图 1（B）。
+最直接的一种方法就是推理。当 n=0 时，只能构建一棵空树；当 n=2 时，可以构建 2 棵形态不同的二叉树，如图 1（A）；当 n=3 时，可以构建 5 棵形态互不相同的二叉树，如图 1（B）。
 
 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210212-227701.png)
 图 1 不同形态的二叉树
@@ -1028,9 +1797,9 @@ Huffman code :
 > 当 n=1 时，也适用，只不过只有一个根结点，没有左右孩子（i=0）。
 
 可以得出一个递推公式：
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5104141558.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/05/194741-143994.png)
 通过对公式一步步的数学推算，最后得出，含有 n 个结点的不相似的二叉树的数量为：
-![img](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5104202Y5.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/05/194734-959006.png)
 
 ## 方法二
 
@@ -1063,11 +1832,7 @@ Huffman code :
 
 如图 3 所示为前序序列（1，2，3）构建的不同形态的二叉树，他们的中序序列各不相同。所以不同形态二叉树的数目恰好就是前序序列一定的情况下，所能得到的不同的中序序列的个数。
 
-中序序列是对二叉树进行中序遍历获得的，遍历的过程实质上就是结点数据进
-
-[栈](http://data.biancheng.net/view/169.html)
-
-出栈的过程。所以，中序序列的个数就是数列（1，2，3）按1-2-3的顺序进栈，
+中序序列是对二叉树进行中序遍历获得的，遍历的过程实质上就是结点数据进栈出栈的过程。所以，中序序列的个数就是数列（1，2，3）按1-2-3的顺序进栈，
 各元素选择在不同的时间点出栈，所获的的不同的出栈顺序即为中序序列，而中序序列的数目，也就是不同形态的二叉树的个数。
 
 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/25/210240-701875.png)
