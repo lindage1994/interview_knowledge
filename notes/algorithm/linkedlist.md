@@ -612,9 +612,76 @@ typedef struct {
 
 下面给出了创建静态链表的 C 语言实现代码：
 
-```
-纯文本复制
-#include <stdio.h>#define maxSize 6typedef struct {    int data;    int cur;}component;//将结构体数组中所有分量链接到备用链表中void reserveArr(component *array);//初始化静态链表int initArr(component *array);//输出函数void displayArr(component * array, int body);//从备用链表上摘下空闲节点的函数int mallocArr(component * array);int main() {    component array[maxSize];    int body = initArr(array);    printf("静态链表为：\n");    displayArr(array, body);    return 0;}//创建备用链表void reserveArr(component *array) {    int i = 0;    for (i = 0; i < maxSize; i++) {        array[i].cur = i + 1;//将每个数组分量链接到一起        array[i].data = 0;    }    array[maxSize - 1].cur = 0;//链表最后一个结点的游标值为0}//提取分配空间int mallocArr(component * array) {    //若备用链表非空，则返回分配的结点下标，否则返回 0（当分配最后一个结点时，该结点的游标值为 0）    int i = array[0].cur;    if (array[0].cur) {        array[0].cur = array[i].cur;    }    return i;}//初始化静态链表int initArr(component *array) {    int tempBody = 0, body = 0;    int i = 0;    reserveArr(array);    body = mallocArr(array);    //建立首元结点    array[body].data = 1;    array[body].cur = 0;    //声明一个变量，把它当指针使，指向链表的最后的一个结点，当前和首元结点重合    tempBody = body;    for (i = 2; i < 4; i++) {        int j = mallocArr(array); //从备用链表中拿出空闲的分量        array[j].data = i;      //初始化新得到的空间结点        array[tempBody].cur = j; //将新得到的结点链接到数据链表的尾部        tempBody = j;             //将指向链表最后一个结点的指针后移    }    array[tempBody].cur = 0;//新的链表最后一个结点的指针设置为0    return body;}void displayArr(component * array, int body) {    int tempBody = body;//tempBody准备做遍历使用    while (array[tempBody].cur) {        printf("%d,%d\n", array[tempBody].data, array[tempBody].cur);        tempBody = array[tempBody].cur;    }    printf("%d,%d\n", array[tempBody].data, array[tempBody].cur);}
+```c
+#include <stdio.h>
+#define maxSize 6
+typedef struct {   
+    int data; 
+    int cur;
+}component;
+//将结构体数组中所有分量链接到备用链表中
+void reserveArr(component *array);
+//初始化静态链表
+int initArr(component *array);
+//输出函数
+void displayArr(component * array, int body);
+//从备用链表上摘下空闲节点的函数
+int mallocArr(component * array);
+int main() {  
+    component array[maxSize];  
+    int body = initArr(array); 
+    printf("静态链表为：\n");  
+    displayArr(array, body); 
+    return 0;
+}
+//创建备用链表
+void reserveArr(component *array) { 
+    int i = 0; 
+    for (i = 0; i < maxSize; i++) {    
+        array[i].cur = i + 1;//将每个数组分量链接到一起  
+        array[i].data = 0;   
+    }   
+    array[maxSize - 1].cur = 0;//链表最后一个结点的游标值为0
+}
+//提取分配空间
+int mallocArr(component * array) {   
+    //若备用链表非空，则返回分配的结点下标，否则返回 0（当分配最后一个结点时，该结点的游标值为 0） 
+    int i = array[0].cur;  
+    if (array[0].cur) {  
+        array[0].cur = array[i].cur;   
+    }   
+    return i;
+}
+//初始化静态链表
+int initArr(component *array) { 
+    int tempBody = 0, body = 0;   
+    int i = 0;  
+    reserveArr(array); 
+    body = mallocArr(array); 
+    //建立首元结点   
+    array[body].data = 1;   
+    array[body].cur = 0;  
+    //声明一个变量，把它当指针使，指向链表的最后的一个结点，当前和首元结点重合 
+    tempBody = body;  
+    for (i = 2; i < 4; i++) {  
+        int j = mallocArr(array); //从备用链表中拿出空闲的分量    
+        array[j].data = i;  
+        //初始化新得到的空间结点     
+        array[tempBody].cur = j; //将新得到的结点链接到数据链表的尾部    
+        tempBody = j;        
+        //将指向链表最后一个结点的指针后移    
+    }  
+    array[tempBody].cur = 0;//新的链表最后一个结点的指针设置为0  
+    return body;
+}
+void displayArr(component * array, int body) {  
+    int tempBody = body;//tempBody准备做遍历使用  
+    while (array[tempBody].cur) {     
+        printf("%d,%d\n", array[tempBody].data, array[tempBody].cur);  
+        tempBody = array[tempBody].cur;  
+    }  
+    printf("%d,%d\n", array[tempBody].data, array[tempBody].cur);
+}
 ```
 
 代码输出结果为：
@@ -626,24 +693,11 @@ typedef struct {
 
 由此，我们就成功创建了一个不带头结点的静态链表（如图 7 所示），感兴趣的读者可自行尝试创建一个带有头结点的静态链表。
 
-上节，我们初步创建了一个
+上节，我们初步创建了一个静态链表，本节学习有关静态链表的一些基本操作，包括对表中数据元素的添加、删除、查找和更改。
 
-[静态链表](http://data.biancheng.net/view/163.html)
+本节是建立在已能成功创建静态链表的基础上，因此我们继续使用上节中已建立好的静态链表学习本节内容，建立好的静态链表如图1 所示：
 
-，本节学习有关静态
-
-[链表](http://data.biancheng.net/view/160.html)
-
-的一些基本操作，包括对表中数据元素的添加、删除、查找和更改。
-
-本节是建立在已能成功创建静态链表的基础上，因此我们继续使用上节中已建立好的静态链表学习本节内容，建立好的静态链表如
-
-[图](http://data.biancheng.net/view/200.html)
-
- 1 所示：
-
-
-![建立好的静态链表](http://data.biancheng.net/uploads/allimg/181126/2-1Q1260S34aS.gif)
+![建立好的静态链表](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/07/201412-645937.gif)
 图 1 建立好的静态链表
 
 ## 静态链表添加元素
@@ -652,20 +706,31 @@ typedef struct {
 
 1. 从备用链表中摘除一个节点，用于存储元素 4；
 2. 找到表中第 2 个节点（添加位置的前一个节点，这里是数据元素 2），将元素 2 的游标赋值给新元素 4；
-3. 将元素 4 所在[数组](http://data.biancheng.net/view/181.html)中的下标赋值给元素 2 的游标；
+3. 将元素 4 所在数组中的下标赋值给元素 2 的游标；
 
 
 经过以上几步操作，数据元素 4 就成功地添加到了静态链表中，此时新的静态链表如图 2 所示：
 
-
-![img](http://data.biancheng.net/uploads/allimg/181126/2-1Q126205601512.gif)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/07/201720-940255.gif)
 图 2 添加元素 4 的静态链表
 
 
 由此，我们通过尝试编写 C 语言程序实现以上操作。读者可参考如下程序：
 
-```
-//向链表中插入数据，body表示链表的头结点在数组中的位置，add表示插入元素的位置，num表示要插入的数据void insertArr(component * array, int body, int add, int num) {    int tempBody = body;//tempBody做遍历结构体数组使用    int i = 0, insert = 0;    //找到要插入位置的上一个结点在数组中的位置    for (i = 1; i < add; i++) {        tempBody = array[tempBody].cur;    }    insert = mallocArr(array);//申请空间，准备插入    array[insert].data = num;    array[insert].cur = array[tempBody].cur;//新插入结点的游标等于其直接前驱结点的游标    array[tempBody].cur = insert;//直接前驱结点的游标等于新插入结点所在数组中的下标}
+```c
+//向链表中插入数据，body表示链表的头结点在数组中的位置，add表示插入元素的位置，num表示要插入的数据
+void insertArr(component * array, int body, int add, int num) { 
+    int tempBody = body;//tempBody做遍历结构体数组使用   
+    int i = 0, insert = 0;  
+    //找到要插入位置的上一个结点在数组中的位置  
+    for (i = 1; i < add; i++) {     
+        tempBody = array[tempBody].cur;  
+    }   
+    insert = mallocArr(array);//申请空间，准备插入  
+    array[insert].data = num;  
+    array[insert].cur = array[tempBody].cur;//新插入结点的游标等于其直接前驱结点的游标  
+    array[tempBody].cur = insert;//直接前驱结点的游标等于新插入结点所在数组中的下标
+}
 ```
 
 ## 静态链表删除元素
@@ -682,8 +747,41 @@ typedef struct {
 
 如下是针对无头结点的数据链表，实现删除操作的 C 语言代码：
 
-```
-//删除结点函数，num表示被删除结点中数据域存放的数据，函数返回新数据链表的表头位置int deletArr(component * array, int body, int num) {    int tempBody = body;    int del = 0;    int newbody = 0;    //找到被删除结点的位置    while (array[tempBody].data != num) {        tempBody = array[tempBody].cur;        //当tempBody为0时，表示链表遍历结束，说明链表中没有存储该数据的结点        if (tempBody == 0) {            printf("链表中没有此数据");            return;        }    }    //运行到此，证明有该结点    del = tempBody;    tempBody = body;    //删除首元结点，需要特殊考虑    if (del == body) {        newbody = array[del].cur;        freeArr(array, del);        return newbody;    }    else    {        //找到该结点的上一个结点，做删除操作        while (array[tempBody].cur != del) {            tempBody = array[tempBody].cur;        }        //将被删除结点的游标直接给被删除结点的上一个结点        array[tempBody].cur = array[del].cur;        //回收被摘除节点的空间        freeArr(array, del);        return body;    }  }
+```c
+//删除结点函数，num表示被删除结点中数据域存放的数据，函数返回新数据链表的表头位置
+int deletArr(component * array, int body, int num) { 
+    int tempBody = body;  
+    int del = 0;  
+    int newbody = 0;  
+    //找到被删除结点的位置  
+    while (array[tempBody].data != num) {  
+        tempBody = array[tempBody].cur;   
+        //当tempBody为0时，表示链表遍历结束，说明链表中没有存储该数据的结点    
+        if (tempBody == 0) {    
+            printf("链表中没有此数据");    
+            return;    
+        }   
+    }  
+    //运行到此，证明有该结点  
+    del = tempBody;    
+    tempBody = body;  
+    //删除首元结点，需要特殊考虑  
+    if (del == body) {     
+        newbody = array[del].cur;   
+        freeArr(array, del);      
+        return newbody;   
+    }    else    {     
+        //找到该结点的上一个结点，做删除操作    
+        while (array[tempBody].cur != del) {    
+            tempBody = array[tempBody].cur;  
+        }     
+        //将被删除结点的游标直接给被删除结点的上一个结点   
+        array[tempBody].cur = array[del].cur; 
+        //回收被摘除节点的空间      
+        freeArr(array, del);    
+        return body;    
+    }  
+}
 ```
 
 ## 静态链表查找元素
@@ -692,8 +790,21 @@ typedef struct {
 
 静态链表查找指定数据元素的 C 语言实现代码如下：
 
-```
-//在以body作为头结点的链表中查找数据域为elem的结点在数组中的位置int selectNum(component * array, int body, int num) {    //当游标值为0时，表示链表结束    while (array[body].cur != 0) {        if (array[body].data == num) {            return body;        }        body = array[body].cur;    }    //判断最后一个结点是否符合要求    if (array[body].data == num) {        return body;    }    return -1;//返回-1，表示在链表中没有找到该元素}
+```c
+//在以body作为头结点的链表中查找数据域为elem的结点在数组中的位置
+int selectNum(component * array, int body, int num) {   
+    //当游标值为0时，表示链表结束   
+    while (array[body].cur != 0) {   
+        if (array[body].data == num) { 
+            return body;   
+        }     
+        body = array[body].cur;  
+    }    //判断最后一个结点是否符合要求  
+    if (array[body].data == num) {   
+        return body;   
+    }   
+    return -1;//返回-1，表示在链表中没有找到该元素
+}
 ```
 
 ## 静态链表中更改数据
@@ -702,8 +813,16 @@ typedef struct {
 
 实现此操作的 C 语言代码如下：
 
-```
-//在以body作为头结点的链表中将数据域为oldElem的结点，数据域改为newElemvoid amendElem(component * array, int body, int oldElem, int newElem) {    int add = selectNum(array, body, oldElem);    if (add == -1) {        printf("无更改元素");        return;    }    array[add].data = newElem;}
+```c
+//在以body作为头结点的链表中将数据域为oldElem的结点，数据域改为
+newElemvoid amendElem(component * array, int body, int oldElem, int newElem) {  
+    int add = selectNum(array, body, oldElem);  
+    if (add == -1) {   
+        printf("无更改元素");   
+        return;  
+    }   
+    array[add].data = newElem;
+}
 ```
 
 ## 总结
@@ -910,7 +1029,7 @@ void freeArr(component * array, int k) {
 无论是静态链表还是动态链表，有时在解决具体问题时，需要我们对其结构进行稍微地调整。比如，可以把链表的两头连接，使其成为了一个环状链表，通常称为循环链表。和它名字的表意一样，只需要将表中最后一个结点的指针指向头结点，链表就能成环儿，如图1 所示。
 
 
-![img](http://data.biancheng.net/uploads/allimg/170718/2-1FGQ54T3422.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/07/201930-335273.png)
 
 图1 循环链表
 
@@ -1170,24 +1289,11 @@ void display(line * head) {
 1 <-> 2 <-> 3 <-> 4 <-> 5
 链表中第 4 个节点的直接前驱是：3
 
-前面学习了如何创建一个
+前面学习了如何创建一个双向链表，本节学习有关双向链表的一些基本操作，即如何在双向链表中添加、删除、查找或更改数据元素。
 
-[双向链表](http://data.biancheng.net/view/166.html)
+本节知识基于已熟练掌握双向链表创建过程的基础上，我们继续上节所创建的双向链表来学习本节内容，创建好的双向链表如图 1 所示：
 
-，本节学习有关双向
-
-[链表](http://data.biancheng.net/view/160.html)
-
-的一些基本操作，即如何在双向链表中添加、删除、查找或更改数据元素。
-
-本节知识基于已熟练掌握双向链表创建过程的基础上，我们继续上节所创建的双向链表来学习本节内容，创建好的双向链表如
-
-[图](http://data.biancheng.net/view/200.html)
-
- 1 所示：
-
-
-![双向链表示意图](http://data.biancheng.net/uploads/allimg/181129/2-1Q12ZQIWK.gif)
+![双向链表示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/07/202021-395314.gif)
 图 1 双向链表示意图
 
 ## 双向链表添加节点
@@ -1206,8 +1312,7 @@ void display(line * head) {
 
 例如，将新元素 7 添加至双链表的表头，则实现过程如图 2 所示：
 
-
-![添加元素至双向链表的表头](http://data.biancheng.net/uploads/allimg/181129/2-1Q12ZQT5263.gif)
+![添加元素至双向链表的表头](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/07/202031-828853.gif)
 图 2 添加元素至双向链表的表头
 
 #### 2) 添加至表的中间位置
@@ -1217,8 +1322,7 @@ void display(line * head) {
 1. 新节点先与其直接后继节点建立双层逻辑关系；
 2. 新节点的直接前驱节点与之建立双层逻辑关系；
 
-
-![双向链表中间位置添加数据元素](http://data.biancheng.net/uploads/allimg/181129/2-1Q12ZQ915562.gif)
+![双向链表中间位置添加数据元素](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/07/202045-934800.gif)
 图 3 双向链表中间位置添加数据元素
 
 #### 3) 添加至表尾
@@ -1228,8 +1332,7 @@ void display(line * head) {
 1. 找到双链表中最后一个节点；
 2. 让新节点与最后一个节点进行双层逻辑关系；
 
-
-![双向链表尾部添加数据元素](http://data.biancheng.net/uploads/allimg/181129/2-1Q12ZR0305L.gif)
+![双向链表尾部添加数据元素](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/07/202055-39627.gif)
 图 4 双向链表尾部添加数据元素
 
 
@@ -1286,7 +1389,7 @@ line * insertLine(line * head, int data, int add) {
 
 
 
-![双链表删除元素操作示意图](http://data.biancheng.net/uploads/allimg/181129/2-1Q12ZR10D13.gif)
+![双链表删除元素操作示意图](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/07/202105-308974.gif)
 图 5 双链表删除元素操作示意图
 
 
@@ -1318,8 +1421,22 @@ line * delLine(line * head, int data) {
 
 C 语言实现代码为：
 
-```
-//head为原双链表，elem表示被查找元素int selectElem(line * head, int elem) {    //新建一个指针t，初始化为头指针 head    line * t = head;    int i = 1;    while (t) {        if (t->data == elem) {            return i;        }        i++;        t = t->next;    }    //程序执行至此处，表示查找失败    return -1;}
+```c
+//head为原双链表，elem表示被查找元素
+int selectElem(line * head, int elem) {   
+    //新建一个指针t，初始化为头指针 head    
+    line * t = head;  
+    int i = 1;  
+    while (t) {  
+        if (t->data == elem) {    
+            return i;   
+        }     
+        i++;     
+        t = t->next;   
+    }   
+    //程序执行至此处，表示查找失败  
+    return -1;
+}
 ```
 
 ## 双向链表更改节点

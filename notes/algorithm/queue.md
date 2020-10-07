@@ -185,8 +185,20 @@ int main() {
 
 由此，我们可以编写出创建链式队列的 C 语言实现代码为:
 
-```
-//链表中的节点结构typedef struct QNode{    int data;    struct QNode * next;}QNode;//创建链式队列的函数QNode * initQueue(){    //创建一个头节点    QNode * queue=(QNode*)malloc(sizeof(QNode));    //对头节点进行初始化    queue->next=NULL;    return queue;}
+```c
+//链表中的节点结构
+typedef struct QNode{   
+    int data;   
+    struct QNode * next;
+}QNode;
+//创建链式队列的函数
+QNode * initQueue(){  
+    //创建一个头节点  
+    QNode * queue=(QNode*)malloc(sizeof(QNode));  
+    //对头节点进行初始化  
+    queue->next=NULL;  
+    return queue;
+}
 ```
 
 ## 链式队列数据入队
@@ -208,8 +220,19 @@ int main() {
 
 数据元素入链式队列的 C 语言实现代码为：
 
-```
-QNode* enQueue(QNode * rear,int data){    //1、用节点包裹入队元素    QNode * enElem=(QNode*)malloc(sizeof(QNode));    enElem->data=data;    enElem->next=NULL;    //2、新节点与rear节点建立逻辑关系    rear->next=enElem;    //3、rear指向新节点    rear=enElem;    //返回新的rear，为后续新元素入队做准备    return rear;}
+```c
+QNode* enQueue(QNode * rear,int data){  
+    //1、用节点包裹入队元素 
+    QNode * enElem=(QNode*)malloc(sizeof(QNode));  
+    enElem->data=data;  
+    enElem->next=NULL;  
+    //2、新节点与rear节点建立逻辑关系  
+    rear->next=enElem;  
+    //3、rear指向新节点    
+    rear=enElem;  
+    //返回新的rear，为后续新元素入队做准备  
+    return rear;
+}
 ```
 
 ## 链式队列数据出队
@@ -231,8 +254,21 @@ QNode* enQueue(QNode * rear,int data){    //1、用节点包裹入队元素    Q
 
 链式队列中队头元素出队的 C 语言实现代码为：
 
-```
-void DeQueue(QNode * top,QNode * rear){    if (top->next==NULL) {        printf("队列为空");        return ;    }    // 1、    QNode * p=top->next;    printf("%d",p->data);    top->next=p->next;    if (rear==p) {        rear=top;    }    free(p);}
+```c
+void DeQueue(QNode * top,QNode * rear){  
+    if (top->next==NULL) {    
+        printf("队列为空");     
+        return ;   
+    } 
+    // 1、 
+    QNode * p=top->next;  
+    printf("%d",p->data);  
+    top->next=p->next;
+    if (rear==p) {  
+        rear=top;   
+    }   
+    free(p);
+}
 ```
 
 注意，将队头元素做出队操作时，需提前判断队列中是否还有元素，如果没有，要提示用户无法做出队操作，保证程序的健壮性。

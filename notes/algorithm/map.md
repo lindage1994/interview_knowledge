@@ -74,8 +74,9 @@
   ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202009/26/194612-632761.gif)
 图 4 完全图示意图
   
+
 具有 n 个顶点的完全图，图中边的数量为 n(n-1)/2；而对于具有 n 个顶点的有向完全图，图中弧的数量为 n(n-1)。
-  
+
 - 稀疏图和稠密图：这两种图是相对存在的，即如果图中具有很少的边（或弧），此图就称为"稀疏图"；反之，则称此图为"稠密图"。
 
   稀疏和稠密的判断条件是：e<nlogn，其中 e 表示图中边（或弧）的数量，n 表示图中顶点的数量。如果式子成立，则为稀疏图；反之为稠密图。
@@ -931,8 +932,226 @@ int main() {
 
 实现代码为：
 
-```
-#include <stdio.h>#include <stdlib.h>#define MAX_VERtEX_NUM 20                   //顶点的最大个数#define VRType int                          //表示顶点之间的关系的变量类型#define InfoType char                       //存储弧或者边额外信息的指针变量类型#define VertexType int                      //图中顶点的数据类型typedef enum{false,true}bool;               //定义bool型常量bool visited[MAX_VERtEX_NUM];               //设置全局数组，记录标记顶点是否被访问过typedef struct {    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。    InfoType * info;                        //弧或边额外含有的信息指针}ArcCell,AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];typedef struct {    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数}MGraph;typedef struct CSNode{    VertexType data;    struct CSNode * lchild;//孩子结点    struct CSNode * nextsibling;//兄弟结点}*CSTree,CSNode;typedef struct Queue{    CSTree data;//队列中存放的为树结点    struct Queue * next;}Queue;//根据顶点本身数据，判断出顶点在二维数组中的位置int LocateVex(MGraph * G,VertexType v){    int i=0;    //遍历一维数组，找到变量v    for (; i<G->vexnum; i++) {        if (G->vexs[i]==v) {            break;        }    }    //如果找不到，输出提示语句，返回-1    if (i>G->vexnum) {        printf("no such vertex.\n");        return -1;    }    return i;}//构造无向图void CreateDN(MGraph *G){    scanf("%d,%d",&(G->vexnum),&(G->arcnum));    for (int i=0; i<G->vexnum; i++) {        scanf("%d",&(G->vexs[i]));    }    for (int i=0; i<G->vexnum; i++) {        for (int j=0; j<G->vexnum; j++) {            G->arcs[i][j].adj=0;            G->arcs[i][j].info=NULL;        }    }    for (int i=0; i<G->arcnum; i++) {        int v1,v2;        scanf("%d,%d",&v1,&v2);        int n=LocateVex(G, v1);        int m=LocateVex(G, v2);        if (m==-1 ||n==-1) {            printf("no this vertex\n");            return;        }        G->arcs[n][m].adj=1;        G->arcs[m][n].adj=1;//无向图的二阶矩阵沿主对角线对称    }}int FirstAdjVex(MGraph G,int v){    //查找与数组下标为v的顶点之间有边的顶点，返回它在数组中的下标    for(int i = 0; i<G.vexnum; i++){        if( G.arcs[v][i].adj ){            return i;        }    }    return -1;}int NextAdjVex(MGraph G,int v,int w){    //从前一个访问位置w的下一个位置开始，查找之间有边的顶点    for(int i = w+1; i<G.vexnum; i++){        if(G.arcs[v][i].adj){            return i;        }    }    return -1;}//初始化队列void InitQueue(Queue ** Q){    (*Q)=(Queue*)malloc(sizeof(Queue));    (*Q)->next=NULL;}//结点v进队列void EnQueue(Queue **Q,CSTree T){    Queue * element=(Queue*)malloc(sizeof(Queue));    element->data=T;    element->next=NULL;       Queue * temp=(*Q);    while (temp->next!=NULL) {        temp=temp->next;    }    temp->next=element;}//队头元素出队列void DeQueue(Queue **Q,CSTree *u){    (*u)=(*Q)->next->data;    (*Q)->next=(*Q)->next->next;}//判断队列是否为空bool QueueEmpty(Queue *Q){    if (Q->next==NULL) {        return true;    }    return false;}void BFSTree(MGraph G,int v,CSTree*T){    CSTree q=NULL;    Queue * Q;    InitQueue(&Q);    //根结点入队    EnQueue(&Q, (*T));    //当队列为空时，证明遍历完成    while (!QueueEmpty(Q)) {        bool first=true;        //队列首个结点出队        DeQueue(&Q,&q);        //判断结点中的数据在数组中的具体位置        int v=LocateVex(&G,q->data);        //已经访问过的更改其标志位        visited[v]=true;        //遍历以出队结点为起始点的所有邻接点        for (int w=FirstAdjVex(G,v); w>=0; w=NextAdjVex(G,v, w)) {            //标志位为false，证明未遍历过            if (!visited[w]) {                //新建一个结点 p，存放当前遍历的顶点                CSTree p=(CSTree)malloc(sizeof(CSNode));                p->data=G.vexs[w];                p->lchild=NULL;                p->nextsibling=NULL;                //当前结点入队                EnQueue(&Q, p);                //更改标志位                visited[w]=true;                //如果是出队顶点的第一个邻接点，设置p结点为其左孩子                if (first) {                    q->lchild=p;                    first=false;                }                //否则设置其为兄弟结点                else{                    q->nextsibling=p;                }                q=p;            }        }    }}//广度优先搜索生成森林并转化为二叉树void BFSForest(MGraph G,CSTree *T){    (*T)=NULL;    //每个顶点的标记为初始化为false    for (int v=0; v<G.vexnum; v++) {        visited[v]=false;    }    CSTree q=NULL;    //遍历图中所有的顶点    for (int v=0; v<G.vexnum; v++) {        //如果该顶点的标记位为false，证明未访问过        if (!(visited[v])) {            //新建一个结点，表示该顶点            CSTree p=(CSTree)malloc(sizeof(CSNode));            p->data=G.vexs[v];            p->lchild=NULL;            p->nextsibling=NULL;            //如果树未空，则该顶点作为树的树根            if (!(*T)) {                (*T)=p;            }            //该顶点作为树根的兄弟结点            else{                q->nextsibling=p;            }            //每次都要把q指针指向新的结点，为下次添加结点做铺垫            q=p;            //以该结点为起始点，构建广度优先生成树            BFSTree(G,v,&p);        }    }}//前序遍历二叉树void PreOrderTraverse(CSTree T){    if (T) {        printf("%d ",T->data);        PreOrderTraverse(T->lchild);        PreOrderTraverse(T->nextsibling);    }    return;}int main() {    MGraph G;//建立一个图的变量    CreateDN(&G);//初始化图    CSTree T;    BFSForest(G, &T);    PreOrderTraverse(T);    return 0;}
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_VERtEX_NUM 20                   //顶点的最大个数
+#define VRType int                          //表示顶点之间的关系的变量类型
+#define InfoType char                       //存储弧或者边额外信息的指针变量类型
+#define VertexType int                      //图中顶点的数据类型
+typedef enum{false,true}bool;               //定义bool型常量
+bool visited[MAX_VERtEX_NUM];               //设置全局数组，记录标记顶点是否被访问过
+
+typedef struct {   
+    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。  
+    InfoType * info;                        //弧或边额外含有的信息指针
+}ArcCell,AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];
+
+typedef struct {  
+    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据  
+    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系  
+    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数
+}MGraph;
+
+typedef struct CSNode{  
+    VertexType data; 
+    struct CSNode * lchild;//孩子结点  
+    struct CSNode * nextsibling;//兄弟结点
+}*CSTree,CSNode;
+
+typedef struct Queue{  
+    CSTree data;//队列中存放的为树结点  
+    struct Queue * next;
+}Queue;
+//根据顶点本身数据，判断出顶点在二维数组中的位置
+int LocateVex(MGraph * G,VertexType v){  
+    int i=0;    
+    //遍历一维数组，找到变量v   
+    for (; i<G->vexnum; i++) {    
+        if (G->vexs[i]==v) {   
+            break;      
+        }   
+    }   
+    //如果找不到，输出提示语句，返回-1   
+    if (i>G->vexnum) {    
+        printf("no such vertex.\n");   
+        return -1;  
+    }   
+    return i;
+}
+
+//构造无向图
+void CreateDN(MGraph *G){ 
+    scanf("%d,%d",&(G->vexnum),&(G->arcnum));  
+    for (int i=0; i<G->vexnum; i++) {   
+        scanf("%d",&(G->vexs[i])); 
+    } 
+    for (int i=0; i<G->vexnum; i++) {  
+        for (int j=0; j<G->vexnum; j++) {    
+            G->arcs[i][j].adj=0;     
+            G->arcs[i][j].info=NULL;    
+        }  
+    }   
+    for (int i=0; i<G->arcnum; i++) {    
+        int v1,v2;      
+        scanf("%d,%d",&v1,&v2);   
+        int n=LocateVex(G, v1);  
+        int m=LocateVex(G, v2);
+        if (m==-1 ||n==-1) {    
+            printf("no this vertex\n");   
+            return;     
+        }     
+        G->arcs[n][m].adj=1;   
+        G->arcs[m][n].adj=1;//无向图的二阶矩阵沿主对角线对称  
+    }
+}
+
+int FirstAdjVex(MGraph G,int v){  
+    //查找与数组下标为v的顶点之间有边的顶点，返回它在数组中的下标  
+    for(int i = 0; i<G.vexnum; i++){   
+        if( G.arcs[v][i].adj ){   
+            return i;  
+        }  
+    }  
+    return -1;
+}
+
+int NextAdjVex(MGraph G,int v,int w){   
+    //从前一个访问位置w的下一个位置开始，查找之间有边的顶点  
+    for(int i = w+1; i<G.vexnum; i++){    
+        if(G.arcs[v][i].adj){    
+            return i;  
+        }   
+    }  
+    return -1;
+}
+
+//初始化队列
+void InitQueue(Queue ** Q){  
+    (*Q)=(Queue*)malloc(sizeof(Queue));  
+    (*Q)->next=NULL;
+}
+
+//结点v进队列
+void EnQueue(Queue **Q,CSTree T){   
+    Queue * element=(Queue*)malloc(sizeof(Queue));  
+    element->data=T; 
+    element->next=NULL;  
+    Queue * temp=(*Q);  
+    while (temp->next!=NULL) {   
+        temp=temp->next; 
+    }  
+    temp->next=element;
+}
+
+//队头元素出队列
+void DeQueue(Queue **Q,CSTree *u){   
+    (*u)=(*Q)->next->data; 
+    (*Q)->next=(*Q)->next->next;
+}
+
+//判断队列是否为空
+bool QueueEmpty(Queue *Q){  
+    if (Q->next==NULL) {    
+        return true;  
+    }  
+    return false;
+}
+
+void BFSTree(MGraph G,int v,CSTree*T){  
+    CSTree q=NULL;  
+    Queue * Q;   
+    InitQueue(&Q); 
+    //根结点入队  
+    EnQueue(&Q, (*T));  
+    //当队列为空时，证明遍历完成  
+    while (!QueueEmpty(Q)) {    
+        bool first=true;    
+        //队列首个结点出队   
+        DeQueue(&Q,&q);    
+        //判断结点中的数据在数组中的具体位置  
+        int v=LocateVex(&G,q->data);  
+        //已经访问过的更改其标志位     
+        visited[v]=true;     
+        //遍历以出队结点为起始点的所有邻接点   
+        for (int w=FirstAdjVex(G,v); w>=0; w=NextAdjVex(G,v, w)) {   
+            //标志位为false，证明未遍历过        
+            if (!visited[w]) {    
+                //新建一个结点 p，存放当前遍历的顶点    
+                CSTree p=(CSTree)malloc(sizeof(CSNode));    
+                p->data=G.vexs[w];       
+                p->lchild=NULL;     
+                p->nextsibling=NULL;   
+                //当前结点入队      
+                EnQueue(&Q, p);      
+                //更改标志位       
+                visited[w]=true;         
+                //如果是出队顶点的第一个邻接点，设置p结点为其左孩子      
+                if (first) {          
+                    q->lchild=p;       
+                    first=false;    
+                }         
+                //否则设置其为兄弟结点      
+                else{        
+                    q->nextsibling=p;     
+                }         
+                q=p;     
+            }     
+        }  
+    }
+}
+
+//广度优先搜索生成森林并转化为二叉树
+void BFSForest(MGraph G,CSTree *T){   
+    (*T)=NULL;   
+    //每个顶点的标记为初始化为false  
+    for (int v=0; v<G.vexnum; v++) {    
+        visited[v]=false;
+    }   
+    CSTree q=NULL;    
+    //遍历图中所有的顶点  
+    for (int v=0; v<G.vexnum; v++) {  
+        //如果该顶点的标记位为false，证明未访问过    
+        if (!(visited[v])) {      
+            //新建一个结点，表示该顶点     
+            CSTree p=(CSTree)malloc(sizeof(CSNode));     
+            p->data=G.vexs[v];   
+            p->lchild=NULL;       
+            p->nextsibling=NULL;      
+            //如果树未空，则该顶点作为树的树根     
+            if (!(*T)) {           
+                (*T)=p;    
+            }          
+            //该顶点作为树根的兄弟结点   
+            else{       
+                q->nextsibling=p;   
+            }       
+            //每次都要把q指针指向新的结点，为下次添加结点做铺垫    
+            q=p;     
+            //以该结点为起始点，构建广度优先生成树     
+            BFSTree(G,v,&p);    
+        }   
+    }
+}
+
+//前序遍历二叉树
+void PreOrderTraverse(CSTree T){  
+    if (T) {      
+        printf("%d ",T->data);   
+        PreOrderTraverse(T->lchild);   
+        PreOrderTraverse(T->nextsibling); 
+    }  
+    return;
+}
+
+int main() { 
+    MGraph G;//建立一个图的变量  
+    CreateDN(&G);//初始化图 
+    CSTree T;  
+    BFSForest(G, &T); 
+    PreOrderTraverse(T);  
+    return 0;
+}
 ```
 
 运行结果为：
@@ -1103,8 +1322,201 @@ l(i),求各边中ai活动的最晚开始时间（多种情况下，选择最小�
 
 关键路径的代码实现
 
-```
-#include <stdio.h>#include <stdlib.h>#define  MAX_VERTEX_NUM 20//最大顶点个数#define  VertexType int//顶点数据的类型typedef enum{false,true} bool;//建立全局变量，保存边的最早开始时间VertexType ve[MAX_VERTEX_NUM];//建立全局变量，保存边的最晚开始时间VertexType vl[MAX_VERTEX_NUM];typedef struct ArcNode{    int adjvex;//邻接点在数组中的位置下标    struct ArcNode * nextarc;//指向下一个邻接点的指针    VertexType dut;}ArcNode;typedef struct VNode{    VertexType data;//顶点的数据域    ArcNode * firstarc;//指向邻接点的指针}VNode,AdjList[MAX_VERTEX_NUM];//存储各链表头结点的数组typedef struct {    AdjList vertices;//图中顶点及各邻接点数组    int vexnum,arcnum;//记录图中顶点数和边或弧数}ALGraph;//找到顶点对应在邻接表数组中的位置下标int LocateVex(ALGraph G,VertexType u){    for (int i=0; i<G.vexnum; i++) {        if (G.vertices[i].data==u) {            return i;        }    }    return -1;}//创建AOE网，构建邻接表void CreateAOE(ALGraph **G){    *G=(ALGraph*)malloc(sizeof(ALGraph));       scanf("%d,%d",&((*G)->vexnum),&((*G)->arcnum));    for (int i=0; i<(*G)->vexnum; i++) {        scanf("%d",&((*G)->vertices[i].data));        (*G)->vertices[i].firstarc=NULL;    }    VertexType initial,end,dut;    for (int i=0; i<(*G)->arcnum; i++) {        scanf("%d,%d,%d",&initial,&end,&dut);               ArcNode *p=(ArcNode*)malloc(sizeof(ArcNode));        p->adjvex=LocateVex(*(*G), end);        p->nextarc=NULL;        p->dut=dut;               int locate=LocateVex(*(*G), initial);        p->nextarc=(*G)->vertices[locate].firstarc;        (*G)->vertices[locate].firstarc=p;    }}//结构体定义栈结构typedef struct stack{    VertexType data;    struct stack * next;}stack;stack *T;//初始化栈结构void initStack(stack* *S){    (*S)=(stack*)malloc(sizeof(stack));    (*S)->next=NULL;}//判断栈是否为空bool StackEmpty(stack S){    if (S.next==NULL) {        return true;    }    return false;}//进栈，以头插法将新结点插入到链表中void push(stack *S,VertexType u){    stack *p=(stack*)malloc(sizeof(stack));    p->data=u;    p->next=NULL;    p->next=S->next;    S->next=p;}//弹栈函数，删除链表首元结点的同时，释放该空间，并将该结点中的数据域通过地址传值给变量i;void pop(stack *S,VertexType *i){    stack *p=S->next;    *i=p->data;    S->next=S->next->next;    free(p);}//统计各顶点的入度void FindInDegree(ALGraph G,int indegree[]){    //初始化数组，默认初始值全部为0    for (int i=0; i<G.vexnum; i++) {        indegree[i]=0;    }    //遍历邻接表，根据各链表中结点的数据域存储的各顶点位置下标，在indegree数组相应位置+1    for (int i=0; i<G.vexnum; i++) {        ArcNode *p=G.vertices[i].firstarc;        while (p) {            indegree[p->adjvex]++;            p=p->nextarc;        }    }}bool TopologicalOrder(ALGraph G){    int indegree[G.vexnum];//创建记录各顶点入度的数组    FindInDegree(G,indegree);//统计各顶点的入度    //建立栈结构，程序中使用的是链表    stack *S;    //初始化栈    initStack(&S);    for (int i=0; i<G.vexnum; i++) {        ve[i]=0;    }    //查找度为0的顶点，作为起始点    for (int i=0; i<G.vexnum; i++) {        if (!indegree[i]) {            push(S, i);        }    }    int count=0;    //栈为空为结束标志    while (!StackEmpty(*S)) {        int index;        //弹栈，并记录栈中保存的顶点所在邻接表数组中的位置        pop(S,&index);        //压栈，为求各边的最晚开始时间做准备        push(T, index);        ++count;        //依次查找跟该顶点相链接的顶点，如果初始入度为1，当删除前一个顶点后，该顶点入度为0        for (ArcNode *p=G.vertices[index].firstarc; p ; p=p->nextarc) {                       VertexType k=p->adjvex;                       if (!(--indegree[k])) {                //顶点入度为0，入栈                push(S, k);            }            //如果边的源点的最长路径长度加上边的权值比汇点的最长路径长度还长，就覆盖ve数组中对应位置的值，最终结束时，ve数组中存储的就是各顶点的最长路径长度。            if (ve[index]+p->dut>ve[k]) {                ve[k]=ve[index]+p->dut;            }        }    }    //如果count值小于顶点数量，表明有向图有环    if (count<G.vexnum) {        printf("该图有回路");        return false;    }    return true;}//求各顶点的最晚发生时间并计算出各边的最早和最晚开始时间void CriticalPath(ALGraph G){    if (!TopologicalOrder(G)) {        return ;    }    for (int i=0 ; i<G.vexnum ; i++) {        vl[i]=ve[G.vexnum-1];    }    int j,k;    while (!StackEmpty(*T)) {        pop(T, &j);        for (ArcNode* p=G.vertices[j].firstarc ; p ; p=p->nextarc) {            k=p->adjvex;            //构建Vl数组，在初始化时，Vl数组中每个单元都是18，如果每个边的汇点-边的权值比源点值小，就保存更小的。            if (vl[k]-p->dut<vl[j]) {                vl[j] = vl[k]-p->dut;            }        }    }    for (j = 0; j < G.vexnum; j++) {        for (ArcNode*p = G.vertices[j].firstarc; p ;p = p->nextarc) {            k = p->adjvex;            //求各边的最早开始时间e[i],等于ve数组中相应源点存储的值            int ee = ve[j];            //求各边的最晚开始时间l[i]，等于汇点在vl数组中存储的值减改边的权值            int el = vl[k]-p->dut;            //判断e[i]和l[i]是否相等，如果相等，该边就是关键活动，相应的用*标记；反之，边后边没标记            char tag = (ee==el)?'*':' ';            printf("%3d%3d%3d%3d%3d%2c\n",j,k,p->dut,ee,el,tag);        }    }}int main(){    ALGraph *G;    CreateAOE(&G);//创建AOE网    initStack(&T);    TopologicalOrder(*G);    CriticalPath(*G);    return  0;}
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#define  MAX_VERTEX_NUM 20//最大顶点个数
+#define  VertexType int//顶点数据的类型
+typedef enum{false,true} bool;//建立全局变量，保存边的最早开始时间
+VertexType ve[MAX_VERTEX_NUM];//建立全局变量，保存边的最晚开始时间
+VertexType vl[MAX_VERTEX_NUM];
+typedef struct ArcNode{  
+    int adjvex;//邻接点在数组中的位置下标  
+    struct ArcNode * nextarc;//指向下一个邻接点的指针  
+    VertexType dut;
+}ArcNode;
+
+typedef struct VNode{ 
+    VertexType data;//顶点的数据域   
+    ArcNode * firstarc;//指向邻接点的指针
+}VNode,AdjList[MAX_VERTEX_NUM];//存储各链表头结点的数组
+
+typedef struct { 
+    AdjList vertices;//图中顶点及各邻接点数组  
+    int vexnum,arcnum;//记录图中顶点数和边或弧数
+}ALGraph;
+
+//找到顶点对应在邻接表数组中的位置下标
+int LocateVex(ALGraph G,VertexType u){  
+    for (int i=0; i<G.vexnum; i++) {   
+        if (G.vertices[i].data==u) {  
+            return i;      
+        }  
+    }  
+    return -1;
+}
+
+//创建AOE网，构建邻接表
+void CreateAOE(ALGraph **G){  
+    *G=(ALGraph*)malloc(sizeof(ALGraph));   
+    scanf("%d,%d",&((*G)->vexnum),&((*G)->arcnum));  
+    for (int i=0; i<(*G)->vexnum; i++) {   
+        scanf("%d",&((*G)->vertices[i].data));   
+        (*G)->vertices[i].firstarc=NULL;
+    }  
+    VertexType initial,end,dut;  
+    for (int i=0; i<(*G)->arcnum; i++) {   
+        scanf("%d,%d,%d",&initial,&end,&dut);  
+        ArcNode *p=(ArcNode*)malloc(sizeof(ArcNode));   
+        p->adjvex=LocateVex(*(*G), end);  
+        p->nextarc=NULL;    
+        p->dut=dut;     
+        int locate=LocateVex(*(*G), initial);   
+        p->nextarc=(*G)->vertices[locate].firstarc;   
+        (*G)->vertices[locate].firstarc=p; 
+    }
+}
+
+//结构体定义栈结构
+typedef struct stack{  
+    VertexType data;   
+    struct stack * next;
+}stack;stack *T;
+
+//初始化栈结构
+void initStack(stack* *S){  
+    (*S)=(stack*)malloc(sizeof(stack));   
+    (*S)->next=NULL;
+}
+
+//判断栈是否为空
+bool StackEmpty(stack S){  
+    if (S.next==NULL) {    
+        return true;   
+    }  
+    return false;
+}
+
+//进栈，以头插法将新结点插入到链表中
+void push(stack *S,VertexType u){  
+    stack *p=(stack*)malloc(sizeof(stack));  
+    p->data=u;   
+    p->next=NULL; 
+    p->next=S->next;  
+    S->next=p;
+}
+
+//弹栈函数，删除链表首元结点的同时，释放该空间，并将该结点中的数据域通过地址传值给变量i;
+void pop(stack *S,VertexType *i){  
+    stack *p=S->next;   
+    *i=p->data; 
+    S->next=S->next->next;  
+    free(p);
+}
+
+//统计各顶点的入度
+void FindInDegree(ALGraph G,int indegree[]){ 
+    //初始化数组，默认初始值全部为0  
+    for (int i=0; i<G.vexnum; i++) {   
+        indegree[i]=0; 
+    }   
+    //遍历邻接表，根据各链表中结点的数据域存储的各顶点位置下标，在indegree数组相应位置+1   
+    for (int i=0; i<G.vexnum; i++) {    
+        ArcNode *p=G.vertices[i].firstarc;    
+        while (p) {      
+            indegree[p->adjvex]++;      
+            p=p->nextarc;    
+        }  
+    }
+}
+
+bool TopologicalOrder(ALGraph G){   
+    int indegree[G.vexnum];//创建记录各顶点入度的数组   
+    FindInDegree(G,indegree);//统计各顶点的入度 
+    //建立栈结构，程序中使用的是链表   
+    stack *S; 
+    //初始化栈  
+    initStack(&S);  
+    for (int i=0; i<G.vexnum; i++) {     
+        ve[i]=0;  
+    }  
+    //查找度为0的顶点，作为起始点  
+    for (int i=0; i<G.vexnum; i++) {   
+        if (!indegree[i]) {         
+            push(S, i);  
+        }    
+    }  
+    int count=0;   
+    //栈为空为结束标志  
+    while (!StackEmpty(*S)) { 
+        int index;      
+        //弹栈，并记录栈中保存的顶点所在邻接表数组中的位置    
+        pop(S,&index);     
+        //压栈，为求各边的最晚开始时间做准备    
+        push(T, index);     
+        ++count;     
+        //依次查找跟该顶点相链接的顶点，如果初始入度为1，当删除前一个顶点后，该顶点入度为0    
+        for (ArcNode *p=G.vertices[index].firstarc; p ; p=p->nextarc) {   
+            VertexType k=p->adjvex;      
+            if (!(--indegree[k])) {    
+                //顶点入度为0，入栈      
+                push(S, k);       
+            }        
+            //如果边的源点的最长路径长度加上边的权值比汇点的最长路径长度还长，就覆盖ve数组中对应位置的值，最终结束时，ve数组中存储的就是各顶点的最长路径长度。           
+            if (ve[index]+p->dut>ve[k]) {   
+                ve[k]=ve[index]+p->dut;    
+            }      
+        }  
+    }   
+    //如果count值小于顶点数量，表明有向图有环   
+    if (count<G.vexnum) {    
+        printf("该图有回路");     
+        return false; 
+    }   
+    return true;
+}
+
+//求各顶点的最晚发生时间并计算出各边的最早和最晚开始时间
+void CriticalPath(ALGraph G){    
+    if (!TopologicalOrder(G)) {  
+        return ;   
+    }   
+    for (int i=0 ; i<G.vexnum ; i++) {    
+        vl[i]=ve[G.vexnum-1];   
+    }  
+    int j,k;  
+    while (!StackEmpty(*T)) {     
+        pop(T, &j);    
+        for (ArcNode* p=G.vertices[j].firstarc ; p ; p=p->nextarc) {  
+            k=p->adjvex;         
+            //构建Vl数组，在初始化时，Vl数组中每个单元都是18，如果每个边的汇点-边的权值比源点值小，就保存更小的。    
+            if (vl[k]-p->dut<vl[j]) {      
+                vl[j] = vl[k]-p->dut;  
+            }   
+        }  
+    }  
+    for (j = 0; j < G.vexnum; j++) { 
+        for (ArcNode*p = G.vertices[j].firstarc; p ;p = p->nextarc) {  
+            k = p->adjvex;      
+            //求各边的最早开始时间e[i],等于ve数组中相应源点存储的值    
+            int ee = ve[j];       
+            //求各边的最晚开始时间l[i]，等于汇点在vl数组中存储的值减改边的权值  
+            int el = vl[k]-p->dut;      
+            //判断e[i]和l[i]是否相等，如果相等，该边就是关键活动，相应的用*标记；反之，边后边没标记     
+            char tag = (ee==el)?'*':' ';    
+            printf("%3d%3d%3d%3d%3d%2c\n",j,k,p->dut,ee,el,tag);     
+        } 
+    }
+}
+
+int main(){  
+    ALGraph *G;   
+    CreateAOE(&G);//创建AOE网   
+    initStack(&T);  
+    TopologicalOrder(*G);  
+    CriticalPath(*G);   
+    return  0;
+}
 ```
 
 拿图 1 中的 AOE 网为例，运行的结果为：
