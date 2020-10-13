@@ -32,6 +32,7 @@
 - [常见注解](/notes/spring/spring-annotations.md)
 ### spring mvc
 - [springMVC](/notes/spring/SpringMVC-Principle.md)
+- [spring-security](/note/spring/spring-security.md)
 ### spring boot
 - [起步依赖和自动配置](/notes/spring/起步依赖和自动配置.md)
 - [定制starter](/notes/spring/定制starter.md)
