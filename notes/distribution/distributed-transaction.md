@@ -30,12 +30,13 @@
 ## InnoDB实现原理
 InnoDB是mysql的一个存储引擎，大部分人对mysql都比较熟悉，这里简单介绍一下数据库事务实现的一些基本原理，在本地事务中，服务和资源在事务的包裹下可以看做是一体的:
 
-![](https://user-gold-cdn.xitu.io/2018/7/26/164d65a2768cd3d6?w=700&h=335&f=png&s=8151)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200020-128755.png)
 我们的本地事务由资源管理器进行管理:
-![](https://user-gold-cdn.xitu.io/2018/7/26/164d65b4f31b2356?w=1029&h=988&f=png&s=328964)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200004-98885.png)
 而事务的ACID是通过InnoDB日志和锁来保证。事务的隔离性是通过数据库锁的机制实现的，持久性通过redo log（重做日志）来实现，原子性和一致性通过Undo log来实现。UndoLog的原理很简单，为了满足事务的原子性，在操作任何数据之前，首先将数据备份到一个地方（这个存储数据备份的地方称为UndoLog）。然后进行数据的修改。如果出现了错误或者用户执行了ROLLBACK语句，系统可以利用Undo Log中的备份将数据恢复到事务开始之前的状态。
 和Undo Log相反，RedoLog记录的是新数据的备份。在事务提交前，只要将RedoLog持久化即可，不需要将数据持久化。当系统崩溃时，虽然数据没有持久化，但是RedoLog已经持久化。系统可以根据RedoLog的内容，将所有数据恢复到最新的状态。
 对具体实现过程有兴趣的同学可以去自行搜索扩展。
+
 # 分布式事务
 ## 什么是分布式事务
 分布式事务就是指事务的参与者、支持事务的服务器、资源服务器以及事务管理器分别位于不同的分布式系统的不同节点之上。简单的说，就是一次大的操作由不同的小操作组成，这些小的操作分布在不同的服务器上，且属于不同的应用，分布式事务需要保证这些小操作要么全部成功，要么全部失败。本质上来说，分布式事务就是为了保证不同数据库的数据一致性。
@@ -44,11 +45,13 @@ InnoDB是mysql的一个存储引擎，大部分人对mysql都比较熟悉，这�
 
 ### service多个节点
 随着互联网快速发展，微服务，SOA等服务架构模式正在被大规模的使用，举个简单的例子，一个公司之内，用户的资产可能分为好多个部分，比如余额，积分，优惠券等等。在公司内部有可能积分功能由一个微服务团队维护，优惠券又是另外的团队维护
-![](https://user-gold-cdn.xitu.io/2018/7/26/164d6783a9e3f959?w=592&h=431&f=png&s=28160)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/195942-380177.png)
 这样的话就无法保证积分扣减了之后，优惠券能否扣减成功。
+
 ### resource多个节点
 同样的，互联网发展得太快了，我们的Mysql一般来说装千万级的数据就得进行分库分表，对于一个支付宝的转账业务来说，你给的朋友转钱，有可能你的数据库是在北京，而你的朋友的钱是存在上海，所以我们依然无法保证他们能同时成功。
-![](https://user-gold-cdn.xitu.io/2018/7/26/164d67e0c6026ac4?w=395&h=318&f=png&s=11546)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200037-365352.png)
+
 ## 分布式事务的基础
 从上面来看分布式事务是随着互联网高速发展应运而生的，这是一个必然的我们之前说过数据库的ACID四大特性，已经无法满足我们分布式事务，这个时候又有一些新的大佬提出一些新的理论:
 ### CAP
@@ -84,7 +87,7 @@ BASE解决了CAP中理论没有网络延迟，在BASE中用软状态和最终一
 
 ## 2PC
 说到2PC就不得不聊数据库分布式事务中的 XA Transactions。
-![](https://user-gold-cdn.xitu.io/2018/7/26/164d73624b63e17a?w=784&h=478&f=jpeg&s=36753)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200134-775525.jpeg)
 在XA协议中分为两阶段:
 
 第一阶段：事务管理器要求每个涉及到事务的数据库预提交(precommit)此操作，并反映是否可以提交.
@@ -105,7 +108,7 @@ TCC事务机制相比于上面介绍的XA，解决了其几个缺点:
 1.解决了协调者单点，由主业务方发起并完成这个业务活动。业务活动管理器也变成多点，引入集群。
 2.同步阻塞:引入超时，超时后进行补偿，并且不会锁定整个资源，将资源转换为业务逻辑形式，粒度变小。
 3.数据一致性，有了补偿机制之后，由业务活动管理器控制一致性
-![](https://user-gold-cdn.xitu.io/2018/7/26/164d74a2293772d5?w=1920&h=1214&f=png&s=1108566)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200151-172712.png)
 对于TCC的解释:
 
 - Try阶段：尝试执行,完成所有业务检查（一致性）,预留必须业务资源（准隔离性）
@@ -131,7 +134,7 @@ Try阶段:你需要向你的钱包检查是否够100元并锁住这100元，水�
 本地消息表这个方案最初是ebay提出的 ebay的完整方案https://queue.acm.org/detail.cfm?id=1394128。
 
 此方案的核心是将需要分布式处理的任务通过消息日志的方式来异步执行。消息日志可以存储到本地文本、数据库或消息队列，再通过业务规则自动或人工发起重试。人工重试更多的是应用于支付场景，通过对账系统对事后问题的处理。
-![](https://user-gold-cdn.xitu.io/2018/7/27/164d75fd59779f74?w=600&h=277&f=png&s=37999)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200224-299523.png)
 
 对于本地消息队列来说核心是把大事务转变为小事务。还是举上面用100元去买一瓶水的例子。
 
@@ -147,7 +150,7 @@ Try阶段:你需要向你的钱包检查是否够100元并锁住这100元，水�
 ## MQ事务
 在RocketMQ中实现了分布式事务，实际上其实是对本地消息表的一个封装，将本地消息表移动到了MQ内部，下面简单介绍一下MQ事务，如果想对其详细了解可以参考:
 https://www.jianshu.com/p/453c6e7ff81c。
-![](https://user-gold-cdn.xitu.io/2018/7/27/164d773728eb2d4d?w=621&h=331&f=png&s=48523)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200240-502990.png)
 基本流程如下:
 第一阶段Prepared消息，会拿到消息的地址。
 
@@ -156,7 +159,7 @@ https://www.jianshu.com/p/453c6e7ff81c。
 第三阶段通过第一阶段拿到的地址去访问消息，并修改状态。消息接受者就能使用这个消息。
 
 如果确认消息失败，在RocketMq Broker中提供了定时扫描没有更新状态的消息，如果有消息没有得到确认，会向消息发送者发送消息，来判断是否提交，在rocketmq中是以listener的形式给发送者，用来处理。
-![](https://user-gold-cdn.xitu.io/2018/7/27/164d77389afdfd6b?w=624&h=330&f=png&s=55775)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200300-36917.png)
 如果消费超时，则需要一直重试，消息接收端需要保证幂等。如果消息消费失败，这个就需要人工进行处理，因为这个概率较低，如果为了这种小概率时间而设计这个复杂的流程反而得不偿失
 
 ## Saga事务
@@ -213,7 +216,7 @@ C1=加100元 C2=给用户减一瓶水 C3=给库存加一瓶水
 
 说Fescar之前这里先简单的介绍一下著名的2PC:XA Transactions。
 在XA协议中分为两阶段:
-![](https://user-gold-cdn.xitu.io/2018/7/26/164d73624b63e17a?w=784&h=478&f=jpeg&s=36753)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200324-405559.jpeg)
 第一阶段：事务管理器要求每个涉及到事务的数据库预提交(precommit)此操作，并反映是否可以提交.
 
 第二阶段：事务协调器要求每个数据库提交数据，或者回滚数据。
@@ -250,14 +253,14 @@ Fescar虽然是二阶段提交协议的分布式事务，但是其解决了上�
 
 Fescar的设计核心就是他的角色分类。不论是数据库上的XA还是Fescar都有两个角色TM(事务管理器)和RM(资源管理器)，同时Fescar还有一个TC(事务协调器)。我们先来看看如果没有TC，只有TM和RM会发生什么呢？这里我举个简单的例子，小明去网站上面购买了一个商品，如下图所示：
 
-![](https://user-gold-cdn.xitu.io/2019/3/26/169ba7c00d0578df?w=263&h=239&f=png&s=9035)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200341-42525.png)
 
 这里小明其实就是TM(事务管理器)，而商品和账户其实就是我们的RM(资源管理器)，正常情况下可能没问什么问题，账户和库存都能扣减成功。如果小明再扣减库存的时候成功但是在扣减账户的时候失败，这个时候就需要对我们的库存资源进行回滚。小明这个时候就会通知库存把上个阶段扣减的货物补回来。但是回滚库存的时候库存服务不稳定，这次回滚就失败了。一般来说小明会不断的去重试，直到成功。这样就有个问题小明就一直被阻塞，不能做任何事。这个也可以看做二阶段commit/rollback的时候一直会阻塞TM，网易DDB的XA协议针对这种情况会做一个异步线程的操作。但是在Fescar中一切都是由TC去做的，当然TC其实不仅仅会做二阶段失败的重试，他会做二阶段的所有RM的commit和rollback，让我们的TM做更少的事。
 
 再Fescar中TM，RM，TC的关系如下面官方提供的图:
 
 
-![](https://user-gold-cdn.xitu.io/2019/3/26/169baa79d84b68f3?w=794&h=478&f=png&s=45359)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200359-959116.png)
 
 - TM:事务的发起者。用来告诉TC，全局事务的开始，提交，回滚。
 - RM:具体的事务资源，每一个RM都会作为一个分支事务注册在TC。
@@ -275,28 +278,28 @@ Fescar的设计核心就是他的角色分类。不论是数据库上的XA还是
 
 找到我们的Server：
 
-![](https://user-gold-cdn.xitu.io/2019/3/27/169baeaa18a599c3?w=1330&h=552&f=png&s=92823)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200441-564680.png)
 
 直接运行main方法，该方法会帮助我们在本地启动一个端口号为8091的fescar-server服务。如果我们想要进行服务注册，我们可以修改registry.conf下面的type
 
-![](https://user-gold-cdn.xitu.io/2019/3/27/169bf6812acb3a51?w=919&h=591&f=png&s=70082)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200455-938788.png)
 
 可以看见在0.4.1版本的时候支持四种服务注册，nacos,eureka,redis,zk。目前使用redis进行服务注册是有问题的，我也提了一个PR给官方进行修正。当然为了方便其实选择file，后续我们直连是最为便捷的。
 
 再运行main方法之后，如果出现Server started日志，就代表我们的TC(事务协调器)成功启动。
 
-![](https://user-gold-cdn.xitu.io/2019/3/27/169bf6e55152a2a2?w=1025&h=106&f=png&s=13784)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200509-801998.png)
 
 ## 4.2 认识TM
 
 上面事务协调器已经搭建完成，我们接下来需要做的就是将TM和RM运行起来，将对应的操作交给我们的事务协调器去做。这个时候我们需要打开fescar-samples这个项目:由于这个项目使用的RPC是Dubbo,他默认配的服务注册中心是Nacos,需要我们再本地安装一个Nacos，具体安装可以自行搜索，这里不展开讲了。
 
 这里官方例子中，业务关系如下图:
-![](https://user-gold-cdn.xitu.io/2019/3/26/169baaefd5ed2f8f?w=868&h=473&f=png&s=47737)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200522-431222.png)
 
 可以看见Business也就是我们的TM，找到对应的代码:
 
-![](https://user-gold-cdn.xitu.io/2019/3/27/169bf7609ce6f036?w=1520&h=548&f=png&s=99044)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200537-628602.png)
 
 从代码中我们知道启动一个分布式事务是需要添加@GlobalTransactional注解的，当然Fescar也提供了API的方式让我们达到同样的效果。我们同时也需要修改registry.conf中的Type为file。
 
@@ -305,7 +308,7 @@ Fescar的设计核心就是他的角色分类。不论是数据库上的XA还是
 这个GloablTranscational注解到底做了什么呢？其实加了这个注解的都会走一个叫GlobalTransactionalInterceptor的切面，再这个切面中又会进入TrascationTemplate这个类中的excute方法，这个也是TM的核心方法:
 
 
-![](https://user-gold-cdn.xitu.io/2019/3/27/169bf931dd1292cd?w=1008&h=542&f=png&s=49868)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200552-383791.png)
 
 上面的代码有部分删减，只选取了核心的流程。TrascationTemplate其实也是Fescar提供给我们的API，如果不使用注解那么我们也可以模仿他的方式去做。可以看见主要分为五步:
 
@@ -321,26 +324,26 @@ TM的核心过程主要是这5步，其他详细的讲解会在后续的代码�
 
 当我们上面的Business发起业务请求之后，就来到了我们RM的流程，我们的Storage和Order服务是怎么知道现在已经是处于分布式事务当中了呢？这个就需要借助RPC框架来完成了，这里我们使用的是Dubbo,fescar为dubbo提供了一个filter,如下图所示：
 
-![](https://user-gold-cdn.xitu.io/2019/3/27/169bf98eff477365?w=858&h=631&f=png&s=72418)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200702-726654.png)
 
 这里会从rpcContext中获取我们的xid，也就是我们的分布式事务ID,如果有的话就证明本次请求处于分布式事务中，那么就会把XID种入我们的RootContext(fescar的本地上下文)。如果你不是Dubbo，那么也可以根据此方法适配你的RPC。
 
 在RM中我们应该做什么呢？只需要做下面两步:
 
 1. 将数据源换成Fescar代理
-   ![](https://user-gold-cdn.xitu.io/2019/3/27/169bfa05e4fc6c78?w=934&h=120&f=png&s=12730)
+   ![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200717-699714.png)
 2. 在当前数据库中添加一个Undolog的表，用于记录日志回滚。
 
 再Fescar中不仅仅是对dataSource进行代理，也会对connection和statement进行代理，如下图:
-![](https://user-gold-cdn.xitu.io/2019/3/27/169bf9f9093b98ad?w=342&h=322&f=png&s=48913)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200734-512327.png)
 
 大家都知道我们的SQL的具体执行需要依赖Statement,在Fescar的StatementProxy中有如下代码:
 
-![](https://user-gold-cdn.xitu.io/2019/3/27/169bfa6fe75ea90a?w=1036&h=272&f=png&s=28655)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200758-597882.png)
 
 可以看见运行的方法是ExecuteTemplate.execute,在execute方法中会根据我们执行语句的类型记录我们的Undolog，具体的执行流程参考下面官方的一张图片:
 
-![](https://user-gold-cdn.xitu.io/2019/3/27/169bfad14dab8e88?w=716&h=350&f=png&s=133285)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200818-821299.png)
 
 总的来说我们的RM核心流程主要有两个：一个是如何识别分布式事务，另外一个是通过我们数据源代理让我们原本简单的执行SQL流程做了更多的事。
 
@@ -351,10 +354,6 @@ TM的核心过程主要是这5步，其他详细的讲解会在后续的代码�
 这篇文章的原理目前介绍的比较粗浅，后面会陆续推出三篇文章详细介绍分析:TC,TM,RM，敬请期待。
 
 
-
-> 如果大家觉得这篇文章对你有帮助，你的关注和转发是对我最大的支持，O(∩_∩)O:
-
-![](https://user-gold-cdn.xitu.io/2018/7/22/164c2ad786c7cfe4?w=500&h=375&f=jpeg&s=215163)
 
 # 参考文章
 
@@ -369,7 +368,7 @@ TM的核心过程主要是这5步，其他详细的讲解会在后续的代码�
 
 这篇文章会介绍Seata中另外两个重要的角色`TM`(事务管理器)和`RM`(资源管理器)，首先还是来看看下面这张图:
 
-![](https://user-gold-cdn.xitu.io/2019/5/12/16aab866d7b6e787?w=794&h=478&f=png&s=185024)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200921-747450.png)
 上一个文章对于`TC`的原理已经做了详细介绍，对于TM和RM我们看见在图中都是属于`client`的角色,他们分别的功能如下:
 
 - `TM`(事务管理器):用来控制整个分布式事务的管理，发起全局事务的`Begin/Commit/Rollback`。
@@ -380,7 +379,7 @@ TM的核心过程主要是这5步，其他详细的讲解会在后续的代码�
 首先我们来介绍一些`Seata-client`中`Spring`模块，`Seata`通过这个模块对自己的`TM`和`RM`进行初始化以及扫描AT模式和TCC模式的注解并初始化这些模式需要的资源。
 在`Seata`的项目中有一个`spring`模块,里面包含了我们和`spring`相关的逻辑,`GlobalTransactionScanner`是其中的核心类:
 
-```
+```java
 public class GlobalTransactionScanner extends AbstractAutoProxyCreator implements InitializingBean,ApplicationContextAware,
         DisposableBean
 ```
@@ -389,7 +388,7 @@ public class GlobalTransactionScanner extends AbstractAutoProxyCreator implement
 
 首先来看继承AbstractAutoProxyCreator实现的wrapIfNecessary
 
-```
+```java
     protected Object wrapIfNecessary(Object bean, String beanName, Object cacheKey) {
         if (PROXYED_SET.contains(beanName)) {
             return bean;
@@ -430,7 +429,7 @@ public class GlobalTransactionScanner extends AbstractAutoProxyCreator implement
 
 然后再看从`InitializingBean`中实现的`afterPropertiesSet`，也就是对`Seata`的初始化：
 
-```
+```java
     public void afterPropertiesSet() {
         initClient();
 
@@ -469,7 +468,7 @@ public class GlobalTransactionScanner extends AbstractAutoProxyCreator implement
 
 首先来看看GlobalTransactionalInterceptor#invoke：
 
-```
+```java
     public Object invoke(final MethodInvocation methodInvocation) throws Throwable {
         Class<?> targetClass = (methodInvocation.getThis() != null ? AopUtils.getTargetClass(methodInvocation.getThis()) : null);
         Method specificMethod = ClassUtils.getMostSpecificMethod(methodInvocation.getMethod(), targetClass);
@@ -494,7 +493,7 @@ public class GlobalTransactionScanner extends AbstractAutoProxyCreator implement
 
 `handleGlobalTransaction`逻辑如下：
 
-```
+```java
     private Object handleGlobalTransaction(final MethodInvocation methodInvocation,
                                            final GlobalTransactional globalTrxAnno) throws Throwable {
 
@@ -554,7 +553,7 @@ public class GlobalTransactionScanner extends AbstractAutoProxyCreator implement
 
 我们先看看TccActionInterceptor是如何使用:
 
-```
+```java
     @TwoPhaseBusinessAction(name = "TccActionOne" , commitMethod = "commit", rollbackMethod = "rollback")
     public boolean prepare(BusinessActionContext actionContext, int a);
 
@@ -567,7 +566,7 @@ public class GlobalTransactionScanner extends AbstractAutoProxyCreator implement
 
 接下来我们再看看TCC相关的拦截器是如何处理的：
 
-```
+```java
 public Object invoke(final MethodInvocation invocation) throws Throwable {
 		Method method = getActionInterfaceMethod(invocation);
 		TwoPhaseBusinessAction businessAction = method.getAnnotation(TwoPhaseBusinessAction.class);	
@@ -598,7 +597,7 @@ public Object invoke(final MethodInvocation invocation) throws Throwable {
 
 再来看看`actionInterceptorHandler#proceed`这个方法:
 
-```
+```java
  public Map<String, Object> proceed(Method method, Object[] arguments, TwoPhaseBusinessAction businessAction, Callback<Object> targetCallback) throws Throwable {
 		Map<String, Object> ret = new HashMap<String, Object>(16);
 		
@@ -645,7 +644,7 @@ Spring的几个总要的内容已经剖析完毕，核心类主要是三个，�
 
 在上面章节中我们讲了`GlobalTransactionalInterceptor`这个切面拦截器，我们知道了这个拦截器中做了我们TM应该做的事，事务的开启，事务的提交，事务的回滚。这里只是我们整体逻辑的发起点，其中具体的客户端逻辑在我们的DefaultTransactionManager中，这个类中的代码如下所示：
 
-```
+```java
 public class DefaultTransactionManager implements TransactionManager {
 
     @Override
@@ -707,7 +706,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 `AT`模式下需要使用`Seata`提供的数据源代理，其整体实现逻辑如下图所示：
 
-![](https://user-gold-cdn.xitu.io/2019/5/15/16abad0e1c2bfc18?w=335&h=326&f=png&s=17572)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201132-790199.png)
 
 在我们的程序中执行一个`sql`语句，无论你是使用`mybatis`，还是直接使用`jdbcTemplate`,都会遵循下面的步骤：
 
@@ -721,7 +720,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 在DataSourceProxy中没有太多的业务逻辑，只是简单的将获取`Connection`用我们的`ConnectionProxy`代理类进行了封装,代码如下：
 
-```
+```java
     public ConnectionProxy getConnection() throws SQLException {
         Connection targetConnection = targetDataSource.getConnection();
         return new ConnectionProxy(this, targetConnection);
@@ -736,7 +735,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 首先来看看代理生成的`Statement`：
 
-```
+```java
     @Override
     public Statement createStatement() throws SQLException {
         Statement targetStatement = getTargetConnection().createStatement();
@@ -755,7 +754,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 接下来看看对我们上下文的管理，大家都知道我们的一个事务其实对应的是一个数据库连接，在这个事务中的所有`sql`的`undolog`和`lockKey`都会在连接的上下文中记录。如下面代码所示：
 
-```
+```java
     /**
      * append sqlUndoLog
      *
@@ -779,7 +778,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 当我们的本地事务完成的时候，需要调用`Connection`的`commit`或`rollback`来进行事务的提交或回滚。这里我们也需要代理这两个方法来完成我们对分支事务的处理，先来看看`commit`方法。
 
-```
+```java
     public void commit() throws SQLException {
         if (context.inGlobalTransaction()) {
             processGlobalTransactionCommit();
@@ -822,7 +821,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 对于我们`rollback`来说代码比较简单：
 
-```
+```java
     public void rollback() throws SQLException {
         targetConnection.rollback();
         if (context.inGlobalTransaction()) {
@@ -846,7 +845,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 我们一般用`statement`会调用`executeXXX`方法来执行我们的`sql`语句，所以在我们的`Proxy`中可以利用这个方法，再执行`sql`的时候做一些我们需要做的逻辑，下面看看`execute`方法的代码：
 
-```
+```java
     public boolean execute(String sql) throws SQLException {
         this.targetSQL = sql;
         return ExecuteTemplate.execute(this, new StatementCallback<Boolean, T>() {
@@ -860,7 +859,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 这里直接将逻辑交给我们的`ExecuteTemplate`去执行，有如下代码：
 
-```
+```java
     public static <T, S extends Statement> T execute(SQLRecognizer sqlRecognizer,
                                                      StatementProxy<S> statementProxy,
                                                      StatementCallback<T, S> statementCallback,
@@ -924,7 +923,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 对于INSERT,UPDATE,DELETE的执行器会继承我们的`AbstractDMLBaseExecutor`：
 
-```
+```java
     protected T executeAutoCommitFalse(Object[] args) throws Throwable {
         TableRecords beforeImage = beforeImage();
         T result = statementCallback.execute(statementProxy.getTargetStatement(), args);
@@ -948,7 +947,7 @@ public class DefaultTransactionManager implements TransactionManager {
 - Step 4：将`undolog`准备好，这里会保存到我们的`ConnectionContext`中。
 
 
-```
+```java
     protected void prepareUndoLog(TableRecords beforeImage, TableRecords afterImage) throws SQLException {
         if (beforeImage.getRows().size() == 0 && afterImage.getRows().size() == 0) {
             return;
@@ -972,7 +971,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
 上面的4.1.1-4.1.3都是说的是我们分布式事务的第一阶段，也就是将我们的分支事务注册到`Server`,而第二阶段分支提交和分支回滚都在我们的`DataSourceManager`中，对于分支事务提交有如下代码：
 
-```
+```java
 public BranchStatus branchCommit(BranchType branchType, String xid, long branchId, String resourceId, String applicationData) throws TransactionException {
         return asyncWorker.branchCommit(branchType, xid, branchId, resourceId, applicationData);
     }
@@ -990,7 +989,7 @@ public BranchStatus branchCommit(BranchType branchType, String xid, long branchI
 
 对于我们的分支事务回滚有如下代码：
 
-```
+```java
     public BranchStatus branchRollback(BranchType branchType, String xid, long branchId, String resourceId, String applicationData) throws TransactionException {
         DataSourceProxy dataSourceProxy = get(resourceId);
         if (dataSourceProxy == null) {
@@ -1016,7 +1015,7 @@ public BranchStatus branchCommit(BranchType branchType, String xid, long branchI
 
 `TCC`没有`AT`模式资源管理这么复杂，部分核心逻辑在之前的`Interceptor`中已经讲解过了，比如二阶段方法的保存等。这里主要看看`TCC`的分支事务提交和分支事务回滚，在`TCCResourceManager`中有：
 
-```
+```java
 	public BranchStatus branchCommit(BranchType branchType, String xid, long branchId, String resourceId,
 									 String applicationData) throws TransactionException {
 		TCCResource tccResource = (TCCResource) tccResourceCache.get(resourceId);
@@ -1061,15 +1060,13 @@ public BranchStatus branchCommit(BranchType branchType, String xid, long branchI
 
 > 如果大家觉得这篇文章对你有帮助，你的关注和转发是对我最大的支持，O(∩_∩)O:
 
-![](https://user-gold-cdn.xitu.io/2018/7/22/164c2ad786c7cfe4?w=500&h=375&f=jpeg&s=215163)
-
 # 1.关于Seata
 
 再前不久，我写了一篇关于分布式事务中间件Fescar的解析，没过几天Fescar团队对其进行了品牌升级，取名为Seata(Simpe Extensible Autonomous Transcaction Architecture)，而以前的Fescar的英文全称为Fast & EaSy Commit And Rollback。可以看见Fescar从名字上来看更加局限于Commit和Rollback，而新的品牌名字Seata旨在打造一套一站式分布式事务解决方案。更换名字之后，我对其未来的发展更有信心。
 
 这里先大概回忆一下Seata的整个过程模型:
 
-![](https://user-gold-cdn.xitu.io/2019/3/26/169baa79d84b68f3?w=794&h=478&f=png&s=45359)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201428-709711.png)
 
 - TM:事务的发起者。用来告诉TC，全局事务的开始，提交，回滚。
 - RM:具体的事务资源，每一个RM都会作为一个分支事务注册在TC。
@@ -1093,7 +1090,7 @@ public BranchStatus branchCommit(BranchType branchType, String xid, long branchI
 ## 2.1 Seata-Server的设计
 
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f26eb5b731fd9?w=954&h=503&f=png&s=31459)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201444-604693.png)
 
 Seata-Server整体的模块图如上所示:
 
@@ -1109,7 +1106,7 @@ Seata-Server整体的模块图如上所示:
 
 首先来讲讲比较基础的Discover模块，又称服务注册/发现模块。我们将Seata-Sever启动之后，需要将自己的地址暴露给其他使用者，那么就需要我们这个模块帮忙。
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f28b0f59eaaf1?w=583&h=409&f=png&s=47095)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201458-886622.png)
 这个模块有个核心接口RegistryService，如上图所示:
 
 - register：服务端使用，进行服务注册。
@@ -1123,7 +1120,7 @@ Seata-Server整体的模块图如上所示:
 
 #### 2.2.1 register接口：
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f297ec2f8c321?w=702&h=117&f=png&s=25231)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201517-754496.png)
 
 step1:校验地址是否合法
 
@@ -1133,7 +1130,7 @@ unregister接口类似，这里不做详解。
 
 #### 2.2.2 lookup接口：
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f2a1d9e6aac07?w=890&h=652&f=png&s=138163)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201528-964378.png)
 
 step1：获取当前clusterName名字
 
@@ -1145,7 +1142,7 @@ step4：将我们事件变动的Listener注册到Nacos
 
 #### 2.2.3 subscribe接口
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f2eab4157049e?w=712&h=143&f=png&s=36154)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201542-159777.png)
 这个接口比较简单，具体分两步:
 
 step1：将clstuer和listener添加进map中。
@@ -1158,7 +1155,7 @@ step2：向Nacos注册。
 
 同样的在Seata中也提供了一个接口Configuration，用来自定义我们需要的获取配置的地方:
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f2f5b1e3e8abf?w=735&h=403&f=png&s=56750)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201558-427382.png)
 
 - getInt/Long/Boolean/Config()：通过dataId来获取对应的值。
 - putConfig：用于添加配置。
@@ -1176,7 +1173,7 @@ step2：向Nacos注册。
 
 在FileTransactionStoreManager#writeSession代码中:
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f3074b87a3b17?w=876&h=258&f=png&s=48170)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201612-839515.png)
 
 上面的代码主要分为下面几步：
 
@@ -1186,11 +1183,11 @@ step2：向Nacos注册。
 
 我们将数据提交到队列之后，我们接下来需要对其进行消费，代码如下：
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f322df805ae66?w=719&h=101&f=png&s=30648)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201651-413238.png)
 
 这里将一个WriteDataFileRunnable()提交进我们的线程池，这个Runnable的run()方法如下:
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f325217d363f7?w=855&h=526&f=png&s=82521)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201705-692180.png)
 分为下面几步:
 
 step1： 判断是否停止，如果stopping为true则返回null。
@@ -1205,14 +1202,14 @@ step5：当写入数量到达一定的时候，或者写入时间到达一定的
 
 在我们的writeDataFile中有如下代码:
 
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f32de2db7bda4?w=748&h=557&f=png&s=82158)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201719-596582.png)
 
 step1：首先获取我们的ByteBuffer，如果超出最大循环BufferSize就直接创建一个新的，否则就使用我们缓存的Buffer。这一步可以很大的减少GC。
 
 step2：然后将数据添加进入ByteBuffer。
 
 step3：最后将ByteBuffer写入我们的fileChannel,这里会重试三次。此时的数据还在pageCache层，受两方面的影响，OS有自己的刷新策略，但是这个业务程序不能控制，为了防止宕机等事件出现造成大量数据丢失，所以就需要业务自己控制flush。下面是flush的代码:
-![](https://user-gold-cdn.xitu.io/2019/4/6/169f3334dea4db3e?w=868&h=273&f=png&s=46756)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201807-107558.png)
 
 这里flush的条件写入一定数量或者写的时间超过一定时间，这样也会有个小问题如果是停电，那么pageCache中有可能还有数据并没有被刷盘，会导致少量的数据丢失。目前还不支持同步模式，也就是每条数据都需要做刷盘操作，这样可以保证每条消息都落盘，但是性能也会受到极大的影响，当然后续会不断的演进支持。
 
@@ -1223,7 +1220,7 @@ step3：最后将ByteBuffer写入我们的fileChannel,这里会重试三次。�
 大家知道数据库实现隔离级别主要是通过锁来实现的，同样的再分布式事务框架Seata中要实现隔离级别也需要通过锁。一般在数据库中数据库的隔离级别一共有四种:读未提交，读已提交，可重复读，串行化。在Seata中可以保证写的隔离级别是已提交，而读的隔离级别一般是未提交，但是提供了达到读已提交隔离的手段。
 
 Lock模块也就是Seata实现隔离级别的核心模块。在Lock模块中提供了一个接口用于管理我们的锁:
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f3a24136d46ee?w=759&h=368&f=png&s=44455)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201821-468154.png)
 
 其中有三个方法:
 
@@ -1231,7 +1228,7 @@ Lock模块也就是Seata实现隔离级别的核心模块。在Lock模块中提�
 - isLockable：根据事务ID，资源Id，锁住的Key来查询是否已经加锁。
 - cleanAllLocks：清除所有的锁。
   对于锁我们可以在本地实现，也可以通过redis或者mysql来帮助我们实现。官方默认提供了本地全局锁的实现：
-  ![](https://user-gold-cdn.xitu.io/2019/4/7/169f3a74b89488cf?w=887&h=223&f=png&s=38735)
+  ![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/201847-200997.png)
   在本地锁的实现中有两个常量需要关注:
 - BUCKET_PER_TABLE：用来定义每个table有多少个bucket，目的是为了后续对同一个表加锁的时候减少竞争。
 - LOCK_MAP：这个map从定义上来看非常复杂，里里外外套了很多层Map，这里用个表格具体说明一下：
@@ -1249,18 +1246,18 @@ Lock模块也就是Seata实现隔离级别的核心模块。在Lock模块中提�
 
 保证Seata高性能的关键之一也是使用了Netty作为RPC框架，采用默认配置的线程模型如下图所示：
 
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f7e02900e8ac0?w=1019&h=379&f=png&s=52614)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202144-700067.png)
 
 如果采用默认的基本配置那么会有一个Acceptor线程用于处理客户端的链接，会有cpu*2数量的NIO-Thread，再这个线程中不会做业务太重的事情，只会做一些速度比较快的事情，比如编解码，心跳事件，和TM注册。一些比较费时间的业务操作将会交给业务线程池，默认情况下业务线程池配置为最小线程为100，最大为500。
 
 这里需要提一下的是Seata的心跳机制，这里是使用Netty的IdleStateHandler完成的，如下:
 
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f7e9e9e849640?w=885&h=53&f=png&s=11298)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202158-512958.png)
 
 在Sever端对于写没有设置最大空闲时间，对于读设置了最大空闲时间，默认为15s，如果超过15s则会将链接断开，关闭资源。
 
 
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f7ec1a9d61d3e?w=656&h=326&f=png&s=52151)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202209-280391.png)
 
 step1：判断是否是读空闲的检测事件。
 
@@ -1269,7 +1266,7 @@ step2：如果是则断开链接，关闭资源。
 ## 2.7 HA-Cluster
 
 目前官方没有公布HA-Cluster,但是通过一些其他中间件和官方的一些透露，可以将HA-Cluster用如下方式设计:
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f81fbf55dc7f1?w=1085&h=622&f=png&s=56376)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202226-538759.png)
 
 具体的流程如下:
 
@@ -1291,7 +1288,7 @@ step2：在server端中一个master有多个slave，master中的数据近实时�
 
 启动方法在Server类有个main方法，定义了我们启动流程：
 
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f832e7ec558bf?w=651&h=643&f=png&s=81043)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202245-350526.png)
 
 step1：创建一个RpcServer，再这个里面包含了我们网络的操作，用Netty实现了服务端。
 
@@ -1316,7 +1313,7 @@ step6：将本地IP和监听端口设置到XID中，初始化rpcServer等待客�
 
 一次分布式事务的起始点一定是开启全局事务，首先我们看看全局事务Seata是如何实现的：
 
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f842e0b1eedc2?w=894&h=211&f=png&s=41872)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202300-334887.png)
 
 step1： 根据应用ID，事务分组，名字，超时时间创建一个GloabSession，这个再前面也提到过他和branchSession分别是什么。
 
@@ -1330,7 +1327,7 @@ step2：对其添加一个RootSessionManager用于监听一些事件，这里要
 
 step3：开启Globalsession
 
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f84ee7f1ab10b?w=895&h=340&f=png&s=71310)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202326-440589.png)
 
 这一步会把状态变为Begin,记录开始时间,并且调用RootSessionManager的onBegin监听方法，将Session保存到map并写入到我们的文件。
 
@@ -1340,7 +1337,7 @@ step4：最后返回XID，这个XID是由ip+port+transactionId组成的，非常
 
 当我们全局事务在TM开启之后，我们RM的分支事务也需要注册到我们的全局事务之上，这里看看是如何处理的：
 
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f8540d8804607?w=878&h=376&f=png&s=73570)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202343-68937.png)
 
 step1：通过transactionId获取并校验全局事务是否是开启状态。
 
@@ -1359,7 +1356,7 @@ step5：返回branchId,这个ID也很重要，我们后续需要用它来回滚�
 当我们分支事务执行完成之后，就轮到我们的TM-事务管理器来决定是提交还是回滚，如果是提交，那么就会走到下面的逻辑:
 
 
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f860810668679?w=890&h=397&f=png&s=73800)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202438-821600.png)
 
 step1：首先找到我们的globalSession。如果他为Null证明已经被commit过了，那么直接幂等操作，返回成功。
 
@@ -1377,7 +1374,7 @@ step6：遍历我们的BranchSession进行提交，如果某个分支事务失�
 
 如果我们的TM决定全局回滚，那么会走到下面的逻辑：
 
-![](https://user-gold-cdn.xitu.io/2019/4/7/169f870e30d9dd84?w=868&h=328&f=png&s=61844)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/202456-621965.png)
 
 这个逻辑和提交流程基本一致，可以看作是他的反向，这里就不展开讲了。
 
@@ -1395,8 +1392,4 @@ step6：遍历我们的BranchSession进行提交，如果某个分支事务失�
 seata github地址：https://github.com/seata/seata。
 
 最后这篇文章被我收录于JGrowing-分布式事务篇，一个全面，优秀，由社区一起共建的Java学习路线，如果您想参与开源项目的维护，可以一起共建，github地址为:https://github.com/javagrowing/JGrowing 
-麻烦给个小星星哟。
 
-> 如果大家觉得这篇文章对你有帮助，你的关注和转发是对我最大的支持，O(∩_∩)O:
-
-![](https://user-gold-cdn.xitu.io/2018/7/22/164c2ad786c7cfe4?w=500&h=375&f=jpeg&s=215163)
