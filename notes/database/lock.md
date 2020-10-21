@@ -106,7 +106,7 @@ InnoDB 实现了以下两种类型的**行锁**：
 
 **锁模式的兼容情况：**
 
-![img](https://pic3.zhimg.com/80/v2-37761612ead11ddc3762a4c20ddab3f3_720w.jpg)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/21/194835-642466.jpeg)
 
 （如果一个事务请求的锁模式与当前的锁兼容， InnoDB 就将请求的锁授予该事务； 反之， 如果两者不兼容，该事务就要等待锁释放。）
 
@@ -189,11 +189,11 @@ MySQL 通过 BINLOG 录入执行成功的 INSERT、UPDATE、DELETE 等更新数�
 
 因此，在不同的隔离级别下，InnoDB 处理 SQL 时采用的一致性读策略和需要的锁是不同的：
 
-![img](https://picb.zhimg.com/80/v2-c83c6459f8dc93a5f157fe1e3080088d_720w.jpg)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/21/194855-241939.jpeg)
 
 
 
-![img](https://pic3.zhimg.com/80/v2-568951f4cdfeb9416042627a7b94c4ac_720w.jpg)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/21/194904-917314.jpeg)
 
 
 

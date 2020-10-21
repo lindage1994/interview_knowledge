@@ -82,4 +82,4 @@ TODO 分库分表后表之间的关联操作将受到限制，我们无法join�
 
 还有一些大公司的开源产品：
 
-![img](https://user-gold-cdn.xitu.io/2018/7/30/164e9fe9ff548c7e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/21/194958-795081.png)

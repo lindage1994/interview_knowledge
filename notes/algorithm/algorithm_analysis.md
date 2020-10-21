@@ -426,14 +426,4 @@ return pow(x, n / 2) * pow(x, n / 2);
 
 > 单凭纯时间区分线性程序还是是有一定难度的。
 
-### 4. 小结
-
-至此，我们已经通过实例了解了如何简单地对算法的复杂性进行分析。
-
-------
-
-[1] 洛必达法则（L 'Hospital's rule）说的是，若且，则。 [↩](https://www.zybuluo.com/fyywy520/note/277242#fnref:lhospital)
-
-**1**
-
  

@@ -22,7 +22,7 @@
 
 #### 数据结构:B树结构
 
-![img](https:////upload-images.jianshu.io/upload_images/5845511-58ea166787d90404.png?imageMogr2/auto-orient/strip|imageView2/2/w/940/format/webp)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/21/194757-993190.png)
 
 ### `m` 阶B树：
 
@@ -56,7 +56,7 @@ B+树适合作为数据库的基础结构，也是因为适应计算机的内存
 
 
 
-![img](https:////upload-images.jianshu.io/upload_images/5845511-13833d75df91857a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/21/194640-505188.png)
 
 图片.png
 
