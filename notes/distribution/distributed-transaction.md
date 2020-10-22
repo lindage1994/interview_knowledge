@@ -148,8 +148,7 @@ Try阶段:你需要向你的钱包检查是否够100元并锁住这100元，水�
 
 本地消息队列是BASE理论，是最终一致模型，适用于对一致性要求不高的。实现这个模型时需要注意重试的幂等。
 ## MQ事务
-在RocketMQ中实现了分布式事务，实际上其实是对本地消息表的一个封装，将本地消息表移动到了MQ内部，下面简单介绍一下MQ事务，如果想对其详细了解可以参考:
-https://www.jianshu.com/p/453c6e7ff81c。
+在RocketMQ中实现了分布式事务，实际上其实是对本地消息表的一个封装，将本地消息表移动到了MQ内部，下面简单介绍一下MQ事务，如果想对其详细了解可以参考:https://www.jianshu.com/p/453c6e7ff81c。
 ![](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/17/200240-502990.png)
 基本流程如下:
 第一阶段Prepared消息，会拿到消息的地址。

@@ -171,7 +171,7 @@ SSL/TLS协议是为了解决这三大风险而设计的，希望达到：
 2. 双方协商生成"对话密钥”。
 3. 双方采用"对话密钥"进行加密通信。
 
-![img](https://hadyang.github.io/interview/docs/basic/net/https/images/44e2b283e89f3fbe81b280df04d2feeb.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/22/201949-564464.png)
 
 “握手阶段"涉及四次通信，我们一个个来看。需要注意的是，**“握手阶段"的所有通信都是明文的**。
 
