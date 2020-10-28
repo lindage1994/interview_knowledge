@@ -2,6 +2,11 @@ CAP: 是指 Consistency(一致性), Availability(可用性) 和 Partition Tolera
 BASE: **B**asically **A**vailable（基本可用）, **S**oft state（软状态）和 **E**ventually consistent（最终一致性）
 
 ## CAP 定理
+### 分布式系统的三个指标
+
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/28/204525-928698.jpeg)
+
+
 
 - **Consistency** **一致性**（节点或系统中所有可用数据）
 
@@ -14,6 +19,18 @@ BASE: **B**asically **A**vailable（基本可用）, **S**oft state（软状态�
 - **Partition Tolerance 分区容错性**（系统运作将不管可用性、分区、数据或通信的丢失）
 
   分区容错性约束了一个分布式系统具有如下特性：分布式系统在遇到任何网络分区故障的时候，仍然需要能够保证对外提供满足一致性和可用性的服务，除非是整个网络环境都发生了故障。
+  
+  ### Partition Tolerance
+  
+  大多数分布式系统都分布在多个子网络。每个子网络就叫做一个区（partition）。分区容错的意思是，区间通信可能失败。比如，一台服务器放在中国，另一台服务器放在美国，这就是两个区，它们之间可能无法通信。
+  
+  ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202010/28/205229-52956.png)
+  
+  上图中，G1 和 G2 是两台跨区的服务器。G1 向 G2 发送一条消息，G2 可能无法收到。系统设计的时候，必须考虑到这种情况。
+  
+  一般来说，分区容错无法避免，因此可以认为 CAP 的 P 总是成立。CAP 定理告诉我们，剩下的 C 和 A 无法同时做到。
+  
+  
 
 ## BASE
 
