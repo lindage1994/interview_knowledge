@@ -202,8 +202,23 @@ public static long fib(int n) {
 
 ##### 算法一
 
-```
-/** * Cubic maximum contiguous subsequence sum algorithm. */public static int maxSubSum1(int[] a) {    int maxSum = 0;    for (int i = 0; i < a.length; i++) {        for (int j = i; j < a.length; j++) {            int thisSum = 0;            for (int k = i; k <= j; k++) {                thisSum += a[k];            }            if (thisSum > maxSum) {                maxSum = thisSum;            }        }    }    return maxSum;}
+```c
+/** * Cubic maximum contiguous subsequence sum algorithm. */
+public static int maxSubSum1(int[] a) { 
+    int maxSum = 0;  
+    for (int i = 0; i < a.length; i++) {   
+        for (int j = i; j < a.length; j++) {  
+            int thisSum = 0;         
+            for (int k = i; k <= j; k++) {    
+                thisSum += a[k];     
+            }        
+            if (thisSum > maxSum) {    
+                maxSum = thisSum;    
+            }      
+        }  
+    }   
+    return maxSum;
+}
 ```
 
 该算法只是穷举所有的可能，易证明，该算法主要为第12行的加等运算在深度为三级的循环中执行的运算。
