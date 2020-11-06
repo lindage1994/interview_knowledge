@@ -19,7 +19,7 @@ explain select * from user where userid =10086 or age =18;
 复制代码
 ```
 
-![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/758773bfbe904d5ba801bc83d81a6bbc~tplv-k3u1fbpfcp-watermark.image)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/204836-189419.png)
 
 ### 2、操作delete或者update语句，加个limit(SQL后悔药）
 
@@ -32,7 +32,7 @@ delete from euser where age > 30 limit 200;
 
 因为加了limit 主要有这些好处：
 
-![img](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e14bfc881f21454ca40981b777f56e3e~tplv-k3u1fbpfcp-watermark.image)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/204848-292803.png)
 
 - **降低写错SQL的代价**, 你在命令行执行这个SQL的时候，如果不加limit，执行的时候一个**不小心手抖**，可能数据全删掉了，如果**删错**了呢？加了limit 200，就不一样了。删错也只是丢失200条数据，可以通过binlog日志快速恢复的。
 - **SQL效率很可能更高**，你在SQL行中，加了limit 1，如果第一条就命中目标return， 没有limit的话，还会继续执行扫描表。
@@ -148,7 +148,7 @@ CREATE TABLE `account` (
 - 主键一定要加上的，没有主键的表是没有灵魂的
 - 创建时间和更新时间的话，还是建议加上吧，详细审计、跟踪记录，都是有用的。
 
-阿里开发手册也提到这个点，如图 ![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8a71648ba03c4f0fa6772a3c03cd99f2~tplv-k3u1fbpfcp-watermark.image)
+阿里开发手册也提到这个点，如图 ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/204904-197806.png)
 
 ### 8. 写完SQL语句，检查where,order by,group by后面的列，多表关联的列是否已加索引，优先考虑组合索引。（SQL性能优化）
 
@@ -159,7 +159,7 @@ select * from user where address ='深圳' order by age ;
 复制代码
 ```
 
-![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1320d5f64b2640ff8221251505cacf14~tplv-k3u1fbpfcp-watermark.image)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/204912-272495.png)
 
 正例：
 
@@ -169,7 +169,7 @@ alter table user add index idx_address_age (address,age)
 复制代码
 ```
 
-![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/480d9d01a71c40228696fd22850e111d~tplv-k3u1fbpfcp-watermark.image)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/204925-524296.png)
 
 ### 9.修改或删除重要数据前，要先备份，先备份，先备份（SQL后悔药）
 
@@ -185,7 +185,7 @@ select * from user where userid =123;
 复制代码
 ```
 
-![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/17ad6b34e5a646028d9a086fd7ef7db0~tplv-k3u1fbpfcp-watermark.image)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/204934-781444.png)
 
 **正例：**
 
@@ -194,7 +194,7 @@ select * from user where userid ='123';
 复制代码
 ```
 
-![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4bae5bd0b3564484b18e6f145ff65fd6~tplv-k3u1fbpfcp-watermark.image)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/204942-488832.png)
 
 **理由：**
 
@@ -313,7 +313,7 @@ explain  select userId,loginTime from loginuser where  loginTime >= Date_ADD(NOW
 
 - 索引列上使用mysql的内置函数，索引失效
 
-![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/07bd6e743d974638a70c2db91c6cc9f2~tplv-k3u1fbpfcp-watermark.image)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/204952-880159.png)
 
 ### 21.如果修改\更新数据过多，考虑批量进行。
 

@@ -160,11 +160,11 @@ select userId，name from user where userId like '123%';
 
 - 把%放前面，并不走索引，如下：
 
-  ![img](https://user-gold-cdn.xitu.io/2020/3/20/170f7f2739040e5b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+  ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205023-835331.png)
 
 - 把% 放关键字后面，还是会走索引的。如下：
 
-  ![img](https://user-gold-cdn.xitu.io/2020/3/20/170f7f224aa3dfed?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+  ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205038-71851.png)
 
 ### 6、使用where条件限定要查询的数据，避免返回多余的行
 
@@ -214,13 +214,13 @@ explain  select userId,loginTime from loginuser where  loginTime >= Date_ADD(NOW
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170fd5f19265afa9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205106-888301.png)
 
 
 
 - 如果索引列不加内置函数，索引还是会走的。
 
-  ![img](https://user-gold-cdn.xitu.io/2020/3/20/170f875955e8b7c0?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+  ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205120-367458.png)
 
 ### 8、应尽量避免在 where 子句中对字段进行表达式操作，这将导致系统放弃使用索引而进行全表扫
 
@@ -242,7 +242,7 @@ select * from user where age =11；
 
 - 虽然age加了索引，但是因为对它进行运算，索引直接迷路了。。。
 
-  ![img](https://user-gold-cdn.xitu.io/2020/3/20/170f85b4a47dc153?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+  ![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205134-902419.png)
 
 ### 9、Inner join 、left join、right join，优先使用Inner join，如果是left join，左边表结果尽量小
 
@@ -295,7 +295,7 @@ select age,name  from user where age >18;
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170f8d5a32598527?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205152-193853.png)
 
 
 
@@ -325,7 +325,7 @@ select * from user where age = 10;
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170fabb3abde4936?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205205-209397.png)
 
 
 
@@ -341,7 +341,7 @@ select * from user where userid =10;
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170fda546249a690?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205218-470356.png)
 
 ![img](https://user-gold-cdn.xitu.io/2020/3/21/170fabd29ed198a8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
@@ -363,7 +363,7 @@ select * from user where address ='深圳' order by age ;
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170fac5e1650f9b4?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205234-938006.png)
 
 正例：
 
@@ -377,7 +377,7 @@ alter table user add index idx_address_age (address,age)
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170facab45b2d9a6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205245-348327.png)
 
 
 
@@ -423,7 +423,7 @@ select * from user where userid like '%123%'
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170fb02be8584b0a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205302-686304.png)
 
 正例：
 
@@ -437,7 +437,7 @@ select id,name from user where userid like '%123%';
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170fafe4a0d3d5e6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205316-855290.png)
 
 
 
@@ -525,7 +525,7 @@ select * from user where age is not null;
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170fbaec810f084f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205331-28501.png)
 
 正例：
 
@@ -539,7 +539,7 @@ select * from user where age>0;
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170fbb088234cc77?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205345-405538.png)
 
 理由：
 
@@ -804,7 +804,7 @@ explain select * from user where userid =10086 or age =18;
 
 
 
-![img](https://user-gold-cdn.xitu.io/2020/3/21/170fd29c57512897?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202011/06/205402-261521.png)
 
 
 
