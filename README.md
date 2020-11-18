@@ -38,9 +38,11 @@
 - [定制starter](/notes/spring/定制starter.md)
 ### spring cloud
 - [springCloud](/notes/spring/springCloud.md)
+
 ## 分布式
 - [CAP定理与BASE理论](/notes/distribution/cap.md)
 - [分布式事务](/notes/distribution/distributed-transaction.md)
+
 ## 数据库
 - [数据库三大范式五大约束](/notes/database/normal-form.md)
 - [事务特性与隔离级别](/notes/database/DataBase.md)
@@ -48,6 +50,11 @@
 - [MySQL 锁机制](/notes/database/lock.md)
 - [SQL优化](/notes/database/optimize-SQL.md)
 - [分库分表](/notes/database/sharding.md)
+
+## 中间件
+- [Redis](/notes/middleware/redis.md)
+- [MQ](/notes/middleware/mq.md)
+  
 ## 设计模式
 ### UML
 - [统一建模语言](notes/design-patten/UML.md)
