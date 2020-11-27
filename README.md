@@ -126,6 +126,7 @@
 - [Git](/notes/tools/Git.md)
 - [构建工具](/notes/tools/build-tools.md)
 - [Docker](/notes/tools/Docker.md)
+- [Jenkins](/notes/tools/jenkins.md)
 ## 编码实践
 - [代码可读性](/notes/code-style/代码可读性.md)
 - [代码规范](/notes/code-style/代码风格规范.md)
