@@ -49,7 +49,7 @@ ZooKeeper 的好处：
 
 ZooKeeper 的客户端程序会选择和集群中的任意一台服务器创建一个 TCP 连接，而且一旦客户端和服务器断开连接，客户端就会自动连接到集群中的其他服务器。
 
-![image](images/cde28984c2c32a5068b2b31d5ba2040f.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162917-905703.png)
 
 |部分|	描述|
 |:--|:--|
@@ -62,7 +62,7 @@ ZooKeeper 的客户端程序会选择和集群中的任意一台服务器创建�
 
 ### 数据模型
 
-![image](images/944a3ed0ab807a87b5c562c58a31ea2b.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162919-202398.png)
 
 到znode是一个标准的文件系统，层次结构很像一棵树。 需要注意的一些要点如下：
 
@@ -162,7 +162,7 @@ ZAB 协议有两种模式，**崩溃恢复（选主+数据同步）和消息广�
 
 服务器的状态流转：
 
-![image](images/641361c1efdb212bdba9b74168d6334b.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162938-812813.png)
 
 Leader 选举过程，本质就是 **广播优先级消息** 的过程，选出 **数据最新的服务节点**，选出优先级最高的服务节点，基本步骤：
 
@@ -170,7 +170,7 @@ Leader 选举过程，本质就是 **广播优先级消息** 的过程，选出 
   - 服务器节点收到其他广播消息后，跟自己的优先级（zxid）对比，自己优先级低，则变更当前节点投票的优先级`(sid，zxid)` ，并广播变更后的结果
   - 当任意一个服务器节点收到的投票数，超过了法定数量(`quorum`)，则，升级为 Leader，并广播结果。
 
-![image](images/7ca755dfe9b16f9c130f5de492549a86.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162942-740251.png)
 
 > - 由于网络延时，节点得不到足够多广播信息时，会做出错误的投票判断，纠正过程更耗时
 > - 选举过程中，服务器节点会等待一定时间，再广播投票信息，时间间隔一般设定为 200 ms
@@ -188,7 +188,7 @@ Leader 选举过程，本质就是 **广播优先级消息** 的过程，选出 
 
 在大型分布式系统中，有两件事情非常常见，一是不同服务之间的可能拥有相同的名字，另一个是同一个服务可能会在集群中部署很多的节点，Zookeeper 就可以通过文件系统和顺序节点解决这两个问题。
 
-![image](images/72025ab7142520ce9e59193eb956b900.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162949-78665.png)
 
 ### 协调分布式事务
 

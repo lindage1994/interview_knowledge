@@ -66,7 +66,7 @@ private transient Node lastWaiter;
 
 在 `ConditionObject` 的内部维护了一个队列：`条件队列`，与 `AbstractQueuedSynchronizer` 里的 `等待队列` 不同。
 
-![](images/4-AQS-cef7a.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161626-966492.png)
 
 基本上，把这张图看懂，你也就知道 condition 的处理流程了。
 

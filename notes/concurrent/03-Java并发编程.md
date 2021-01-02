@@ -158,7 +158,7 @@
 
 ## 1. 线程状态转换
 
-<div align="center"> <img src="assets/ace830df-9919-48ca-91b5-60b193f593d2.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160154-924584.png)
 
 这里笔者也绘制了一张中文版的图，[点击查看](https://raw.githubusercontent.com/frank-lam/2019_campus_apply/master/notes/JavaArchitecture/assets/1536767960941.png)
 
@@ -1057,7 +1057,7 @@ AQS 是  AbstractQueuedSynchronizer 的简称，java.util.concurrent（J.U.C）�
 
 
 
-<div align="center"><img src="assets/616953-20160403170136176-573839888.png" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160242-425014.png)
 
 它底层使用的是双向列表，是队列的一种实现 , 因此也可以将它当成一种队列。
 
@@ -1090,7 +1090,9 @@ CountDownLatch 类位于 java.util.concurrent 包下，利用它可以实现类�
 
 维护了一个计数器 cnt，每次调用 countDown() 方法会让计数器的值减 1，减到 0 的时候，那些因为调用 await() 方法而在等待的线程就会被唤醒。
 
-<div align="center"> <img src="assets/CountdownLatch.png" width=""/></div>
+
+
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161530-409702.png)
 
 
 
@@ -1179,7 +1181,7 @@ public class Test {
 
 下图应该从下往上看才正确。
 
-<div align="center"><img src="assets/CyclicBarrier.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160309-724721.png)
 
 
 ```java
@@ -1216,7 +1218,7 @@ before..before..before..before..before..before..before..before..before..before..
 
 Semaphore 就是操作系统中的信号量，可以控制对互斥资源的访问线程数。Semaphore 可以控同时访问的线程个数，通过 acquire() 获取一个许可，如果没有就等待，而 release() 释放一个许可。
 
-<div align="center"><img src="assets/Semaphore.png" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160332-915334.png)
 
 Semaphore 类位于 java.util.concurrent 包下，它提供了2个构造器：
 
@@ -1511,7 +1513,7 @@ public class ForkJoinPool extends AbstractExecutorService
 
 ForkJoinPool 实现了工作窃取算法来提高 CPU 的利用率。每个线程都维护了一个双端队列，用来存储需要执行的任务。工作窃取算法允许空闲的线程从其它线程的双端队列中窃取一个任务来执行。窃取的任务必须是最晚的任务，避免和队列所属线程发生竞争。例如下图中，Thread2 从 Thread1 的队列中拿出最晚的 Task1 任务，Thread1 会拿出 Task2 来执行，这样就避免发生竞争。但是如果队列中只有一个任务时还是会发生竞争。
 
-<div align="center"><img src="assets/fork-and-join.jpg" width="600"/></div><br/>
+![fork-and-join.jpg](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160418-397972.jpeg)
 
  
 
@@ -1565,7 +1567,7 @@ Java 内存模型试图屏蔽各种硬件和操作系统的内存访问差异，
 
 加入高速缓存带来了一个新的问题：缓存一致性。如果多个缓存共享同一块主内存区域，那么多个缓存的数据可能会不一致，需要一些协议来解决这个问题。
 
-<div align="center"> <img src="assets/1195582-20180508173147029-1341787720.png" width="700"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160444-509992.png)
 
 所有的变量都存储在**主内存**中，每个线程还有自己的**工作内存**，工作内存存储在高速缓存或者寄存器中，保存了该线程使用的变量的主内存副本拷贝。
 
@@ -1575,11 +1577,11 @@ Java 内存模型试图屏蔽各种硬件和操作系统的内存访问差异，
 
 **Java内存模型和硬件关系图**
 
-<div align="center"> <img src="assets/v2-4015322359279c5568263aeb7f41c36d.jpg" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160513-821098.jpeg)
 
 **Java内存模型抽象结构图**
 
-<div align="center"><img src="assets/1135283-20170403195814660-1521573510.png" width="400"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160531-160672.png)
 
 
 
@@ -1587,7 +1589,7 @@ Java 内存模型试图屏蔽各种硬件和操作系统的内存访问差异，
 
 Java 内存模型定义了 8 个操作来完成主内存和工作内存的交互操作。
 
-<div align="center"> <img src="assets/536c6dfd-305a-4b95-b12c-28ca5e8aa043.png" width="650"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160547-977723.png)
 
 - read：把一个变量的值从主内存传输到工作内存中
 - load：在 read 之后执行，把 read 得到的值放入工作内存的变量副本中
@@ -1643,11 +1645,11 @@ Java 内存模型保证了 read、load、use、assign、store、write、lock 和
 
 下图演示了两个线程同时对 cnt 变量进行操作，load、assign、store 这一系列操作整体上看不具备原子性，那么在 T1 修改 cnt 并且还没有将修改后的值写入主内存，T2 依然可以读入该变量的值。可以看出，这两个线程虽然执行了两次自增运算，但是主内存中 cnt 的值最后为 1 而不是 2。因此对 int 类型读写操作满足原子性只是说明 load、assign、store 这些单个操作具备原子性。
 
-<div align="center"><img src="assets/ef8eab00-1d5e-4d99-a7c2-d6d68ea7fe92-1534148019548.png" width="400"/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160607-927239.png)
 
 AtomicInteger 能保证多个线程修改的原子性。
 
-<div align="center"><img src="assets/952afa9a-458b-44ce-bba9-463e60162945-1534148027104.png" width="400"/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/160621-700870.png)
 
 
 
@@ -1768,7 +1770,7 @@ volatile 关键字通过添加内存屏障的方式来禁止指令重排，即�
 
 从 Java 源代码到最终实际执行的指令序列，会分别经历下面三种重排序：
 
-<div align="center"><img src="assets/33-1534150864535.png" width=""/></div>
+![](assets/33-1534150864535.png)
 
 **上述的 1 属于编译器重排序，2 和 3 属于处理器重排序**。这些重排序都可能会导致多线程程序出现内存可见性问题。对于编译器，JMM 的编译器重排序规则会禁止特定类型的编译器重排序（不是所有的编译器重排序都要禁止）。对于处理器重排序，JMM 的处理器重排序规则会要求 Java 编译器在生成指令序列时，插入特定类型的内存屏障（memory barriers，intel 称之为 memory fence）指令，通过内存屏障指令来禁止特定类型的处理器重排序（不是所有的处理器重排序都要禁止）。
 
@@ -1804,11 +1806,11 @@ double area = pi * r * r; //C
 
 上面三个操作的数据依赖关系如下图所示：
 
-<div align="center"><img src="assets/11.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161445-220153.png)
 
 如上图所示，A 和 C 之间存在数据依赖关系，同时 B 和 C 之间也存在数据依赖关系。因此在最终执行的指令序列中，C 不能被重排序到 A 和 B 的前面（C 排到 A 和 B 的前面，程序的结果将会被改变）。但 A 和 B 之间没有数据依赖关系，编译器和处理器可以重排序 A 和 B 之间的执行顺序。下图是该程序的两种执行顺序：
 
-<div align="center"><img src="assets/22.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161443-683527.png)
 
 as-if-serial 语义把单线程程序保护了起来，遵守 as-if-serial 语义的编译器，runtime 和处理器共同为编写单线程程序的程序员创建了一个幻觉：单线程程序是按程序的顺序来执行的。as-if-serial 语义使单线程程序员无需担心重排序会干扰他们，也无需担心内存可见性问题。
 
@@ -1855,7 +1857,7 @@ flag 变量是个标记，用来标识变量 a 是否已被写入。这里假设
 
 由于操作 1 和操作 2 没有数据依赖关系，编译器和处理器可以对这两个操作重排序；同样，操作 3 和操作 4 没有数据依赖关系，编译器和处理器也可以对这两个操作重排序。让我们先来看看，当操作 1 和操作 2 重排序时，可能会产生什么效果？请看下面的程序执行时序图：
 
-<div align="center"><img src="assets/33.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161439-520101.png)
 
 如上图所示，操作 1 和操作 2 做了重排序。程序执行时，线程 A 首先写标记变量 flag，随后线程 B 读这个变量。由于条件判断为真，线程 B 将读取变量 a。此时，变量 a 还根本没有被线程 A 写入，在这里多线程程序的语义被重排序破坏了！
 
@@ -1863,7 +1865,7 @@ flag 变量是个标记，用来标识变量 a 是否已被写入。这里假设
 
 下面再让我们看看，当操作 3 和操作 4 重排序时会产生什么效果（借助这个重排序，可以顺便说明控制依赖性）。下面是操作 3 和操作 4 重排序后，程序的执行时序图：
 
-<div align="center"><img src="assets/44.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161436-694652.png)
 
 在程序中，操作 3 和操作 4 存在控制依赖关系。当代码中存在控制依赖性时，会影响指令序列执行的并行度。为此，编译器和处理器会采用猜测（Speculation）执行来克服控制相关性对并行度的影响。以处理器的猜测执行为例，执行线程 B 的处理器可以提前读取并计算 a*a，然后把计算结果临时保存到一个名为重排序缓冲（reorder buffer ROB）的硬件缓存中。当接下来操作3的条件判断为真时，就把该计算结果写入变量 i 中。
 
@@ -1899,7 +1901,7 @@ Happens-before 是用来指定两个操作之间的执行顺序。提供跨线�
 
 在一个线程内，在程序前面的操作先行发生于后面的操作。
 
-<div align="center"><img src="assets/single-thread-rule-1534148720379.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161432-586399.png)
 
 
 
@@ -1909,7 +1911,7 @@ Happens-before 是用来指定两个操作之间的执行顺序。提供跨线�
 
 对一个锁的解锁（unlock ），总是 happens-before 于随后对这个锁的加锁（lock）
 
-<div align="center"><img src="assets/monitor-lock-rule-1534148737603.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161429-309471.png)
 
 
 
@@ -1919,7 +1921,7 @@ Happens-before 是用来指定两个操作之间的执行顺序。提供跨线�
 
 对一个 volatile 变量的写操作先行发生于后面对这个变量的读操作。
 
-<div align="center"><img src="assets/volatile-variable-rule-1534148747964.png" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161427-326885.png)
 
 
 
@@ -1929,7 +1931,7 @@ Happens-before 是用来指定两个操作之间的执行顺序。提供跨线�
 
 Thread 对象的 start() 方法调用先行发生于此线程的每一个动作。
 
-<div align="center"><img src="assets/thread-start-rule-1534148760654.png" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161423-114244.png)
 
 
 
@@ -1939,7 +1941,7 @@ Thread 对象的 start() 方法调用先行发生于此线程的每一个动作�
 
 Thread 对象的结束先行发生于 join() 方法返回。
 
-<div align="center"><img src="assets/thread-join-rule-1534148774041.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161420-254724.png)
 
 
 
@@ -2273,7 +2275,7 @@ Thread#2 null
 
 **结构概览**
 
-<div align="center"><img src="assets/006dXScfgy1fj7s01fjqpj30ng0jbabn.jpg" width="500"/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161407-746619.jpeg)
 
 清晰的看到一个线程 Thread 中存在一个 ThreadLocalMap，ThreadLocalMap 中的 key 对应 ThreadLocal，在此处可见 Map 可以存储多个 key 即 (ThreadLocal)。另外 Value 就对应着在 ThreadLocal 中存储的 Value。
 
@@ -2534,17 +2536,17 @@ JDK 1.6 引入了偏向锁和轻量级锁，从而让锁拥有了四个状态：
 
 以下是 HotSpot 虚拟机对象头的内存布局，这些数据被称为 mark word。其中 tag bits 对应了五个状态，这些状态在右侧的 state 表格中给出，应该注意的是 state 表格不是存储在对象头中的。除了 marked for gc 状态，其它四个状态已经在前面介绍过了。
 
-<div align="center"><img src="assets/bb6a49be-00f2-4f27-a0ce-4ed764bc605c-1534158631668.png" width="600"/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161356-461205.png)
 
 下图左侧是一个线程的虚拟机栈，其中有一部分称为 Lock Record 的区域，这是在轻量级锁运行过程创建的，用于存放锁对象的 Mark Word。而右侧就是一个锁对象，包含了 Mark Word 和其它信息。
 
-<div align="center"><img src="assets/051e436c-0e46-4c59-8f67-52d89d656182-1534158643175.png" width="500"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161353-670965.png)
 
 轻量级锁是相对于传统的重量级锁而言，它使用 CAS 操作来避免重量级锁使用互斥量的开销。对于绝大部分的锁，在整个同步周期内都是不存在竞争的，因此也就不需要都使用互斥量进行同步，可以先采用 CAS 操作进行同步，如果 CAS 失败了再改用互斥量进行同步。
 
 当尝试获取一个锁对象时，如果锁对象标记为 0 01，说明锁对象的锁未锁定（unlocked）状态。此时虚拟机在当前线程栈中创建 Lock Record，然后使用 CAS 操作将对象的 Mark Word 更新为 Lock Record 指针。如果 CAS 操作成功了，那么线程就获取了该对象上的锁，并且对象的 Mark Word 的锁标记变为 00，表示该对象处于轻量级锁状态。
 
-<div align="center"><img src="assets/baaa681f-7c52-4198-a5ae-303b9386cf47-1534158703049.png" width="500"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161350-472779.png)
 
 如果 CAS 操作失败了，虚拟机首先会检查对象的 Mark Word 是否指向当前线程的虚拟机栈，如果是的话说明当前线程已经拥有了这个锁对象，那就可以直接进入同步块继续执行，否则说明这个锁对象已经被其他线程线程抢占了。如果有两条以上的线程争用同一个锁，那轻量级锁就不再有效，要膨胀为重量级锁。
 
@@ -2558,7 +2560,7 @@ JDK 1.6 引入了偏向锁和轻量级锁，从而让锁拥有了四个状态：
 
 当有另外一个线程去尝试获取这个锁对象时，偏向状态就宣告结束，此时撤销偏向（Revoke Bias）后恢复到未锁定状态或者轻量级锁状态。
 
-<div align="center"><img src="assets/390c913b-5f31-444f-bbdb-2b88b688e7ce-1534158712253.jpg" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161345-128617.jpeg)
 
 
 
@@ -2578,7 +2580,7 @@ JDK 1.6 引入了偏向锁和轻量级锁，从而让锁拥有了四个状态：
 
 > 蘑菇街面试，设计一个线程池
 
-![ThrealpoolExecutor_framework](assets/ThrealpoolExecutor_framework.jpg)
+![ThrealpoolExecutor_framework](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161338-80198.jpeg)
 
 ### 并发队列
 
@@ -2612,7 +2614,7 @@ Java1.5 中引入的 Executor 框架把任务的提交和执行进行解耦，�
 
 ### Executor类图
 
-<div align="center"><img src="assets/820628cf179f4952812da4e8ca5de672.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161243-560243.png)
 
 ### 线程池工作原理
 
@@ -2798,7 +2800,7 @@ synchronized 不仅保证可见性，而且还保证原子性，因为，只有�
 
 ## 3. 什么是并发和并行
 
-<div align="center"> <img src="assets/concurrent_and_parallel.png" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/161249-52471.png)
 
 ### 并发
 

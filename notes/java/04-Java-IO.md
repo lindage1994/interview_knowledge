@@ -86,7 +86,7 @@ public static void copyFile(String src, String dist) throws IOException
 
 
 
-<div align="center"> <img src="assets/DP-Decorator-java.io.png" width="600"/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164415-646866.png)
 
 
 
@@ -392,7 +392,7 @@ private transient Object[] elementData;
   - **阻塞 ：** ATM排队取款，你只能等待（使用阻塞IO时，Java调用会一直阻塞到读写完成才返回）。
   - **非阻塞 ：** 柜台取款，取个号，然后坐在椅子上做其它事，等号广播会通知你办理，没到号你就不能去，你可以不断问大堂经理排到了没有，大堂经理如果说还没到你就不能去（使用非阻塞IO时，如果不能读写Java调用会马上返回，当IO事件分发器会通知可读写时再继续进行读写，不断循环直到读写完成）。
 
-<div align="center"> <img src="assets/java-io.png" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164406-498442.png)
 
 
 
@@ -412,13 +412,13 @@ BIO模型中通过 **Socket** 和 **ServerSocket** 完成套接字通道的实�
 
 
 
-<div align="center"> <img src="assets/java-bio2.png" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164401-751953.png)
 
 
 
 为了改进这种一连接一线程的模型，我们可以使用线程池来管理这些线程（需要了解更多请参考前面提供的文章），实现1个或多个线程处理N个客户端的模型（但是底层还是使用的同步阻塞I/O），通常被称为“**伪异步I/O模型**“。
 
-<div align="center"> <img src="assets/java-bio-threadpool.png" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164356-238054.png)
 
 实现很简单，我们只需要将新建线程的地方，交给线程池管理即可。
 
@@ -453,7 +453,7 @@ NIO 通过一个线程轮询，实现千万个客户端的请求，这就是非�
 
 小结：**NIO模型中通过SocketChannel和ServerSocketChannel完成套接字通道的实现。非阻塞/阻塞，同步，避免TCP建立连接使用三次握手带来的开销。**
 
-![](assets/java-nio.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164322-748408.png)
 
 
 
@@ -474,7 +474,7 @@ AIO 并没有采用NIO的多路复用器，而是使用异步通道的概念。�
 2. NIO模型中通过**SocketChannel**和**ServerSocketChannel**完成套接字通道实现。非阻塞/阻塞，同步，避免TCP建立连接使用三次握手带来的开销。
 3. AIO模型中通过**AsynchronousSocketChannel**和**AsynchronousServerSocketChannel**完成套接字通道实现。非阻塞，异步。
 
-<div align="center"> <img src="assets/java-io-compare.png" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164325-850912.png)
 
 
 
@@ -564,7 +564,7 @@ public static void main(String[] args) throws IOException
 
 
 
-<div align="center"> <img src="https://raw.githubusercontent.com/CyC2018/Interview-Notebook/033676724523021872edb86176e92a87b87acd46/pics/ClienteServidorSockets1521731145260.jpg" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164343-157764.jpeg)
 
 
 
@@ -608,7 +608,7 @@ socket是网络编程的基础，本文用打电话来类比socket通信中建�
 
 下面是一个实际的socket通信过程：
 
-<div align="center"> <img src="assets/tcpsocket.png" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164328-973862.png)
 
 
 

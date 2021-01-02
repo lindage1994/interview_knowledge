@@ -29,7 +29,7 @@ Kafka 是一个分布式的基于发布/订阅模式的消息队列（Message Qu
 
 ### 传统消息队列的应用场景
 
-![nAc6zQ.png](assets/nAc6zQ.png)
+![nAc6zQ.png](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163459-229309.png)
 
 
 
@@ -64,7 +64,7 @@ Java消息服务（Java Message Service，JMS）规范目前支持两种消息�
 消息生产者生产消息发送到queue中，然后消息消费者从queue中取出并且消费消息。
 消息被消费以后，queue中不再有存储，所以消息消费者不可能消费到已经被消费的消息。Queue支持存在多个消费者，但是对一个消息而言，只会有一个消费者可以消费。
 
-![kafka-mq1](assets/kafka-mq1.png)
+![kafka-mq1](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163509-701446.png)
 
 
 
@@ -76,13 +76,13 @@ Pub/Sub发布订阅（广播）：使用topic作为通信载体
 
 topic实现了发布和订阅，当你发布一个消息，所有订阅这个topic的服务都能得到这个消息，所以从1到N个订阅者都能得到一个消息的拷贝。
 
-![kafka-mq2](assets/kafka-mq2.png)
+![kafka-mq2](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163512-126895.png)
 
 
 
 ## 三、Kafka基础架构
 
-![nAcIiT.png](assets/nAcIiT.png)
+![nAcIiT.png](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163515-380284.png)
 
 - **Producer**：消息生产者，就是向kafka broker发消息的客户端；
 

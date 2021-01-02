@@ -41,9 +41,11 @@ while (!Thread.interrupted()) {
     > 如果线程阻塞在这些方法上（我们知道，这些方法会让当前线程阻塞），这个时候如果其他线程对这个线程进行了中断，那么这个线程会从这些方法中立即返回，抛出 InterruptedException 异常，同时重置中断状态为 false。
 
   - 实现了 `InterruptibleChannel` 接口的类中的一些 I/O 阻塞操作，如 `DatagramChannel` 中的 `connect` 方法和 `receive` 方法等
-    >如果线程阻塞在这里，中断线程会导致这些方法抛出 ClosedByInterruptException 并重置中断状态。
-
+    
+>如果线程阻塞在这里，中断线程会导致这些方法抛出 ClosedByInterruptException 并重置中断状态。
+    
   - `Selector` 中的 `select` 方法
+    
     >一旦中断，方法立即返回
 
 对于以上 3 种情况是最特殊的，因为他们能自动感知到中断（这里说自动，当然也是基于底层实现），并且在做出相应的操作后都会重置中断状态为 false。

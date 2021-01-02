@@ -126,7 +126,7 @@ Class Files -> ClassLoader -> 运行时数据区 -> 执行引擎，本地库接�
 
 虚拟机是物理机器的软件实现。Java 的开发遵循 write once run anywhere（“一次编写到处乱跑”）理念，它运行在 VM（虚拟机）上。编译器将 Java 文件编译成 Java.class 文件，之后，将 .class 文件输入到 JVM 中，加载并执行该类文件。下图是 JVM 的体系结构
 
-![img](assets/435918-20180701233830808-854564995.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164943-986941.png)
 
 
 
@@ -226,7 +226,7 @@ Java的动态类加载功能是由类加载器子系统处理的。它负责加�
 
 ## 1. 运行时数据区域
 
-<div align="center"> <img src="assets/540631a4-6018-40a5-aed7-081e2eeeaeea.png" width="500"/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165017-545324.png)
 
 
 
@@ -244,7 +244,7 @@ Java的动态类加载功能是由类加载器子系统处理的。它负责加�
 每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息，从调用直至执行完成的过程，就对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。 
 
 
-<div align="center"> <img src="assets/926c7438-c5e1-4b94-840a-dcb24ff1dafe.png" width="500"/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165559-683523.png)
 
 * 补充：栈帧中还存在动态链接、出口（返回地址）等。
 
@@ -274,7 +274,7 @@ java -Xss=512M HackTheJava
 
 本地方法栈与 Java 虚拟机栈类似，它们之间的区别只不过是本地方法栈为本地方法服务。
 
-<div align="center"><img src="assets/JNI-Java-Native-Interface.jpg" width="350"/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165556-527056.jpeg)
 
 
 
@@ -310,7 +310,7 @@ java -Xss=512M HackTheJava
 
 
 
-<div align="center"> <img src="assets/ppt_img.gif" width=""/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165552-930297.gif)
 
 Java 堆不需要连续内存，并且可以动态增加其内存，增加失败会抛出 OutOfMemoryError 异常。
 
@@ -361,7 +361,7 @@ System.out.println(s1 == s1);  //  true
 
 
 
-<div align="center"><img src="assets/running-jvm.png" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165547-250404.png)
 
 
 
@@ -381,7 +381,7 @@ System.out.println(s1 == s1);  //  true
 
 通过 GC Roots 作为起始点进行搜索，能够到达到的对象都是存活的，不可达的对象可被回收。
 
-<div align="center"> <img src="assets/root-tracing.png" width="650"/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165543-72621.png)
 
 
 
@@ -478,7 +478,7 @@ finalize() 类似 C++ 的析构函数，用来做关闭外部资源等工作。�
 
 ### 1. 标记 - 清除
 
-<div align="center"> <img src="assets/a4248c4b-6c1d-4fb8-a557-86da92d3a294.jpg" width=""/> </div><br> 
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165539-759467.jpeg)
 
 
 首先标记出所有需要回收的对象，在标记完成后统一回收所有标记的对象。
@@ -492,7 +492,7 @@ finalize() 类似 C++ 的析构函数，用来做关闭外部资源等工作。�
 
 ### 2. 标记 - 整理
 
-<div align="center"> <img src="assets/902b83ab-8054-4bd2-898f-9a4a0fe52830.jpg" width=""/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165536-553016.jpeg)
 
 
 标记过程仍然与"标记-清除"算法一样，但后续步骤不是直接对可回收对象进行清理，而是让所有存活的对象都向一端移动，然后直接清除掉端边界以外的内存。
@@ -502,7 +502,7 @@ finalize() 类似 C++ 的析构函数，用来做关闭外部资源等工作。�
 ### 3. 复制回收
 
 
-<div align="center"> <img src="assets/e6b733ad-606d-4028-b3e8-83c3a73a3797.jpg" width=""/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165534-142616.jpeg)
 
 将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。
 
@@ -527,7 +527,7 @@ HotSpot 虚拟机的 Eden 和 Survivor 的大小比例默认为 8:1，保证了�
 
 ## 4. 垃圾收集器
 
-<div align="center"> <img src="assets/c625baa0-dde6-449e-93df-c3a67f2f430f.jpg" width=""/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165530-468889.jpeg)
 
 
 
@@ -540,7 +540,7 @@ HotSpot 虚拟机的 Eden 和 Survivor 的大小比例默认为 8:1，保证了�
 
 ### 1. Serial
 
-![](assets/serial.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165528-908067.png)
 
 Serial 翻译为串行，也就是说它以串行的方式执行。
 
@@ -554,7 +554,7 @@ Serial 翻译为串行，也就是说它以串行的方式执行。
 
 ### 2. ParNew
 
-![](assets/parNew.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165525-802370.png)
 
 它是 Serial 收集器的多线程版本。
 
@@ -572,7 +572,7 @@ Serial 翻译为串行，也就是说它以串行的方式执行。
 
 ### 3. Parallel Scavenge
 
-![](assets/parallel-scavenge.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165522-826538.png)
 
 
 
@@ -613,7 +613,7 @@ Parallel Scavenge 收集器气提供了两个参数用于**精确控制吞吐量
 
 ### 4. Serial Old
 
-![](assets/serial-old.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165518-560928.png)
 
 Serial Old 是 Serial 收集器的老年代版本，它同样是一个单线程收集器，使用 ”标记-整理“ 算法。
 
@@ -628,7 +628,7 @@ Serial Old 是 Serial 收集器的老年代版本，它同样是一个单线程�
 
 ### 5. Parallel Old
 
-![](assets/parallel-old.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165516-229346.png)
 
 Parallel Old 是 Parallel Scavenge 收集器的老年代版本，使用多线程和 ”标记-整理“ 算法。
 
@@ -638,7 +638,7 @@ Parallel Old 是 Parallel Scavenge 收集器的老年代版本，使用多线程
 
 ### 6. CMS
 
-![](assets/cms.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165510-795572.png)
 
 CMS（Concurrent Mark Sweep），Mark Sweep 指的是 **标记 - 清除** 算法。CMS 是一款优秀的收集器，主要优点：并发收集、低停顿，Sun公司也称之为**并发低停顿收集器**（Concurrent Low Pause Collection）。
 
@@ -677,19 +677,19 @@ G1（Garbage-First），它是一款面向服务端应用的垃圾收集器，�
 堆被分为新生代和老年代，其它收集器进行收集的范围都是整个新生代或者老年代，而 G1 可以直接对新生代和老年代一起回收。
 
 
-<div align="center"> <img src="assets/3d37bfb7e94c81bd23c7fda6b7d87d59-1534559067339.png" width="400"/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165506-408273.png)
 
 G1 把堆划分成多个大小相等的独立区域（Region），新生代和老年代不再物理隔离。
 
 
 
-<div align="center"> <img src="assets/02d155395a44f40be1b7e9f634939cb0-1534559721068.png" width="600"/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165503-637840.png)
 
 通过引入 Region 的概念，从而将原来的一整块内存空间划分成多个的小空间，使得每个小空间可以单独进行垃圾回收。这种划分方法带来了很大的灵活性，使得可预测的停顿时间模型成为可能。通过记录每个 Region 垃圾回收时间以及回收所获得的空间（这两个值是通过过去回收的经验获得），并维护一个优先列表，每次根据允许的收集时间，优先回收价值最大的 Region。
 
 每个 Region 都有一个 Remembered Set，用来记录该 Region 对象的引用对象所在的 Region。通过使用 Remembered Set，在做可达性分析的时候就可以避免全堆扫描。
 
-<div align="center"> <img src="assets/f99ee771-c56f-47fb-9148-c0036695b5fe.jpg" width=""/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165501-478196.jpeg)
 
  
 
@@ -820,7 +820,7 @@ G1 把堆划分成多个大小相等的独立区域（Region），新生代和�
 ### 类的生命周期
 
 
-<div align="center"> <img src="assets/1534576247083.png" width="650"/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165453-599944.png)
 
 
 
@@ -1089,7 +1089,7 @@ JVM 如何加载一个类的过程，双亲委派模型中有哪些方法有没�
 
 - **双亲委派机制图**
 
-<div align="center"> <img src="assets/d330251551f6de988239494ce2773095.png" width="450"/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165442-196511.png)
 
 - **双亲委派概念** 
   - 如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的加载器都是如此，因此所有的类加载请求都会传给顶层的启动类加载器，只有当父加载器反馈自己无法完成该加载请求（该加载器的搜索范围中没有找到对应的类）时，子加载器才会尝试自己去加载。 
@@ -1178,7 +1178,7 @@ jstat [option vmid [interval [s | ms] [count ] ] ]
 
 例如：需要每 1000 毫秒查询一次进程 16418 垃圾收集状况，一共查询 10 次，那命令如下：
 
-![](assets/tools_stat.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165435-978850.png)
 
 参考：[jstat命令详解 - CSDN博客](https://blog.csdn.net/zhaozheng7758/article/details/8623549)
 
@@ -1307,7 +1307,7 @@ jvisualvm 同 jconsole 都是一个基于图形化界面的、可以查看本地
 
 通过分析，我们得知，对于C++，程序员需要自己管理边和顶点，而对于 Java 程序员只需要管理边就可以了(不需要管理顶点的释放)。通过这种方式，Java 提高了编程的效率。
 
-<div align="center"> <img src="assets/memory-leak.gif" width="600"/> </div><br>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/165425-997603.gif)
 
 
 

@@ -33,7 +33,7 @@
 
 　　main 线程将消息发送给 RecordAccumulator，Sender 线程不断从 RecordAccumulator 中拉取消息发送到 Kafka broker。
 
-![](assets/kafka-produce.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163635-720383.png)
 
 相关参数：
 - **batch.size**：只有数据积累到 batch.size 之后，sender 才会发送数据。

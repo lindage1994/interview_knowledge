@@ -25,7 +25,7 @@ Reactor 单线程模型，指的是所有的 IO 操作都在同一个 NIO 线程
   1. 读取通信对端的请求或者应答消息；
   1. 向通信对端发送消息请求或者应答消息。
 
-![image](images/dc7ff89d78fc63558bd02d4515e42f38.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163755-746214.png)
 
 由于 `Reactor` 模式使用的是`异步非阻塞 IO`，所有的 `IO` 操作都不会导致阻塞，理论上一个线程可以独立处理所有 `IO` 相关的操作。从架构层面看，一个 `NIO` 线程确实可以完成其承担的职责。例如，通过 `Acceptor` 类接收客户端的 TCP 连接请求消息，链路建立成功之后，通过 `Dispatch` 将对应的 `ByteBuffer` 派发到指定的 `Handler` 上进行消息解码。用户线程可以通过消息编码通过 `NIO` 线程将消息发送给客户端。
 
@@ -35,7 +35,7 @@ Reactor 单线程模型，指的是所有的 IO 操作都在同一个 NIO 线程
 
 Rector 多线程模型与单线程模型最大的区别就是有一组 NIO 线程处理 IO 操作，它的原理图如下：
 
-![image](images/2882a43ae27016cc885444b46a735801.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163759-377359.png)
 
 Reactor 多线程模型的特点：
 
@@ -47,7 +47,7 @@ Reactor 多线程模型的特点：
 
 主从 `Reactor` 线程模型的特点是：服务端用于接收客户端连接的不再是个 `1` 个单独的 `NIO` 线程，而是一个独立的 `NIO` 线程池。 `Acceptor` 接收到客户端 `TCP` 连接请求处理完成后（可能包含接入认证等），将新创建的 `SocketChannel` 注册到 IO 线程池（`sub reactor` 线程池）的某个 IO 线程上，由它负责 `SocketChannel` 的读写和编解码工作。 `Acceptor` 线程池仅仅只用于客户端的登陆、握手和安全认证，一旦链路建立成功，就将链路注册到后端 `subReactor` 线程池的 `IO` 线程上，由 `IO` 线程负责后续的 `IO` 操作。
 
-![image](images/8674352e3cb3638da5807ef88b8f225d.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163804-756973.png)
 
 它的工作流程总结如下：
 
@@ -121,7 +121,7 @@ Netty 内存泄漏，主要是针对池化的 ByteBuf 。 ByteBuf 对象被 JVM 
 
 ### Netty 启动以及链接建立过程
 
-![image](images/922e67970b6ac7bf78cd43ac61f7aec0.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163809-17184.png)
 
 ## Epoll 触发
 

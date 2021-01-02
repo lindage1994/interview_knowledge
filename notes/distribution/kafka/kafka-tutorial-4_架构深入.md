@@ -31,7 +31,7 @@
 
 ## 一、Kafka 工作流程及文件存储机制
 
-![](assets/kafka-work.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163530-613914.png)
 
 
 
@@ -39,7 +39,7 @@
 
 　　topic 是逻辑上的概念，而 partition 是物理上的概念，每个 partition 对应于一个 log 文件，该 log 文件中存储的就是 producer 生产的数据。Producer 生产的数据会被不断追加到该 log 文件末端，且每条数据都有自己的 offset。消费者组中的每个消费者，都会实时记录自己消费到了哪个 offset，以便出错恢复时，从上次的位置继续消费。
 
-![](assets/kafka-index.png)   
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163535-377069.png)   
 
 　　由于生产者生产的消息会不断追加到 log 文件末尾，为防止 log 文件过大导致数据定位效率低下，Kafka 采取了**分片**和**索引**机制，将每个 partition 分为多个 segment。每个 segment 对应两个文件——“.index”文件和 “.log” 文件。这些文件位于一个文件夹下，该文件夹的命名规则为：topic 名称 + 分区序号。例如，first 这个 topic 有三个分区，则其对应的文件夹为 first-0,first-1,first-2。
 
@@ -54,7 +54,7 @@
 
 　　index 和 log 文件以当前 segment 的第一条消息的 offset 命名。
 
-![](assets/kafka-index2.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163540-890894.png)
 
 　　**“.index”文件存储大量的索引信息，“.log”文件存储大量的数据**，**索引文件中的元数据指向对应数据文件中**message 的物理偏移地址。
 
@@ -75,7 +75,7 @@
 
 - 我们将 producer 发送的数据封装成一个 ProducerRecord 对象。
 
-![](assets/kafka-partition.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163544-340692.png)
 
 1. 指明 partition 的情况下，直接将指明的值直接作为 partition 值；
 2. 没有指明 partition 值但有 key 的情况下，将 key 的 hash 值与 topic 的 partition 数进行取余得到 partition 值；
@@ -87,7 +87,7 @@
 
 　　为保证 producer 发送的数据，能可靠的发送到指定的 topic，topic 的每个 partition 收到 producer 发送的数据后，都需要向 producer 发送 ack（acknowledgement 确认收到），如果 producer 收到 ack，就会进行下一轮的发送，否则重新发送数据。
 
-![](assets/kafka-ack.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163548-355673.png)
 
 #### （1）副本数据同步策略
 
@@ -123,15 +123,15 @@ Kafka 选择了第二种方案，原因如下：
 - 0：producer 不等待 broker 的 ack，这一操作提供了一个最低的延迟，broker 一接收到还没有写入磁盘就已经返回，当 broker 故障时有可能**丢失数据**。
 - 1：producer 等待 broker 的 ack，partition 的 leader 落盘成功后返回 ack，如果在 follower 同步成功之前 leader 故障，那么就会**丢失数据**。
 
-![](assets/kafka-acks1.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163553-734978.png)
 
 - -1(all)：producer 等待 broker 的 ack，partition 的 leader 和 follower（是 ISR 中的） 全部落盘成功后才返回 ack，但是如果 follower 同步完成后，broker 发送 ack 之前，leader 发生故障，producer 重新发送消息给新 leader 那么会造成**数据重复**。
 
-![](assets/kafka-acks-1.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163556-360092.png)
 
 #### （4）数据一致性问题（故障处理）
 
-![](assets/kafka-failover.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163600-812257.png)
 
 - **follower 故障**
   follower 发生故障后会被临时踢出 ISR，待该 follower 恢复后，follower 会读取本地磁盘记录的上次的 HW，并将 log 文件高于 HW 的部分截取掉，从 HW 开始向 leader 进行同步。等该 **follower 的 LEO 大于等于该 Partition 的 HW**，即 follower 追上 leader 之后，就可以重新加入 ISR 了。
@@ -178,19 +178,19 @@ Kafka 选择了第二种方案，原因如下：
 
 　　Kafka 有两种分配策略，一是 **RoundRobin**，一是 **range**。
 
-![1567511408405](assets/1567511408405.png)
+![1567511408405](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163606-660851.png)
 
 
 
 　　**roundrobin**根据 partition 号对 consumer 个数取模后轮循分配
 
-![1567511461051](assets/1567511461051.png)
+![1567511461051](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163610-906476.png)
 
  
 
 　　**range**提前按照均匀分配的原则计算个数后直接分配。
 
-![1567511487508](assets/1567511487508.png)
+![1567511487508](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163614-460806.png)
 
 　　在订阅多个 partition 时 range 会有**不均匀**问题，kafka 默认为 range，因为不考虑多 partition 订阅时，range 效率更高。
 
@@ -202,7 +202,7 @@ Kafka 选择了第二种方案，原因如下：
 
 　　group + topic + partition（GTP） 才能确定一个 offset！
 
-![1567511669385](assets/1567511669385.png)
+![1567511669385](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163618-810604.png)
 
 　　Kafka 0.9 版本之前，consumer 默认将 offset 保存在 Zookeeper 中，从 0.9 版本开始，consumer 默认将 offset 保存在 Kafka 一个内置的 topic 中，该 topic 为 `__consumer_offsets`（此时消费者对于 offset 相当于生产者）。
 
@@ -248,9 +248,9 @@ bin/kafkabin/kafka--consoleconsole--consumer.sh consumer.sh ----topic __consumer
 
 　　更详细，请参考：[浅析Linux中的零拷贝技术 - 简书](https://www.jianshu.com/p/fad3339e3448)
 
-![1567513386020](assets/1567513386020.png)
+![1567513386020](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163623-899040.png)
 
-![1567513364566](assets/1567513364566.png)
+![1567513364566](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163626-253344.png)
 
 
 
@@ -262,7 +262,7 @@ bin/kafkabin/kafka--consoleconsole--consumer.sh consumer.sh ----topic __consumer
 
 　　以下为 partition 的 leader 选举过程：
 
-![](assets/kafka-zk.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/163629-24514.png)
 
 
 

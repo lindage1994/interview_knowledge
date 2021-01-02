@@ -19,7 +19,7 @@ categories: architecture
 
 ## 拓扑结构
 
-![image](images/9a9bab37c896c086e2fee7b3e15a9ae3.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162757-228456.png)
 
 如上图所示，一个典型的 `Kafka` 集群中包含若干 `Producer` （可以是web前端产生的Page View，或者是服务器日志，系统CPU、Memory等），若干 `broker` （Kafka支持水平扩展，一般broker数量越多，集群吞吐率越高），若干 `Consumer Group` ，以及一个 `Zookeeper` 集群。 `Kafka` 通过 `Zookeeper` 管理集群配置，选举 `leader` ，以及在 `Consumer Group` 发生变化时进行 rebalance。 `Producer` 使用 push 模式将消息发布到broker，Consumer使用pull模式从broker订阅并消费消息。
 
@@ -45,7 +45,7 @@ Producer 发送消息到 broker 时，会根据 Paritition 机制选择将其存
 
 ## Consumer Group
 
-![image](images/e54deac5512215cfc6801890bb83d792.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162801-109264.png)
 
 这是 Kafka 用来实现一个 Topic 消息的广播（发给所有的 Consumer ）和单播（发给某一个 Consumer ）的手段。一个 Topic 可以对应多个 Consumer Group 。如果需要实现广播，只要每个 Consumer 有一个独立的 Group 就可以了。要实现单播只要所有的 Consumer 在同一个 Group 里。用 Consumer Group 还可以将 Consumer 进行自由的分组而不需要多次发送消息到不同的 Topic 。
 
@@ -55,7 +55,7 @@ Producer 发送消息到 broker 时，会根据 Paritition 机制选择将其存
 
 > 即分区数决定了同组消费者个数的上限
 
-![image](images/5290a719713da5ce4e83422ded5bdf0c.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162806-551267.png)
 
 所以，如果你的分区数是 N ，那么最好线程数也保持为 N ，这样通常能够达到最大的吞吐量。超过 N 的配置只是浪费系统资源，因为多出的线程不会被分配到任何分区。
 
@@ -78,11 +78,11 @@ Producer 发送消息到 broker 时，会根据 Paritition 机制选择将其存
 
 比如说，我们假设创建了一个 `topic` ，指定其 `partition` 数量是 `3` 个，分别在三台机器上。但是，如果第二台机器宕机了，会导致这个 `topic` 的 `1/3` 的数据就丢了，因此这个是做不到高可用的。
 
-![image](images/ab965081f1e5ff28386d90ba18a17d6d.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162809-623733.png)
 
 `Kafka 0.8` 以后，提供了 `HA` 机制，就是 `replica` **副本机制**。每个 `partition` 的数据都会同步到其它机器上，形成自己的多个 `replica` 副本。所有 `replica` 会选举一个 `leader` 出来，那么生产和消费都跟这个 `leader` 打交道，然后其他 `replica` 就是 `follower` 。写的时候， `leader` 会负责把数据同步到所有 `follower` 上去，读的时候就直接读 `leader` 上的数据即可。 `Kafka` 会均匀地将一个 `partition` 的所有 `replica` 分布在不同的机器上，这样才可以提高容错性。
 
-![image](images/a0de8d416add777aef97683192fd15db.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162812-611944.png)
 
 这么搞，就有所谓的高可用性了，因为如果某个 `broker` 宕机了，没事儿，那个 `broker` 上面的 `partition` 在其他机器上都有副本的，如果这上面有某个 `partition` 的 `leader` ，那么此时会从 `follower` 中 **重新选举** 一个新的 `leader` 出来，大家继续读写那个新的 `leader` 即可。这就有所谓的高可用性了。
 
@@ -131,13 +131,13 @@ Producer 发送消息到 broker 时，会根据 Paritition 机制选择将其存
 
 消费者从 `partition` 中取出来数据的时候，也一定是有顺序的。到这里，顺序还是 `ok` 的，没有错乱。接着，我们在消费者里可能会搞 **多个线程来并发处理消息**。而多个线程并发跑的话，顺序可能就乱掉了。
 
-![image](images/7d529fbf2f856582c2eb3ee787ede5fd.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162817-713259.png)
 
 解决方案：
   - 一个 `topic` ，一个 `partition` ，一个 `consumer` ，内部单线程消费，单线程吞吐量太低，一般不会用这个。
   - 写 `N` 个内存 `queue` ，具有相同 `key` 的数据都到同一个内存 `queue` ；然后对于 N 个线程，每个线程分别消费一个内存 `queue` 即可，这样就能保证顺序性。
 
-![image](images/09d68167fcb34b075259add9b81809cd.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162821-809051.png)
 
 ## Kafka 如何进行扩容的？
 

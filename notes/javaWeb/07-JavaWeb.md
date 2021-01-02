@@ -111,7 +111,7 @@ Servlet 是在服务器上运行的小程序。一个 servlet 就是一个 Java 
 
 类的继承关系如下：
 
-<div align="center"><img src="assets/1535532891036.png" width="550"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164918-796146.png)
 
 Servlet三种实现方式：
 
@@ -128,7 +128,7 @@ Servlet三种实现方式：
 
 Tomcat的容器分为4个等级，Servlet的容器管理Context容器，一个Context对应一个Web工程。
 
-<div align="center"><img src="assets/4685968-b27b8782600dd0af.png" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164913-153246.png)
 
 
 
@@ -139,7 +139,7 @@ Tomcat的容器分为4个等级，Servlet的容器管理Context容器，一个Co
 
 ### 浏览器请求
 
-<div align="center"><img src="assets/20180521175251513.png" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164909-244083.png)
 
 浏览器向服务器请求时，服务器不会直接执行我们的类，而是到 web.xml 里寻找路径名 
 ① 浏览器输入访问路径后，携带了请求行，头，体 
@@ -149,7 +149,7 @@ Tomcat的容器分为4个等级，Servlet的容器管理Context容器，一个Co
 
 ### 服务器创建对象
 
-<div align="center"><img src="assets/20180521182037787.png" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164904-653583.png)
 
 ① 服务器找到全限定类名后，通过反射创建对象，同时也创建了 servletConfig，里面存放了一些初始化信息（注意服务器只会创建一次 servlet 对象，所以 servletConfig 也只有一个）
 
@@ -157,7 +157,7 @@ Tomcat的容器分为4个等级，Servlet的容器管理Context容器，一个Co
 
 ### 调用init方法
 
-<div align="center"><img src="assets/20180521183945631.png" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164901-603847.png)
 
 ① 对象创建好之后，首先要执行 init 方法，但是我们发现我们自定义类下没有 init 方法，所以程序会到其父类 HttpServlet 里找 
 ② 我们发现 HttpServlet 里也没有 init 方法，所以继续向上找，既向其父类 GenericServlet 中继续寻找,在 GenericServlet 中我们发现了 init 方法，则执行 init 方法（对接口 Servlet 中的 init 方法进行了重写） 
@@ -168,7 +168,7 @@ Tomcat的容器分为4个等级，Servlet的容器管理Context容器，一个Co
 
 ### 调用service方法
 
-<div align="center"><img src="assets/20180521212619975.png" width="700"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164857-873725.png)
 
 接着，服务器会先创建两个对象：ServletRequest 请求对象和 ServletResponse 响应对象，用来封装浏览器的请求数据和封装向浏览器的响应数据 
 ① 接着服务器会默认在我们写的类里寻找 service(ServletRequest req, ServletResponse res) 方法，但是 DemoServlet 中不存在，那么会到其父类中寻找 
@@ -179,7 +179,7 @@ Tomcat的容器分为4个等级，Servlet的容器管理Context容器，一个Co
 因为如果重写service方法的话，我们需要将强转，以及一系列的安全保护判断重新写一遍，会存在安全隐患
 
 ### 向浏览器响应
-<div align="center"><img src="assets/20180521214423142.png" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164852-359154.png)
 
 
 
@@ -204,7 +204,7 @@ Servlet 类由自己编写，但对象由服务器来创建，并由服务器来
 
 最后服务器关闭时，才会销毁这个 servlet 对象，执行 destroy() 方法。
 
-<div align="center"> <img src="assets/1535535812505.png" width="650"/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164847-623650.png)
 
 **总结（面试会问）：**　　　
 
@@ -252,7 +252,7 @@ Servlet 类由自己编写，但对象由服务器来创建，并由服务器来
 
 　　下图可以更好的说明二者的区别：
 
-<div align="center"><img src="assets/1535537913258.png" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164842-417370.png)
 
 　　鉴于以上的区别，一般当 forward 方式可以满足需求时，尽可能地使用 forward 方式。但在有些情况下，例如，需要跳转到下一个其他服务器上的资源，则必须使用 redirect 方式。
 
@@ -300,7 +300,7 @@ MVC模式（Model-View-Controller）是软件工程中的一种软件架构模�
 
 在 JSP/Servlet 开发的软件系统中，这三个部分的描述如下所示：
 
-<div align="center"><img src="assets/229cf9ff5b1729eaf408fac56238eeb3.png" width="600"/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164837-56642.png)
 
 1. Web 浏览器发送 HTTP 请求到服务端，被 Controller(Servlet) 获取并进行处理（例如参数解析、请求转发）
 2. Controller(Servlet) 调用核心业务逻辑——Model部分，获得结果
@@ -317,7 +317,7 @@ MVC 模式在 Web 开发中的好处是非常明显，它规避了 JSP 与 Servl
 
 　　从 http 协议中的请求和响应可以得知，浏览器发出的请求是一个请求文本，而浏览器接收到的也应该是一个响应文本。但是在上面这个图中，并不知道是如何转变的，只知道浏览器发送过来的请求也就是 request，我们响应回去的就用 response。忽略了其中的细节，现在就来探究一下。
 
-<div align="center"><img src="assets/servlet-tomcat.png" width="600"/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164831-361282.png)
 
 ① Tomcat 将 http 请求文本接收并解析，然后封装成 HttpServletRequest 类型的 request 对象，所有的 HTTP 头数据读可以通过 request 对象调用对应的方法查询到。
 
@@ -378,7 +378,7 @@ MVC 是**客户端**的一种设计模式，所以他天然就不考虑数据如
 
 各层次的关系：表现层的控制->服务层->数据持久化层。
 
-<div align="center"><img src="assets/jee-3-ties.bmp" width=""/></div>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164825-545987.bmp)
 
 
 
@@ -524,7 +524,7 @@ Spring的IoC容器是Spring的核心，Spring AOP是spring框架的重要组成�
 
 ## 3. Spring IOC初始化过程
 
- <div align="center"> <img src="assets/bean-init2.png" width=""/></div><br/>
+ ![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164819-305176.png)
 
  IOC容器的初始化分为三个过程实现：
 
@@ -661,7 +661,7 @@ https://www.cnblogs.com/weknow619/p/6673667.html
 
 相比之下，Spring容器中的bean的生命周期就显得相对复杂多了。正确理解Spring bean的生命周期非常重要，因为你或许要利用Spring提供的扩展点来自定义bean的创建过程。下图展示了bean装载到Spring应用上下文中的一个典型的生命周期过程。 
 
-<div align="center"> <img src="assets/bean-life.png" width=""/></div><br/>
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164812-609738.png)
 
 上图bean在Spring容器中从创建到销毁经历了若干阶段，每一阶段都可以针对Spring如何管理bean进行个性化定制
 
@@ -1052,7 +1052,7 @@ Spring实现了一种能够通过额外的方法调用完成任务的设计模�
 
 Spring MVC 的工作原理如下图：  
 
-![img](assets/Spring-mvc-framework-1536053968817.png)
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/164759-715302.png)
 
   
 

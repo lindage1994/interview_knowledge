@@ -24,7 +24,7 @@ categories: architecture
 
 [官方文档--服务导出](https://dubbo.incubator.apache.org/zh-cn/docs/source_code_guide/export-service.html)
 
-![image](images/fce799af888ea1e2b757476b03d4ded7.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162736-99137.png)
 
 ## Dubbo 结构
 
@@ -45,7 +45,7 @@ categories: architecture
   - 第三步：consumer 调用 provider
   - 第四步：consumer 和 provider 都异步通知监控中心
 
-![image](images/075a4cbace1c6874c04ae34c6b91c7ad.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162739-163538.png)
 
 ## 注册中心挂了可以继续通信吗？
 
@@ -152,7 +152,7 @@ Protocol protocol = ExtensionLoader.getExtensionLoader(Protocol.class).getAdapti
 
 那就需要基于 dubbo 做的分布式系统中，对各个服务之间的调用自动记录下来，然后自动将 **各个服务之间的依赖关系和调用链路生成出来**，做成一张图，显示出来，大家才可以看到对吧。
 
-![image](images/c48a88cbce65d737293a41250ea58d72.png)
+![image](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/02/162748-885473.png)
 
 #### 2. 服务访问压力以及时长统计
 
