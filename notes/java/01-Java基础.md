@@ -445,13 +445,13 @@ Java 面向对象的基本思想之一是封装细节并且公开接口。Java �
 
 - **浅拷贝**：被复制对象的所有变量都含有与原来的对象相同的值，而所有的对其他对象的引用仍然指向原来的对象。换言之，浅拷贝仅仅复制所拷贝的对象，而不复制它所引用的对象。
 
-![](assets/shadow_copy2.jpg)
+![shadow_copy2](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/04/192902-875714.jpeg)
 
 
 
 - **深拷贝**：对基本数据类型进行值传递，对引用数据类型，创建一个新的对象，并复制其内容，此为深拷贝。
 
-![](assets/deep_copy2.jpg)
+![deep_copy2](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/04/192925-58832.jpeg)
 
 
 
@@ -735,7 +735,7 @@ public class Test {
 - **重载**：重载发生在同一个类中，同名的方法如果有不同的参数列表（参数类型不同、参数个数不同或者二者都不同）则视为重载。 
 - **重写**：重写发生在子类与父类之间，重写要求子类被重写方法与父类被重写方法有相同的返回类型，比父类被重写方法更好访问，不能比父类被重写方法声明更多的异常（里氏代换原则）。根据不同的子类对象确定调用的那个方法。 
 
- ![](assets/overloading-vs-overriding.png)
+![overloading-vs-overriding](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/04/193021-797353.png)
 
 
 
@@ -1549,12 +1549,11 @@ assert 的应用范围很多，主要包括：
 - 每次访问变量时，总是获取主内存的最新值
 - 每次修改变量后，立刻写回到主内存中
 
- ![](assets/java-volatile.png)
+![java-volatile](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/04/192652-661500.png)
 
 参考资料：
 
 - [理解java Volatile 关键字 - 个人文章 - SegmentFault 思否](https://segmentfault.com/a/1190000015087945)
-  
 
 
 
@@ -1615,7 +1614,7 @@ strictfp 关键字可应用于类、接口或方法。使用 strictfp 关键字�
 
 native（即 JNI，Java Native Interface），凡是一种语言，都希望是纯。比如解决某一个方案都喜欢就单单这个语言来写即可。Java 平台有个用户和本地 C 代码进行互操作的 API，称为 Java Native Interface (Java本地接口)。 
 
-![](assets/java-native-interface.png)
+![java-native-interface](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/04/192747-673514.png)
 
 
 
@@ -2078,7 +2077,8 @@ public class BinaryIntegralLiteral {
   - RuntimeException 
 - 常见的异常
 
-<div align="center"><img src="assets/exception_and_error.png)
+![exception_and_error](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/04/193142-500108.png)
+
 
 
 
