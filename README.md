@@ -1,5 +1,5 @@
 # interview_knowledge
-![s](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/01/164817-757142.png)
+![image-20210106200446143](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/06/200447-55151.png)
 
 ## java tutorial
 
