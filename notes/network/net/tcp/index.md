@@ -19,16 +19,16 @@ categories: net
 
 ### TCP与UDP的区别
 
-  ||TCP |UDP |
-  |:---|:--|:--|
-  |是否连接| 面向连接 |面向非连接|
-  |传输可靠性| 可靠| 不可靠|
-  |应用场合| 传输大量数据| 少量数据|
-  |速度| 慢| 快|
+||TCP |UDP |
+|:---|:--|:--|
+|是否连接| 面向连接 |面向非连接|
+|传输可靠性| 可靠| 不可靠|
+|应用场合| 传输大量数据| 少量数据|
+|速度| 慢| 快|
 
 ## TCP报文结构
 
-![](images/tcp_head.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/09/204512-334980.png)
 
 - **源端口、目的端口**：16位长。标识出远端和本地的端口号。
 - **序列号（seq）**：32位长
@@ -60,7 +60,7 @@ categories: net
 
 ## 三次握手
 
-![](assists/tcp_handshake.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/09/204517-153946.png)
 
   - 第一次握手：建立连接时，客户端发送 SYN 包（seq=j）到服务器，并进入`SYN_SENT`状态，等待服务器确认。
   - 第二次握手：服务器收到 SYN 包，必须确认客户的 SYN（ack=j+1），同时自己也发送一个 SYN 包（seq=k），即 SYN + ACK 包，此时服务器进入 `SYN_RECV` 状态；
@@ -115,7 +115,7 @@ static inline struct sock *__inet_lookup(struct net *net,
 
 ## 四次挥手
 
-![](images/tcp_finish.jpg)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/09/204522-975364.jpeg)
 
 由于TCP连接是全双工的，因此每个方向都必须单独进行关闭。
 
@@ -158,7 +158,7 @@ TCP 协议使用序号标识每端发出的字节的顺序，从而另一端接�
 
 #### 数据传输举例
 
-![](assists/2020-02-14-20-03-25.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/09/204527-399211.png)
 
 1. 发送方首先发送第一个包含序列号为1（可变化）和 1460 字节数据的 TCP 报文段给接收方。接收方以一个没有数据的 TCP 报文段来回复（只含报头），用确认号 1461 来表示已完全收到并请求下一个报文段。
 2. 发送方然后发送第二个包含序列号为 1461 ，长度为 1460 字节的数据的 TCP 报文段给接收方。正常情况下，接收方以一个没有数据的 TCP 报文段来回复，用确认号 2921（1461+1460）来表示已完全收到并请求下一个报文段。发送接收这样继续下去。
@@ -175,7 +175,7 @@ TCP 协议使用序号标识每端发出的字节的顺序，从而另一端接�
 
 > 报文发送方：即可以是握手的发起方（客户端），也可以是握手的被动接收方（服务端）
 
-![](assists/flow_control_win.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/09/204531-621992.png)
 
 1. 报文段 2 中提供的窗口大小为 6144 字节；
 2. 由于这是一个较大的窗口，因此发送端立即连续发送了6个报文段（4~9），停止；
