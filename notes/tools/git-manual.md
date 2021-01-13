@@ -246,7 +246,7 @@ git pull origin master
 
 <details>
   <summary>演示克隆指定文件夹.gif</summary>
-  
+
   <img src="media/gitclone-sparsecheckout.gif">
 </details>
 
@@ -323,7 +323,6 @@ git cherry-pick --continue
 
 <details>
   <summary>演示转移提交.gif: 把 `dev` 分支的第三次提交转移到当前 `master` 分支。</summary>
-  
   <img src="media/cherry.gif">
 </details>
 
@@ -1196,7 +1195,7 @@ git flow release finish v1.1.0
 
 #### Git flow schema
 
-![](media/git-flow.png)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/13/195635-863032.png)
 
 
 
@@ -1656,7 +1655,6 @@ git commit -m "refactor: 流程模块重构"
 
 <details>
   <summary>点击查看解决冲突.gif</summary>
-  
   <img src="media/git-merge-conflict.gif">
 </details>
 
@@ -1739,7 +1737,6 @@ git config --global alias.hist "log --graph --decorate --oneline --pretty=format
 
 <details>
   <summary>效果图.png</summary>
-  
   <img src="media/git-log.png">
 </details>
 
@@ -1804,7 +1801,7 @@ cat ~/.ssh/id_rsa.pub
 
 <details>
   <summary>演示生成SSH Key.gif</summary>
-  
+
   <img src="media/ssh-key.gif">
 </details>
 
@@ -1881,7 +1878,7 @@ https://raw.sevencdn.com/xjh22222228/git-manual/master/media/poster.png
 
 ## 思维导图
 
-![](media/map.jpg)
+![](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/13/195719-159206.jpeg)
 
 
 
