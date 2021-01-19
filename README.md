@@ -7,6 +7,7 @@
 - [基本数据类型](notes/java/基本数据类型.md)
 - [String](notes/java/String.md)
 - [关键字](notes/java/关键字.md)
+- [Object类](/notes/java/Object.md)
 - [枚举](notes/java/Enum.md)
 - [泛型](notes/java/Generic.md)
 - [异常](notes/java/Exception.md)
