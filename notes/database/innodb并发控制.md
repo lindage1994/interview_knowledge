@@ -9,7 +9,7 @@ categories: database
 
 ## InnoDB 锁机制
 
-![](images/e86d2bb63f9ecf327e588f352bb26d3b.png)
+![e86d2bb63f9ecf327e588f352bb26d3b](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/21/201644-903486.png)
 
 InnoDB默认使用行锁，实现了两种标准的行锁——共享锁与排他锁；
 
