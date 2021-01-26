@@ -148,8 +148,6 @@ UPDATE table SET status = 1 WHERE id=1 AND status = 0;
 
 ## MySQL逻辑架构和执行流程？⭐
 
-![1](C:\Users\吕明辉\Desktop\github笔记\MySQL\1.png)
-
 - 最上层的服务类似其他CS结构，比如连接处理，授权处理。
 - 第二层是Mysql的服务层，包括SQL的解析分析优化，存储过程触发器视图等也在这一层实现。
 - 最后一层是存储引擎的实现。
