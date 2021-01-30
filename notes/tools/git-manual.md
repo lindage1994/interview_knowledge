@@ -1,28 +1,8 @@
 
-<p align="center">
-  <img src="media/poster.png" width="300" />
-  <br />
-  <b>Git常用命令参考手册</b>
-  <p align="center">基本涵盖了在开发中用到的git命令，能满足日常需求</p>
-  <p align="center">通俗易懂的例子，30分钟快速入门</p>
-  <p align="center">
-    <a href="https://github.com/xjh22222228/git-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/git-manual" alt="Stars Badge"/></a>
-    <img src="https://img.shields.io/github/license/xjh22222228/git-manual" />
-    <a href="https://hits.dwyl.com/xjh22222228/git-manual">
-      <img src="https://hits.dwyl.com/xjh22222228/git-manual.svg" />
-    </a>
-  </p>
-</p>
+# Git常用命令参考手册
 
 
-注：2020年10月 GitHub 已将默认分支 `master` 更名为 `main` 分支。
-
-
-
----
-
-
-# 目录
+## 目录
 - [配置](#配置) git config
 - [初始化仓库](#初始化仓库) git init
 - [克隆仓库](#克隆仓库) git clone

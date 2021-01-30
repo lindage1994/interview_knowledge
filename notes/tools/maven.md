@@ -107,15 +107,15 @@ Maven 工程的核心配置。
   <groupId>net.lazyegg.maven</groupId>
   <artifactId>Hello</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-​```
+```
 
 - 如何通过坐标到仓库中查找 jar 包？
 
-  -  将 gav 三个向量连起来  
+-  将 gav 三个向量连起来  
 
-  ```
+```
   net.lazyegg.maven+Hello+0.0.1-SNAPSHOT
-  ```
+```
 
   -  以连起来的字符串作为目录结构到仓库中查找 
 
@@ -140,7 +140,7 @@ Maven 中最关键的部分，我们使用 Maven 最主要的就是使用它的�
     <version>0.0.1-SNAPSHOT</version>
     <scope>compile</scope>            
 </dependency>
-​```
+```
 
 ##### ② 依赖的范围 
 
@@ -181,7 +181,7 @@ A 依赖 B，B 依赖 C，A 能否使用 C 呢？那要看 B 依赖 C 的范围�
 			</exclusion>
 	</exclusions>
 </dependency>
-​```
+```
 
 ##### ⑤ 统一管理所依赖 jar 包的版本，对同一个框架的一组 jar 包最好使用相同的版本。为了方便升级框架，可以将 jar 包的版本信息统一提取出来 
 
@@ -192,7 +192,7 @@ A 依赖 B，B 依赖 C，A 能否使用 C 呢？那要看 B 依赖 C 的范围�
 	<starfish.spring.version>4.1.1.RELEASE</starfish.spring.version>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 </properties>
-​```
+```
 
 - 引用前面声明的版本号    
 
@@ -203,7 +203,7 @@ A 依赖 B，B 依赖 C，A 能否使用 C 呢？那要看 B 依赖 C 的范围�
 	<version>${starfish.spring.version}</version>
 	<scope>compile</scope>
 </dependency>
-​```
+```
 
 ##### ⑥ 依赖的原则：解决 jar 包冲突
 - 路径最短者优先 
@@ -301,7 +301,7 @@ Default 生命周期是 Maven 生命周期中最重要的一个，绝大部分�
 	<!-- 以当前文件为基准的父工程pom.xml文件的相对路径 -->
 	<relativePath>../Parent/pom.xml</relativePath>
 </parent>
-​```
+```
 
 此时如果子工程的 groupId 和 version 如果和父工程重复则可以删除。 
 
@@ -318,7 +318,7 @@ Default 生命周期是 Maven 生命周期中最重要的一个，绝大部分�
         </dependency>
     </dependencies>
 </dependencyManagement> 
-​```
+```
 
 在子项目中重新指定需要的依赖，删除范围和版本号
 
@@ -327,7 +327,6 @@ Default 生命周期是 Maven 生命周期中最重要的一个，绝大部分�
     <groupId>junit</groupId>
     <artifactId>junit</artifactId>
 </dependency>
-​```
 ```
 
 
@@ -348,5 +347,4 @@ Default 生命周期是 Maven 生命周期中最重要的一个，绝大部分�
     <module>starfish-learn-kafka</module>
     <module>starfish-web-demo</module>
 </modules>
-​```
 ```
