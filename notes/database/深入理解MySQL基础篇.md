@@ -6,7 +6,7 @@
 
 
 
-<img src="https://github.com/lvminghui/Java-Notes/blob/master/docs/typora-user-images/MySQL%E6%9E%B6%E6%9E%84.png" style="zoom: 80%;" />
+![img](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/111213-799241.png)
 
 
 
@@ -40,7 +40,7 @@ MySQLServer层主要包括ConnectionPool、Service&utilities、SQLinterface、Pa
 
 下面是一条SQL SELECT语句的执行过程：
 
-<img src="https://github.com/lvminghui/Java-Notes/blob/master/docs/typora-user-images/SQL%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" style="zoom: 80%;" />
+![SQL语句的执行流程.png](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/111425-851843.png)
 
 ## 存储引擎
 
@@ -49,7 +49,7 @@ MySQLServer层主要包括ConnectionPool、Service&utilities、SQLinterface、Pa
 InnoDB 存储引擎的具体架构如下图所示。上半部分是实例层（计算层），位于内存中，下半部分是物理层，位于文件系统中。
 
 
-<img src="https://github.com/lvminghui/Java-Notes/blob/master/docs/typora-user-images/InnoDB%E6%9E%B6%E6%9E%84.png" style="zoom: 80%;" />
+![InnoDB架构.png](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/111528-324018.png)
 
 
 ### 实例层
@@ -92,7 +92,7 @@ Redo日志中包括多个Redo文件，这些文件循环使用，当达到一定
 
 内存和物理结构，如下图所示。
 
-<img src="https://github.com/lvminghui/Java-Notes/blob/master/docs/typora-user-images/%E5%86%85%E5%AD%98%E5%92%8C%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84.png" style="zoom: 80%;" />
+![内存和物理结构.png](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/111609-45465.png)
 
 **BufferPool**
 
@@ -130,7 +130,7 @@ InnoDB 表最大还可以支持 64TB，支持聚簇索引、支持压缩数据�
 ## InnoDB 核心要点
 
 
-<img src="https://github.com/lvminghui/Java-Notes/blob/master/docs/typora-user-images/InnoDB知识体系.png" style="zoom: 80%;" />
+![InnoDB知识体系.png](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/111648-890400.png)
 
 
 
@@ -239,7 +239,7 @@ MVCC最大的好处是读不加锁，读写不冲突。在读多写少的OLTP（
 
 假设 F1～F6 是表中字段的名字，1～6 是其对应的数据。后面三个隐含字段分别对应该行的隐含ID、事务号和回滚指针，如下图所示。
 
-<img src="https://github.com/lvminghui/Java-Notes/blob/master/docs/typora-user-images/MVCC%E5%AE%9E%E7%8E%B0.png" alt="image-20200412113401177" style="zoom:80%;" />
+![MVCC实现.png](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/111733-448828.png)
 
 * 隐含ID（DB_ROW_ID），6个字节，当由InnoDB自动产生聚集索引时，聚集索引包括这个DB_ROW_ID的值。
 * 事务号（DB_TRX_ID），6个字节，标记了最新更新这条行记录的TransactionID，每处理一个事务，其值自动+1。
@@ -257,7 +257,7 @@ MVCC最大的好处是读不加锁，读写不冲突。在读多写少的OLTP（
 
 如果数据继续执行，此时Undolog中有两行记录，并且通过回滚指针连在一起。因此，如果Undolog一直不删除，则会通过当前记录的回滚指针回溯到该行创建时的初始内容，所幸的是在InnoDB中存在purge 线程，它会查询那些比现在最老的活动事务还早的 Undo log，并删除它们，从而保证 Undo log 文件不会无限增长，如下图所示。
 
-<img src="https://github.com/lvminghui/Java-Notes/blob/master/docs/typora-user-images/MVCC3.png" style="zoom:80%;" />
+![MVCC实现2.png](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/111804-682129.png)
 
 ## 并发事务问题及解决方案
 
@@ -298,7 +298,7 @@ InnoDB 锁关系矩阵如下图，其中：+ 表示兼容，- 表示不兼容。
 
 
 
-<img src="https://github.com/lvminghui/Java-Notes/blob/master/docs/typora-user-images/InnoDB%20%E9%94%81%E5%85%B3%E7%B3%BB%E7%9F%A9%E9%98%B5.png"  style="zoom:80%;" />
+![InnoDB 锁关系矩阵.png](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/111850-563454.png)
 
 ### InnoDB 行锁
 
@@ -341,3 +341,42 @@ InnoDB 行锁是通过对索引数据页上的记录（record）加锁实现的�
 * 控制事务大小，减少锁定数据量和锁定时间长度 （innodb_row_lock_time_avg）。
 * 加锁顺序一致，尽可能一次性锁定所有所需的数据行。
 
+## 三大范式
+
+三大范式只是一般设计数据库的基本理念，可以建立冗余较小、结构合理的数据库。如果有特殊情况，当然要特殊对待，数据库设计最重要的是**看需求跟性能**，**需求**>**性能**>**表结构**。所以不能一味的去追求范式建立数据库。
+
+> 什么是范式：数据库设计对数据的存储性能，还有开发人员对数据的操作都有莫大的关系。所以建立科学的、规范的的数据库,是需要满足一些规范来优化数据存储方式。在关系型数据库中这些规范就可以称为范式。
+
+**数据库的三大范式可谓是：实体、属性、关系。**
+
+- 实体：表
+- 属性：表中的数据（字段）
+- 关系：表与表之间的关系
+
+第一范式（1NF）：数据表中的每一列（每个字段）必须是不可拆分的**最小单元**，也就是确保**每一列的原子性**；
+
+第二范式（2NF）：满足1NF后，要求表中的所有列，**都必须依赖于主键**，而不能有任何一列与主键没有关系，也就是说**一个表只描述一件事情**；
+
+第三范式（3NF）：必须先满足第二范式（2NF），要求：表中的每一列只与主键**直接相关**而**不是间接相关**，（表中的每一列只能依赖于主键）
+
+错误事例：关键字段 → 非关键字段x → 非关键字段y
+
+正确实例：关键字段 → 非关键字段x
+ 　　　　关键字段 → 非关键字段y
+
+## 五大约束
+
+1、primary key 设置主键约束；
+ 2、UNIQUE 设置唯一性约束，不能有重复值；
+ 3、DEFAULT 默认值约束；
+ 4、NOT NULL 设置非空约束，该字段不能为空；
+ 5、FOREIGN key 设置外键约束。
+
+【主键】
+ 1.主键的注意事项？
+ 主键默认非空，默认唯一性约束，只有主键才能设置自动增长，自动增长一定是主键，主键不一定自动增长；
+ 2.设置主键的方式？
+ 在定义列时设置：ID INT PRIMARY KEY
+ 在列定义完之后设置：primary KEY（id）
+
+【避免操作异常和数据冗余】

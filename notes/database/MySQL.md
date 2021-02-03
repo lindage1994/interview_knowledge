@@ -25,7 +25,7 @@
 
 ## MySQL的多存储引擎架构
 
-<div align="center"><img src="assets/MySQL.png" width=""/></div><br/>
+![MySQL](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172337-313765.png)
 
 这里先有个整体的MySQL Server的整体概念，详情转向：[MySQL的多存储引擎架构](http://zhaox.github.io/2016/06/24/mysql-architecture)
 
@@ -33,7 +33,7 @@
 
 ## 1. 什么是事务
 
-<div align="center"><img src="assets/185b9c49-4c13-4241-a848-fbff85c03a64.png" width="400"/></div><br/>
+![事务](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172407-863971.png)
 
 
 
@@ -86,7 +86,7 @@ MySQL 默认 自动提交模式。也就是说，如果不显式使用 `START TR
 
 
 
-<div align="center"><img src="assets/a58e294a-615d-4ea0-9fbf-064a6daec4b2-1534474592177.png" width="500"/></div><br/>
+![a58e294a-615d-4ea0-9fbf-064a6daec4b2-1534474592177](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172453-951396.png)
 
 
 
@@ -109,7 +109,7 @@ MySQL 默认 自动提交模式。也就是说，如果不显式使用 `START TR
 
 高级别范式的依赖于低级别的范式，1NF 是最低级别的范式。
 
-<div align="center"><img src="assets/c2d343f7-604c-4856-9a3c-c71d6f67fecc.png" width="400"/></div><br/>
+![c2d343f7-604c-4856-9a3c-c71d6f67fecc](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172539-872485.png)
 
 
 
@@ -203,7 +203,7 @@ Sname, Sdept 和 Mname 都部分依赖于键码，当一个学生选修了多门
 
 　　 T1 和 T2 两个事务都对一个数据进行修改，T1 先修改，T2 随后修改，T2 的修改覆盖了 T1 的修改。
 
-<div align="center"><img src="assets/88ff46b3-028a-4dbb-a572-1f062b8b96d3.png" width="400"/></div><br/>
+![88ff46b3-028a-4dbb-a572-1f062b8b96d3](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172604-944640.png)
 
 
 
@@ -231,7 +231,7 @@ Sname, Sdept 和 Mname 都部分依赖于键码，当一个学生选修了多门
 
 　　T1 修改一个数据，T2 随后读取这个数据。如果 T1 撤销了这次修改，那么 T2 读取的数据是脏数据。
 
-<div align="center"><img src="assets/dd782132-d830-4c55-9884-cfac0a541b8e.png" width="450"/></div><br/>
+![dd782132-d830-4c55-9884-cfac0a541b8e](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172627-819122.png)
 
 
 
@@ -275,7 +275,7 @@ select salary from employee empId ="Mary";
 
 　　T2 读取一个数据，T1 对该数据做了修改。如果 T2 再次读取这个数据，此时读取的结果和第一次读取的结果不同。
 
-<div align="center"><img src="assets/c8d18ca9-0b09-441a-9a0c-fb063630d708-1534474726485.png" width="400"/></div><br/>
+![c8d18ca9-0b09-441a-9a0c-fb063630d708-1534474726485](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172658-429778.png)
 
 
 
@@ -324,7 +324,7 @@ select * from employee where salary =1000;
 
 　　T1 读取某个范围的数据，T2 在这个范围内插入新的数据，T1 再次读取这个范围的数据，此时读取的结果和和第一次读取的结果不同。
 
-<div align="center"><img src="assets/72fe492e-f1cb-4cfc-92f8-412fb3ae6fec.png" width="400"/></div><br/>
+![72fe492e-f1cb-4cfc-92f8-412fb3ae6fec](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172723-522401.png)
 
 
 
@@ -663,7 +663,7 @@ MySQL 提供了 FROM_UNIXTIME() 函数把 UNIX 时间戳转换为日期，并提
 
 #### B-Tree
 
-<div align="center"><img src="assets/06976908-98ab-46e9-a632-f0c2760ec46c.png" width=""/></div><br/>
+![06976908-98ab-46e9-a632-f0c2760ec46c](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172803-441264.png)
 
 
 定义一条数据记录为一个二元组 [key, data]，B-Tree 是满足下列条件的数据结构：
@@ -678,8 +678,7 @@ MySQL 提供了 FROM_UNIXTIME() 函数把 UNIX 时间戳转换为日期，并提
 
 #### B+Tree
 
-
-<div align="center"><img src="assets/7299afd2-9114-44e6-9d5e-4025d0b2a541.png" width=""/></div><br/>
+![7299afd2-9114-44e6-9d5e-4025d0b2a541](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172826-723799.png)
 
 
 与 B-Tree 相比，B+Tree 有以下不同点：
@@ -690,8 +689,7 @@ MySQL 提供了 FROM_UNIXTIME() 函数把 UNIX 时间戳转换为日期，并提
 
 #### 顺序访问指针
 
-
-<div align="center"><img src="assets/061c88c1-572f-424f-b580-9cbce903a3fe.png" width=""/></div><br/>
+![061c88c1-572f-424f-b580-9cbce903a3fe](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/172849-43547.png)
 
 
 
@@ -747,13 +745,13 @@ InnoDB 的 B+Tree 索引分为**主索引**和**辅助索引**。
 
 主索引的叶子节点 data 域记录着完整的数据记录，这种索引方式被称为聚簇索引。因为无法把数据行存放在两个不同的地方，所以一个表只能有一个聚簇索引。
 
-<div align="center"><img src="assets/c28c6fbc-2bc1-47d9-9b2e-cf3d4034f877.jpg" width=""/></div><br/>
+![c28c6fbc-2bc1-47d9-9b2e-cf3d4034f877](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/173331-333441.jpeg)
 
 
 
 辅助索引的叶子节点的 data 域记录着主键的值，因此在使用辅助索引进行查找时，需要先查找到主键值，然后再到主索引中进行查找。
 
-<div align="center"><img src="assets/7ab8ca28-2a41-4adf-9502-cc0a21e63b51.jpg" width=""/></div><br/>
+![7ab8ca28-2a41-4adf-9502-cc0a21e63b51](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/173329-427221.jpeg)
 
 
 
@@ -1023,7 +1021,7 @@ https://www.cnblogs.com/s-b-b/p/8334593.html
 - HAST：包含键值对的无序散列表 
 - ZSET：字符串成员（member）与浮点数分值（score）之间的有序映射，元素的排列顺序由分值的大小决定 
 
-<div align="center"><img src="pics/redis-data-structure-types.jpeg" width="650"/></div><br/>
+![redis-data-structure-types](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/173316-159358.jpeg)
 
 注：更多 Redis 相关内容将在 [Redis](redis.md) 中进行展开，请转向。
 
@@ -1040,7 +1038,7 @@ https://www.cnblogs.com/s-b-b/p/8334593.html
 
 ### 1. 垂直切分
 
-<div align="center"><img src="assets/e130e5b8-b19a-4f1e-b860-223040525cf6.jpg" width=""/></div><br/>
+![e130e5b8-b19a-4f1e-b860-223040525cf6](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/173312-920703.jpeg)
 
 垂直切分是将一张表按列切分成多个表，通常是按照列的关系密集程度进行切分，也可以利用垂直切分将经常被使用的列和不经常被使用的列切分到不同的表中。
 
@@ -1071,7 +1069,7 @@ https://www.cnblogs.com/s-b-b/p/8334593.html
 
 ### 2. 水平切分
 
-<div align="center"><img src="assets/63c2909f-0c5f-496f-9fe5-ee9176b31aba.jpg" width=""/></div><br/>
+![63c2909f-0c5f-496f-9fe5-ee9176b31aba](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/173309-967422.jpeg)
 
 
 
@@ -1148,7 +1146,7 @@ https://www.cnblogs.com/s-b-b/p/8334593.html
 - **I/O 线程** ：负责从主服务器上读取二进制日志文件，并写入从服务器的中继日志中。
 - **SQL 线程** ：负责读取中继日志并重放其中的 SQL 语句。
 
-<div align="center"><img src="assets/master-slave.png" width=""/></div><br/>
+![master-slave](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/173300-134028.png)
 
 
 
@@ -1166,7 +1164,7 @@ MySQL 读写分离能提高性能的原因在于：
 - 从服务器可以配置 MyISAM 引擎，提升查询性能以及节约系统开销；
 - 增加冗余，提高可用性。
 
-<div align="center"><img src="assets/master-slave-proxy.png" width=""/></div><br/>
+![master-slave-proxy](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/03/173412-763242.png)
 
 
 

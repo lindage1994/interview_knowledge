@@ -1,10 +1,3 @@
----
-title: MySQL 架构
-date: 2020-02-18
-draft: false
-categories: database
----
-
 # MySQL 架构
 
 总体来说 MySQL 可以分为两层，第一层是 MySQL 的服务层，包含 MySQL 核心服务功能：解析、分析、优化、缓存以及内置函数，所有跨存储引擎的功能都在这一层实现：存储过程、触发器、视图等。
