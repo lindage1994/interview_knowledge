@@ -4,7 +4,7 @@
 
 
 
-![image-20200703170643997](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200703170643997.png)
+![image-20200703170643997](https://raw.githubusercontent.com/lindage1994/images/master/typora202102/10/202052-190017.png)
 
 
 
