@@ -1,4 +1,6 @@
 # interview_knowledge
+**本项目为个人学习之总结，内容大多来源网上、书籍、视频，有的遗失了出处，若引用不当，麻烦告知删除或注明出处。**
+
 ![EpzTMunW4AEBi_t](https://raw.githubusercontent.com/lindage1994/images/master/typora202101/07/163112-794268.jpeg)
 
 ## java tutorial
@@ -12,15 +14,9 @@
 - [泛型](notes/java/Generic.md)
 - [异常](notes/java/Exception.md)
 - [注解](notes/java/Annotation.md)
+- [集合框架](notes/java/Collections.md)
 - [IO](notes/java/IO.md)
 - [Java8新特性](notes/java/Java8-features.md)
-### 容器源码分析
-- [Collection框架总览](notes/source-code/Collection总览.md)
-- [Map框架总览](notes/source-code/Map总览.md)
-- [ArrayList源码分析](notes/source-code/ArrayList.md)
-- [LinkedList源码分析](notes/source-code/LinkedList.md)
-- [HashMap源码分析](notes/source-code/HashMap.md)
-- [ConcurrentHashMap源码分析](notes/source-code/ConcurrentHashMap.md)
 ### 并发
 - [并发](/notes/concurrent/Concurrent.md)
 ### jvm
